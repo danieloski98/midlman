@@ -1,11 +1,24 @@
-import { Button } from '@chakra-ui/react'
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'; 
+import Dashboard from './Features/Auth/Pages/Dashboard';
+import Login from './Features/Auth/Pages/Login';
 
-function App() {
-  return (
-    <div className="w-full h-64 bg-green-500">
-      <Button>click me</Button>
-    </div>
-  );
+export default function App() {
+    return (  
+        <Router>
+            <Switch>
+                <Route
+                    exact
+                    path='/'
+                    component={Login}
+                />
+
+                <Route
+                    exact
+                    path='/dashboard'
+                    component={Dashboard}
+                />
+            </Switch>
+        </Router>
+    );
 }
-
-export default App;

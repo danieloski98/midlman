@@ -1,12 +1,12 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
+  purge: [],
   presets: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
     screens: {
-      sm: '640px',
+      sm: '300px',
       md: '768px',
       lg: '1024px',
       xl: '1280px',
@@ -14,7 +14,15 @@ module.exports = {
     },
     colors: {
       transparent: 'transparent',
-      current: 'currentColor',
+      current: 'currentColor', 
+      midlman_color: '#00A69C',
+      login_buttton: '#F2F2F2',
+      active_menu: '#47B9AD',
+      menu_textcolor: '#B4E4E1',
+      menu_gray: '#828282',
+      product_color: '#46498A',
+      customers_color: '#316A52',
+      businesses_color: '#94316D',
 
       black: colors.black,
       white: colors.white,
@@ -26,6 +34,9 @@ module.exports = {
       indigo: colors.indigo,
       purple: colors.violet,
       pink: colors.pink,
+      maingreen: '#00A69C',
+      buttonyellow: '#EEE5C6',
+      footercolor: '#001F1D'
     },
     spacing: {
       px: '1px',
@@ -260,7 +271,11 @@ module.exports = {
         '"Liberation Mono"',
         '"Courier New"',
         'monospace',
-      ],
+      ], 
+        'Poppins-Regular': 'Poppins-regular',
+        'Poppins-Medium': 'Poppins-medium',
+        'Poppins-Bold': 'Poppins-bold',  
+        'Poppins-Semibold': 'Poppins-semibold'
     },
     fontSize: {
       xs: ['0.75rem', { lineHeight: '1rem' }],
@@ -422,8 +437,21 @@ module.exports = {
       '3/6': '50%',
       '4/6': '66.666667%',
       '5/6': '83.333333%',
+      '1/12': '8.333333%',
+      '2/12': '16.666667%',
+      '3/12': '25%',
+      '4/12': '33.333333%',
+      '5/12': '41.666667%',
+      '6/12': '50%',
+      '7/12': '58.333333%',
+      '8/12': '66.666667%',
+      '9/12': '75%',
+      '10/12': '83.333333%',
+      '11/12': '91.666667%',
       full: '100%',
       screen: '100vh',
+      min: 'min-content',
+      max: 'max-content',
     }),
     inset: (theme, { negative }) => ({
       auto: 'auto',
