@@ -1,7 +1,7 @@
 import React from 'react';
 import Contents from '../Dashboard-Components/Contents';
 
-import Menu from '../Dashboard-Components/Menu';
+import Menu from '../Dashboard-Components/Menu'; 
 
 export default function Dashboard() {
     return (
@@ -11,7 +11,7 @@ export default function Dashboard() {
                     <div className='overflow-y-auto overflow-x-hidden w-64 m-0 bg-midlman_color '>
                         <Menu />
                     </div>
-                    <div className='w-full h-full flex flex-1' >
+                    <div className='w-full h-screen flex flex-1 overflow-y-auto overflow-x-hidden ' >
                         <Contents />
                     </div>
                 </div>

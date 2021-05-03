@@ -23,6 +23,14 @@ module.exports = {
       product_color: '#46498A',
       customers_color: '#316A52',
       businesses_color: '#94316D',
+      dashboard_color: '#EBE0E0',
+      pending_color: '#F2994A',
+      pending_bg: '#F3EEDE',
+      processing_color: '#1B75BB',
+      processing_bg: '#E5EDF3',
+      completed_color: '#00A69C',
+      completed_bg: '#F0FAF9',
+      entries: '#E0E0E0',
 
       black: colors.black,
       white: colors.white,
@@ -74,6 +82,7 @@ module.exports = {
       72: '18rem',
       80: '20rem',
       96: '24rem',
+      100: '26rem',
     },
     animation: {
       none: 'none',

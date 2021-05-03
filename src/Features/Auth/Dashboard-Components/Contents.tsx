@@ -1,10 +1,14 @@
 import React from 'react'
 
 import pic from '../../../assets/images/profile.png' 
+import AreaGraph from './AreaGraph'
+import BarGraph from './BarGraph'
+import PieGraph from './PieGraph'
+import RecentOrder from './RecentOrder'
 
 export default function Contents() {
     return ( 
-        <div className='w-full h-full flex flex-col flex-1 py-8 px-8' >
+        <div className='w-full h-full flex flex-col flex-1 py-8 px-8 bg-white' >
             <div className='w-full h-10 flex flex-row items-center' >
                 <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M18 12H0V10H18V12ZM18 7H0V5H18V7ZM18 2H0V0H18V2Z" fill="#828282"/>
@@ -93,6 +97,22 @@ export default function Contents() {
                         </div>
                     </div> 
                 </div>
+            </div>
+            <div className='w-full flex flex-row mt-10 pb-10' style={{height:'650px'}} >
+                <div className='flex flex-col' >  
+                    <div className='w-80' > 
+                        <BarGraph/> 
+                    </div>
+                    <div> 
+                        <PieGraph /> 
+                    </div>
+                </div>
+                <div className='w-auto pl-8' >
+                    <AreaGraph />
+                </div>
+            </div> 
+            <div className='w-full flex pb-8'>
+                <RecentOrder />
             </div>
         </div>
     )
