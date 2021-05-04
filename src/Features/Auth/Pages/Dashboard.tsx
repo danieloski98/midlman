@@ -6,7 +6,7 @@ import Menu from '../Dashboard-Components/Menu';
 export default function Dashboard() {
     return (
         <div className='w-full h-screen flex flex-col  overflow-hidden' >
-            <div className="flex-1 flex bg-secondary overflow-auto"> 
+            <div className="flex-1 flex overflow-auto"> 
                 <div className="w-full flex flex-row ">
                     <div className='overflow-y-auto overflow-x-hidden w-64 m-0 bg-midlman_color '>
                         <Menu />
