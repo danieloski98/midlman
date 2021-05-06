@@ -1,11 +1,8 @@
-import { Button } from '@chakra-ui/react'
+import React from 'react';
+import RootNavigation from './Navigation/Index'
 
-function App() {
-  return (
-    <div className="w-full h-64 bg-green-500">
-      <Button>click me</Button>
-    </div>
-  );
+export default function App() {
+    return (
+       <RootNavigation />
+    );
 }
-
-export default App;
