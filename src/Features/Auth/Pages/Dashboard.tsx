@@ -1,7 +1,7 @@
 import React from 'react';
-import Contents from '../Dashboard-Components/Contents';
+import Contents from '../../Dashboard-Components/Contents';
 
-import Menu from '../Dashboard-Components/Menu'; 
+import Menu from '../../Dashboard-Components/Menu'; 
 
 export default function Dashboard() {
     return (

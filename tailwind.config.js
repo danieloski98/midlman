@@ -31,6 +31,7 @@ module.exports = {
       completed_color: '#00A69C',
       completed_bg: '#F0FAF9',
       entries: '#E0E0E0',
+      gray_exp: '#CBCBCB',
 
       black: colors.black,
       white: colors.white,

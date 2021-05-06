@@ -1,5 +1,5 @@
 import React from 'react'
-import product from '../../../assets/images/product.png'
+import product from '../../assets/images/product.png'
 
 export default function RecentOrder() {
 

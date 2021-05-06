@@ -1,7 +1,7 @@
 import React from 'react';
 
-import logo from '../../../assets/images/logo.png'
-import settings from '../../../assets/images/settings.png'
+import logo from '../../assets/images/logo.png'
+import settings from '../../assets/images/settings.png'
 
 
 export default function Menu() {
