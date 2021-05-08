@@ -2,13 +2,17 @@ import { Input } from '@chakra-ui/input'
 import { Select } from '@chakra-ui/select'
 import { Textarea } from '@chakra-ui/textarea'
 import React from 'react'
+import { useHistory } from 'react-router'
 
 export default function UploadProduct() {
+
+    const history = useHistory();
+
     return (
         <div className='w-full h-full flex flex-col items-center py-8 ' >  
             <p className=' w-100 font-Poppins-Semibold text-lg -ml-48' >Upload a Product</p> 
             <div className='w-full flex flex-col items-center pt-14 pb-8' >
-                <div className='w-100 flex flex-row ' >
+                <div onClick={()=> history.push('/dashboard/product')}  className='w-100 flex flex-row cursor-pointer ' >
                     <svg width="10" height="15" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M8.53578 0.515015L0.0507812 9.00001L8.53578 17.485L9.95078 16.071L2.87878 9.00001L9.95078 1.92901L8.53578 0.515015Z" fill="#828282"/>
                     </svg> 

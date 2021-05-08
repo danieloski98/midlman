@@ -8,7 +8,7 @@ export default function Index() {
     <Router>
       <Switch>
         <Route path='/' component={Login} exact />
-        <Route path="/dashboard/" component={Dashboard} exact />
+        <Route path="/dashboard/" component={Dashboard} />
       </Switch>
     </Router>
   )

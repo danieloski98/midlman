@@ -1,7 +1,7 @@
-import React from 'react';
-import Contents from '../../Dashboard-Components/Contents';
+import React from 'react'; 
 
-import Menu from '../../Dashboard-Components/Menu'; 
+import DashboardRoutes from '../../../Navigation/DashboardRoutes';  
+import Menu from '../../Dashboard-Components/Menu';   
 
 export default function Dashboard() {
     return (
@@ -12,7 +12,7 @@ export default function Dashboard() {
                         <Menu />
                     </div>
                     <div className='w-full h-screen flex flex-1 overflow-y-auto overflow-x-hidden ' >
-                        <Contents />
+                        <DashboardRoutes/>
                     </div>
                 </div>
             </div>

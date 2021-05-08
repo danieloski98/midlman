@@ -29,7 +29,7 @@ export default function Contents() {
             <div className='w-full h-full pt-14' >
                 <div className='w-full flex' >
                     <div className='w-full flex flex-1' />
-                    <button onClick={()=> history.push('/uploadproduct')} className='bg-midlman_color flex flex-row  font-Poppins-Bold text-white text-xs py-3 px-6 rounded-md' >
+                    <button onClick={()=> history.push('/dashboard/uploadproduct')} className='bg-midlman_color flex flex-row  font-Poppins-Bold text-white text-xs py-3 px-6 rounded-md' >
                         <svg className='mr-2' width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M8 8V14H6V8H0V6H6V0H8V6H14V8H8Z" fill="white"/>
                         </svg> Upload Product
