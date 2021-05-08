@@ -1,8 +1,10 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import product from '../../assets/images/product.png'
 
 export default function RecentOrder() {
 
+    const history = useHistory()
     const Orders = (props: any) => {
         return(
             <div className='w-full flex flex-row items-center py-4 border-b-2 border-login_buttton ' >
@@ -34,6 +36,11 @@ export default function RecentOrder() {
                 </div>
             </div>
         )
+    } 
+
+    const ClickHandler =(path: any)=> {
+        history.replace(path);
+        history.go(0);
     }
 
     return (
@@ -42,7 +49,7 @@ export default function RecentOrder() {
                 <div className='w-full flex flex-row items-center border-b-2 border-gray-200 pb-4' >
                     <p className='font-Poppins-Medium text-lg' >Recent Orders</p>
                     <div className='w-full flex flex-1' />
-                    <div className='rounded-md border-2 border-gray-200 py-2 px-4' >
+                    <div className='rounded-md border-2 border-gray-200 py-2 px-4 cursor-pointer' onClick={()=> ClickHandler('/dashboard/orderlist')} >
                         <p className='font-Poppins-Regular text-sm' >View all orders</p>
                     </div>
                 </div>

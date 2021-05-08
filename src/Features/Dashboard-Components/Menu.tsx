@@ -66,7 +66,7 @@ export default function Menu() {
                 <div onClick={()=> ClickHandler('/dashboard/delivery')} className={dropdown.includes('admin') ? menucolor: 'hidden'} > 
                     <p className='text-sm font-Poppins-Regular mr-2' >Delivery Man</p> 
                 </div>
-                <div className={dropdown.includes('admin') ? menucolor: 'hidden'}  > 
+                <div onClick={()=> ClickHandler('/dashboard/managerole')}  className={dropdown.includes('admin') ? menucolor: 'hidden'}  > 
                     <p className='text-sm font-Poppins-Regular mr-2' >Manage Roles</p> 
                 </div>
             </div>
