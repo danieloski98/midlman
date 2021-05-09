@@ -2,7 +2,7 @@ import React from 'react';
 
 import logo from '../../assets/images/logo.png'
 import settings from '../../assets/images/settings.png'
-import { useHistory } from 'react-router'
+import { useHistory } from 'react-router-dom'
 
 
 export default function Menu() {
@@ -12,9 +12,8 @@ export default function Menu() {
     const menuactivecolor = 'w-full flex pl-8 flex-row items-center py-3 bg-active_menu cursor-pointer'
     const menucolor = 'w-full flex pl-8 flex-row items-center py-3 text-menu_textcolor cursor-pointer'
 
-    const ClickHandler =(path: any)=> {
-        history.replace(path);
-        history.go(0);
+    const ClickHandler =(path: any)=> { 
+        history.push(path);
     }
 
     const DropDown = (source: string) => {
