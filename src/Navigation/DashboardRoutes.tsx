@@ -1,6 +1,8 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import Admin from '../Features/Auth/Pages/Dashboard-Screens/Admin'
+import Brand from '../Features/Auth/Pages/Dashboard-Screens/Brand'
+import Catergories from '../Features/Auth/Pages/Dashboard-Screens/Catergories'
 import CompletedOrder from '../Features/Auth/Pages/Dashboard-Screens/CompletedOrder'
 import Delivery from '../Features/Auth/Pages/Dashboard-Screens/Delivery'
 import ExpressAccount from '../Features/Auth/Pages/Dashboard-Screens/ExpressAccount'
@@ -21,6 +23,8 @@ export default function DashboardRoutes() {
             <Route path="/dashboard/completedorder" component={CompletedOrder} exact /> 
             <Route path="/dashboard/expressaccount" component={ExpressAccount} exact /> 
             <Route path="/dashboard/portalaccount" component={PortalAccount} exact /> 
+            <Route path="/dashboard/catergories" component={Catergories} exact /> 
+            <Route path="/dashboard/brand" component={Brand} exact /> 
             <Route path="/dashboard/managerole" component={ManageRole} exact /> 
             <Route path="/dashboard/orderlist" component={OrderList} exact /> 
             <Route path="/dashboard/uploadproduct" component={UploadProduct} exact/> 
