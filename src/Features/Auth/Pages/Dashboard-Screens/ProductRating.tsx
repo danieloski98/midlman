@@ -1,32 +1,34 @@
 import { Select, Input } from '@chakra-ui/react'
-import React from 'react'
-import { useHistory } from 'react-router-dom'
+import React from 'react' 
 
-export default function Brand() {
-    const history = useHistory()
+export default function ProductRating() { 
 
     const data = [
         { 
-            brand: 'Baby & Child care',
-            modified: '08123456789', 
+            reviewedby : 'Ernest Chris',
+            rating: '4',
+            data: '3/05/2021', 
         },
         { 
-            brand: 'Ernest',
-            modified: '08123456789', 
+            reviewedby : 'Ernest Chris',
+            rating: '4',
+            data: '3/05/2021', 
         },
         { 
-            brand: 'Ernest',
-            modified: '08123456789', 
+            reviewedby : 'Ernest Chris',
+            rating: '4',
+            data: '3/05/2021', 
         },
         { 
-            brand: 'Ernest',
-            modified: '08123456789', 
+            reviewedby : 'Ernest Chris',
+            rating: '4',
+            data: '3/05/2021', 
         },
     ]
 
     return (
         <div className='w-full h-full flex flex-col px-8 py-8 ' >  
-            <p className='font-Poppins-Semibold text-lg' >Brand</p>
+            <p className='font-Poppins-Semibold text-lg' >Product Rating</p>
             <div className='w-full flex relative flex-row items-center py-8' > 
                 <div className='w-24 flex items-center mr-4' >  
                     <Select fontSize='xs' color='#828282' placeholder='Sort By' />
@@ -39,35 +41,29 @@ export default function Brand() {
                     </div>
                     <Input fontSize='xs' paddingLeft='10'  placeholder='Search ...' />
                 </div>
-                <div className='w-full flex flex-1' />
+                {/* <div className='w-full flex flex-1' />
                 <button onClick={()=> history.push('/dashboard/uploadproduct')}  className='bg-midlman_color flex flex-row items-center font-Poppins-Bold text-white text-xs py-3 px-6 rounded-md mx-1' >
                     <svg className='mr-2' width="12" height="12" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M8 8V14H6V8H0V6H6V0H8V6H14V8H8Z" fill="white"/>
-                    </svg> Add New Brand
-                </button>
+                    </svg> Add New Product
+                </button> */}
             </div>
             <div className='w-auto my-14 px-8' >
                 <table className='text-sm '>
                     <tr className='font-Poppins-Semibold' >
                         <th className='bg-white'>ID</th>
-                        <th className='bg-white'>Brand</th>
-                        <th className='bg-white'>Logo</th> 
-                        <th className='bg-white'>Added/Last Modified</th> 
-                        <th className='bg-white'>Status</th> 
+                        <th className='bg-white'>Reviewed By</th>
+                        <th className='bg-white'>Rating</th>
+                        <th className='bg-white'>Date</th> 
                         <th className='bg-white'>Action</th> 
                     </tr>
                     {data.map((item, index) => {
                         return(
                             <tr className='font-Poppins-Regular' >
                                 <td className='font-Poppins-Semibold'>{index+1}</td>
-                                <td>{item.brand}</td>  
-                                <td >
-                                    <div className='w-full flex justify-center text-midlman_color text-Poppins-Medium'>
-                                        View Logo
-                                    </div>
-                                </td>
-                                <td>{item.modified}</td>
-                                <td>Active</td>
+                                <td>{item.reviewedby}</td>
+                                <td>{item.rating}</td>
+                                <td>{item.data}</td> 
                                 <td> 
                                     <div className=' w-full h-full flex flex-row items-center' >
                                         <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">

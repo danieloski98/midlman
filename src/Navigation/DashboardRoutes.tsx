@@ -10,6 +10,7 @@ import ManageRole from '../Features/Auth/Pages/Dashboard-Screens/ManageRole'
 import OrderList from '../Features/Auth/Pages/Dashboard-Screens/OrderList'
 import PortalAccount from '../Features/Auth/Pages/Dashboard-Screens/PortalAccount'
 import Product from '../Features/Auth/Pages/Dashboard-Screens/Product'
+import ProductRating from '../Features/Auth/Pages/Dashboard-Screens/ProductRating'
 import UploadProduct from '../Features/Auth/Pages/Dashboard-Screens/UploadProduct'
 import Contents from '../Features/Dashboard-Components/Contents'
 
@@ -25,6 +26,7 @@ export default function DashboardRoutes() {
             <Route path="/dashboard/portalaccount" component={PortalAccount} exact /> 
             <Route path="/dashboard/catergories" component={Catergories} exact /> 
             <Route path="/dashboard/brand" component={Brand} exact /> 
+            <Route path="/dashboard/productrating" component={ProductRating} exact /> 
             <Route path="/dashboard/managerole" component={ManageRole} exact /> 
             <Route path="/dashboard/orderlist" component={OrderList} exact /> 
             <Route path="/dashboard/uploadproduct" component={UploadProduct} exact/> 
