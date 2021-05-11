@@ -42,7 +42,7 @@ export default function Delivery() {
     ]
 
     return (
-        <div className='w-full h-full flex flex-col px-8 py-8 ' >  
+        <div className='w-full h-full flex flex-col px-10 py-8 ' >  
             <p className='font-Poppins-Semibold text-lg' >Delivery Man</p>
             <div className='w-full flex relative flex-row items-center py-8' > 
                 <div className='w-24 flex items-center mr-4' >  
@@ -68,7 +68,7 @@ export default function Delivery() {
                 </button>
             </div>
 
-            <div className='w-full flex flex-row py-4 px-8 items-center'  >
+            <div className='w-full flex flex-row py-4 items-center'  >
                 <div className=' w-auto px-3 py-2 flex flex-row items-center border-2 rounded-md border-midlman_color cursor-pointer mr-6' >
                     <svg width="26" height="16" viewBox="0 0 26 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <mask id="path-1-outside-1" maskUnits="userSpaceOnUse" x="-0.00390625" y="-0.333313" width="26" height="16" fill="black">
@@ -107,7 +107,7 @@ export default function Delivery() {
                         </div>
                     </div>
             </div>
-            <div className='w-auto my-4 px-8' >
+            <div className='w-auto my-8' >
                 <table className='text-sm '>
                     <thead>
                         <tr className='font-Poppins-Semibold' >
@@ -157,7 +157,7 @@ export default function Delivery() {
                     </tbody>
                 </table>
             </div>
-            <div className='w-full flex flex-row items-center pr-12'>
+            <div className='w-full flex flex-row items-center mt-4 pb-12'>
                 <p className='font-Poppins-Regular text-xs' >Showing 1-10 of 30 items</p>
                 <div className='w-full flex flex-1' />
                 <div className='w-8 h-8 flex justify-center items-center font-Poppins-Semibold text-xs mr-1 bg-completed_bg cursor-pointer ' >1</div>

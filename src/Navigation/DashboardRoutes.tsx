@@ -15,6 +15,7 @@ import UploadProduct from '../Features/Dashboard/Pages/UploadProduct'
 import Contents from '../Features/Dashboard/Pages/Contents'
 import LowStockProducts from '../Features/Dashboard/Pages/LowStockProducts'
 import ProductReview from '../Features/Dashboard/Pages/ProductReview'
+import RefundReequest from '../Features/Dashboard/Pages/RefundRequest'
 
 export default function DashboardRoutes() {
     return (  
@@ -30,6 +31,7 @@ export default function DashboardRoutes() {
             <Route path="/dashboard/brand" component={Brand} exact /> 
             <Route path="/dashboard/productrating" component={ProductRating} exact /> 
             <Route path="/dashboard/productreview" component={ProductReview} exact /> 
+            <Route path="/dashboard/refundrequest" component={RefundReequest} exact /> 
             <Route path="/dashboard/lowstockproduct" component={LowStockProducts} exact /> 
             <Route path="/dashboard/managerole" component={ManageRole} exact /> 
             <Route path="/dashboard/orderlist" component={OrderList} exact /> 

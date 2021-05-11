@@ -22,8 +22,8 @@ export default function ProductReview() {
     ]
 
     return (
-        <div className='w-full h-full flex flex-col px-8 py-8 ' >  
-            <p className='font-Poppins-Semibold text-lg' >Low Stock Products</p>
+        <div className='w-full h-full flex flex-col px-10 py-8 ' >  
+            <p className='font-Poppins-Semibold text-lg' >Product Views</p>
             <div className='w-full flex relative flex-row items-center py-8' > 
                 <div className='w-24 flex items-center mr-4' >  
                     <Select fontSize='xs' color='#828282' placeholder='Sort By' />
@@ -37,13 +37,13 @@ export default function ProductReview() {
                     <Input fontSize='xs' paddingLeft='10'  placeholder='Search ...' />
                 </div> 
             </div>
-            <div className='w-auto my-14 px-8' >
+            <div className='w-auto my-14' >
                 <table className=' w-auto text-sm '>
                     <thead>
                         <tr className='font-Poppins-Semibold' >
                             <th className='bg-white'>ID</th>
                             <th className='bg-white '>Product</th>
-                            <th className='bg-white w-20'>View</th> 
+                            <th className='bg-white pr-20'>View</th> 
                         </tr>
                     </thead>
                     <tbody>
@@ -59,7 +59,7 @@ export default function ProductReview() {
                     </tbody> 
                 </table>
             </div>
-            <div className='w-full flex flex-row items-center pr-12'>
+            <div className='w-full flex flex-row items-center pb-12'>
                 <p className='font-Poppins-Regular text-xs' >Showing 1-10 of 30 items</p>
                 <div className='w-full flex flex-1' />
                 <div className='w-8 h-8 flex justify-center items-center font-Poppins-Semibold text-xs mr-1 bg-completed_bg cursor-pointer ' >1</div>

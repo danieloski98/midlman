@@ -49,7 +49,7 @@ export default function CompletedOrder() {
     ]  
 
     return (
-        <div className='w-full h-full flex flex-col px-8 py-8 ' >  
+        <div className='w-full h-full flex flex-col px-10 py-8 ' >  
             <p className='font-Poppins-Semibold text-lg' >Completed Orders</p>
             <div className='w-full flex relative flex-row items-center py-8' > 
                 <div className='w-24 flex items-center mr-4' >  
@@ -92,7 +92,7 @@ export default function CompletedOrder() {
                 <div className='w-full flex flex-1' />
                 <button className='bg-midlman_color flex flex-row items-center font-Poppins-Bold text-white text-xs py-3 px-12 rounded-md mx-1' > Print </button>
             </div>
-            <div className='w-auto mt-8 mb-14 px-2' >
+            <div className='w-auto mt-8 mb-14' >
                 <table className='text-xs '>
                     <thead>
                         <tr className='font-Poppins-Semibold' >
@@ -128,7 +128,7 @@ export default function CompletedOrder() {
                     </tbody>
                 </table>
             </div>
-            <div className='w-full flex flex-row items-center pr-12'>
+            <div className='w-full flex flex-row items-center pb-12'>
                 <p className='font-Poppins-Regular text-xs' >Showing 1-10 of 30 items</p>
                 <div className='w-full flex flex-1' />
                 <div className='w-8 h-8 flex justify-center items-center font-Poppins-Semibold text-xs mr-1 bg-completed_bg cursor-pointer ' >1</div>

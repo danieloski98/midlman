@@ -37,7 +37,7 @@ export default function ExpressAccount() {
     ]
 
     return (
-        <div className='w-full h-full flex flex-col px-8 py-8 ' >  
+        <div className='w-full h-full flex flex-col px-10 py-8 ' >  
             <p className='font-Poppins-Semibold text-lg' >List of EXPRESS Accounts</p>
             <div className='w-full flex relative flex-row items-center py-8' > 
                 <div className='w-24 flex items-center mr-4' >  
@@ -59,7 +59,7 @@ export default function ExpressAccount() {
                     </svg> Add New Express Account
                 </button>
             </div>
-            <div className='w-auto my-14 px-8' >
+            <div className='w-auto my-14' >
                 <table className='text-sm '>
                     <thead>
                         <tr className='font-Poppins-Semibold' >
@@ -78,7 +78,11 @@ export default function ExpressAccount() {
                             return(
                                 <tr key={index} className='font-Poppins-Regular' >
                                     <td className='font-Poppins-Semibold'>{index+1}</td>
-                                    <td className='w-full flex justify-center text-midlman_color text-Poppins-Medium' >View Image</td>
+                                    <td>
+                                        <div className='w-full flex justify-center text-midlman_color text-Poppins-Medium'>
+                                            <p>View Image</p>
+                                        </div>
+                                    </td>
                                     <td>{item.firstname}</td>
                                     <td>{item.lastname}</td>
                                     <td>{item.email}</td>
@@ -104,7 +108,7 @@ export default function ExpressAccount() {
                     </tbody>
                 </table>
             </div>
-            <div className='w-full flex flex-row items-center pr-12'>
+            <div className='w-full flex flex-row items-center pb-12'>
                 <p className='font-Poppins-Regular text-xs' >Showing 1-10 of 30 items</p>
                 <div className='w-full flex flex-1' />
                 <div className='w-8 h-8 flex justify-center items-center font-Poppins-Semibold text-xs mr-1 bg-completed_bg cursor-pointer ' >1</div>
