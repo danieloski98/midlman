@@ -108,7 +108,7 @@ export default function OrderList() {
                     </tr>
                     {data.map((item, index) => {
                         return(
-                            <tr className='font-Poppins-Regular' >
+                            <tr key={index} className='font-Poppins-Regular' >
                                 <td className='font-Poppins-Semibold'>{index+1}</td>
                                 <td>
                                     <div className='flex flex-row items-center' >

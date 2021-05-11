@@ -2,31 +2,39 @@ import { Select, Input } from '@chakra-ui/react'
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 
-export default function Brand() {
+export default function LowStockProducts() {
     const history = useHistory()
 
     const data = [
         { 
-            brand: 'Baby & Child care',
-            modified: '08123456789', 
+            fullname: 'Ernest Chris',
+            email: 'yesyesyes@email.com',
+            admintype: 'Store Owner',
+            status: 'Active', 
         },
-        { 
-            brand: 'Ernest',
-            modified: '08123456789', 
+        {
+            fullname: 'Ernest Chris',
+            email: 'Ernest',
+            admintype: 'Merchant',
+            status: 'Active'
         },
-        { 
-            brand: 'Ernest',
-            modified: '08123456789', 
+        {
+            fullname: 'Ernest Chris',
+            email: 'Ernest',
+            admintype: 'Active',
+            status: 'Active'
         },
-        { 
-            brand: 'Ernest',
-            modified: '08123456789', 
-        },
+        {
+            fullname: 'Ernest Chris',
+            email: 'Ernest',
+            admintype: 'Active',
+            status: 'Active'
+        }
     ]
 
     return (
         <div className='w-full h-full flex flex-col px-8 py-8 ' >  
-            <p className='font-Poppins-Semibold text-lg' >Brand</p>
+            <p className='font-Poppins-Semibold text-lg' >Admins</p>
             <div className='w-full flex relative flex-row items-center py-8' > 
                 <div className='w-24 flex items-center mr-4' >  
                     <Select fontSize='xs' color='#828282' placeholder='Sort By' />
@@ -43,16 +51,16 @@ export default function Brand() {
                 <button onClick={()=> history.push('/dashboard/uploadproduct')}  className='bg-midlman_color flex flex-row items-center font-Poppins-Bold text-white text-xs py-3 px-6 rounded-md mx-1' >
                     <svg className='mr-2' width="12" height="12" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M8 8V14H6V8H0V6H6V0H8V6H14V8H8Z" fill="white"/>
-                    </svg> Add New Brand
+                    </svg> Add New Product
                 </button>
             </div>
             <div className='w-auto my-14 px-8' >
                 <table className='text-sm '>
                     <tr className='font-Poppins-Semibold' >
                         <th className='bg-white'>ID</th>
-                        <th className='bg-white'>Brand</th>
-                        <th className='bg-white'>Logo</th> 
-                        <th className='bg-white'>Added/Last Modified</th> 
+                        <th className='bg-white'>Full Name</th>
+                        <th className='bg-white'>Email</th>
+                        <th className='bg-white'>Admin Type</th>
                         <th className='bg-white'>Status</th> 
                         <th className='bg-white'>Action</th> 
                     </tr>
@@ -60,14 +68,10 @@ export default function Brand() {
                         return(
                             <tr key={index} className='font-Poppins-Regular' >
                                 <td className='font-Poppins-Semibold'>{index+1}</td>
-                                <td>{item.brand}</td>  
-                                <td >
-                                    <div className='w-full flex justify-center text-midlman_color text-Poppins-Medium'>
-                                        View Logo
-                                    </div>
-                                </td>
-                                <td>{item.modified}</td>
-                                <td>Active</td>
+                                <td>{item.fullname}</td>
+                                <td>{item.email}</td>
+                                <td>{item.admintype}</td>
+                                <td>{item.status}</td>
                                 <td> 
                                     <div className=' w-full h-full flex flex-row items-center' >
                                         <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">

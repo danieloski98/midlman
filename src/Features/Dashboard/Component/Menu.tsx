@@ -155,7 +155,7 @@ export default function Menu() {
                 </div>
                 <div onClick={()=> ClickHandler('/dashboard/productrating', 4)} className={dropdown === 'catalogue'  ? submenu === 4 ? menuactivecolor: menucolor: 'hidden'}  > 
                     <p className='text-sm font-Poppins-Regular mr-2' >Product Rating</p> 
-                </div>
+                </div> 
             </div>
             <div className='w-full mt-4' >
                 <div className={active === 4 ? activeindicator : 'w-full cursor-pointer'} >

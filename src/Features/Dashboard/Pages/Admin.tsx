@@ -66,7 +66,7 @@ export default function Admin() {
                     </tr>
                     {data.map((item, index) => {
                         return(
-                            <tr className='font-Poppins-Regular' >
+                            <tr key={index} className='font-Poppins-Regular' >
                                 <td className='font-Poppins-Semibold'>{index+1}</td>
                                 <td>{item.fullname}</td>
                                 <td>{item.email}</td>

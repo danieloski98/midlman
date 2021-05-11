@@ -59,7 +59,7 @@ export default function ProductRating() {
                     </tr>
                     {data.map((item, index) => {
                         return(
-                            <tr className='font-Poppins-Regular' >
+                            <tr key={index} className='font-Poppins-Regular' >
                                 <td className='font-Poppins-Semibold'>{index+1}</td>
                                 <td>{item.reviewedby}</td>
                                 <td>{item.rating}</td>

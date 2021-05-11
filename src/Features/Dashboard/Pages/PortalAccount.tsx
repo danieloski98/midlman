@@ -75,7 +75,7 @@ export default function PortalAccount() {
                     </tr>
                     {data.map((item, index) => {
                         return(
-                            <tr style={index === 0 ? {backgroundColor: '#EB5757'}:{}} className='font-Poppins-Regular' >
+                            <tr key={index} style={index === 0 ? {backgroundColor: '#EB5757'}:{}} className='font-Poppins-Regular' >
                                 <td className='font-Poppins-Semibold'>{index+1}</td>
                                 <td >
                                     <div className='w-full flex justify-center text-midlman_color text-Poppins-Medium'>
