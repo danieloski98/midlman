@@ -1,6 +1,6 @@
 import React from 'react'
 
-import pic from '../../assets/images/profile.png' 
+import pic from '../../../assets/images/profile.png' 
 
 export default function Navbar(props: any) {
     return (

@@ -1,7 +1,7 @@
 import React from 'react'; 
 
 import DashboardRoutes from '../../../Navigation/DashboardRoutes';  
-import Menu from '../../Dashboard-Components/Menu';   
+import Menu from '../../Dashboard/Component/Menu';   
 
 export default function Dashboard() {
     return (

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import product from '../../assets/images/product.png'
+import product from '../../../assets/images/product.png'
 
 export default function RecentOrder() {
 
