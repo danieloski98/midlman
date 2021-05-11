@@ -80,15 +80,18 @@ export default function Menu() {
                 </div>
             </div>
             <div className='w-full mt-4' >
-                <div onClick={()=> DropDown('order', 2)}  className={active === 2 ? menuactivecolor : menucolor} >
+                {/* <div onClick={()=> DropDown('order', 2)}  className={active === 2 ? menuactivecolor : menucolor} >
                     <svg width="19" height="19" viewBox="0 0 19 19" xmlns="http://www.w3.org/2000/svg">
                         <path className='fill-current'  d="M9.89754 18.968C9.36652 18.9696 8.85696 18.7586 8.48254 18.382L0.648543 10.547C0.235132 10.1348 0.0231528 9.56207 0.0685427 8.98001L0.568543 2.41401C0.639841 1.4264 1.42674 0.641631 2.41454 0.573012L8.98054 0.0730117C9.03154 0.0620117 9.08354 0.0620117 9.13454 0.0620117C9.66439 0.063372 10.1722 0.273991 10.5475 0.648012L18.3825 8.48201C18.7578 8.85711 18.9686 9.36594 18.9686 9.89651C18.9686 10.4271 18.7578 10.9359 18.3825 11.311L11.3115 18.382C10.9374 18.7583 10.4282 18.9693 9.89754 18.968ZM9.13354 2.06201L2.56254 2.56201L2.06254 9.13301L9.89754 16.968L16.9675 9.89801L9.13354 2.06201ZM5.65454 7.65402C4.70038 7.65422 3.87895 6.98037 3.69262 6.04458C3.50629 5.10879 4.00695 4.17169 4.88841 3.80639C5.76987 3.44109 6.78663 3.74933 7.31687 4.54259C7.84711 5.33586 7.74313 6.39322 7.06854 7.06801C6.69437 7.44433 6.18522 7.65534 5.65454 7.65402Z" fill="#B4E4E1"/>
                     </svg> 
                     <p className='text-sm ml-3 mr-2 font-Poppins-Medium' >Orders</p> 
-                </div>
+                </div> */}
                 <div onClick={()=> ClickHandler('/dashboard/completedorder', 1)} className={active === 2  ? activeindicator : 'w-full cursor-pointer'} > 
                     <div onClick={()=> DropDown('order', 2)} className={active === 2 ? menuactivecolor: menucolor} > 
-                        <p className='text-base font-Poppins-Semibold mr-2' >Orders Details</p>
+                        <svg width="19" height="19" viewBox="0 0 19 19" xmlns="http://www.w3.org/2000/svg">
+                            <path className='fill-current'  d="M9.89754 18.968C9.36652 18.9696 8.85696 18.7586 8.48254 18.382L0.648543 10.547C0.235132 10.1348 0.0231528 9.56207 0.0685427 8.98001L0.568543 2.41401C0.639841 1.4264 1.42674 0.641631 2.41454 0.573012L8.98054 0.0730117C9.03154 0.0620117 9.08354 0.0620117 9.13454 0.0620117C9.66439 0.063372 10.1722 0.273991 10.5475 0.648012L18.3825 8.48201C18.7578 8.85711 18.9686 9.36594 18.9686 9.89651C18.9686 10.4271 18.7578 10.9359 18.3825 11.311L11.3115 18.382C10.9374 18.7583 10.4282 18.9693 9.89754 18.968ZM9.13354 2.06201L2.56254 2.56201L2.06254 9.13301L9.89754 16.968L16.9675 9.89801L9.13354 2.06201ZM5.65454 7.65402C4.70038 7.65422 3.87895 6.98037 3.69262 6.04458C3.50629 5.10879 4.00695 4.17169 4.88841 3.80639C5.76987 3.44109 6.78663 3.74933 7.31687 4.54259C7.84711 5.33586 7.74313 6.39322 7.06854 7.06801C6.69437 7.44433 6.18522 7.65534 5.65454 7.65402Z" fill="#B4E4E1"/>
+                        </svg> 
+                        <p className='text-base font-Poppins-Semibold ml-3 mr-2' >Orders Details</p>
                         {dropdown !== 'order' ?
                             <svg width="14" height="10" viewBox="0 0 16 10" xmlns="http://www.w3.org/2000/svg">
                                 <path className='fill-current' d="M0.929688 2.05417L8.00052 9.125L15.0714 2.05417L13.893 0.875L8.00052 6.76833L2.10802 0.875L0.929688 2.05417Z" fill="#828282"/>
@@ -158,7 +161,7 @@ export default function Menu() {
                 </div> 
             </div>
             <div className='w-full mt-4' >
-                <div className={active === 4 ? activeindicator : 'w-full cursor-pointer'} >
+                <div onClick={()=> ClickHandler('/dashboard/lowstockproduct', 1)} className={active === 4 ? activeindicator : 'w-full cursor-pointer'} >
                     <div onClick={()=> DropDown('report', 4)} className={active === 4 ? menuactivecolor: menucolor}>
                         <svg width="19" height="19" viewBox="0 0 19 19" xmlns="http://www.w3.org/2000/svg">
                             <path className='fill-current'  d="M9.89754 18.968C9.36652 18.9696 8.85696 18.7586 8.48254 18.382L0.648543 10.547C0.235132 10.1348 0.0231528 9.56207 0.0685427 8.98001L0.568543 2.41401C0.639841 1.4264 1.42674 0.641631 2.41454 0.573012L8.98054 0.0730117C9.03154 0.0620117 9.08354 0.0620117 9.13454 0.0620117C9.66439 0.063372 10.1722 0.273991 10.5475 0.648012L18.3825 8.48201C18.7578 8.85711 18.9686 9.36594 18.9686 9.89651C18.9686 10.4271 18.7578 10.9359 18.3825 11.311L11.3115 18.382C10.9374 18.7583 10.4282 18.9693 9.89754 18.968ZM9.13354 2.06201L2.56254 2.56201L2.06254 9.13301L9.89754 16.968L16.9675 9.89801L9.13354 2.06201ZM5.65454 7.65402C4.70038 7.65422 3.87895 6.98037 3.69262 6.04458C3.50629 5.10879 4.00695 4.17169 4.88841 3.80639C5.76987 3.44109 6.78663 3.74933 7.31687 4.54259C7.84711 5.33586 7.74313 6.39322 7.06854 7.06801C6.69437 7.44433 6.18522 7.65534 5.65454 7.65402Z" fill="#B4E4E1"/>
@@ -174,16 +177,16 @@ export default function Menu() {
                         }
                     </div>
                 </div>
-                <div className={dropdown.includes('report') ? menucolor: 'hidden'} > 
+                <div onClick={()=> ClickHandler('/dashboard/lowstockproduct', 1)} className={dropdown === 'report'  ? submenu === 1 ? menuactivecolor: menucolor: 'hidden'} > 
                     <p className='text-sm font-Poppins-Regular mr-2' >Low Stock Products</p> 
                 </div>
-                <div className={dropdown.includes('report') ? menucolor: 'hidden'} > 
+                <div  className={dropdown === 'report'  ? submenu === 2 ? menuactivecolor: menucolor: 'hidden'} > 
                     <p className='text-sm font-Poppins-Regular mr-2' >Product Views</p> 
                 </div>
-                <div className={dropdown.includes('report') ? menucolor: 'hidden'} > 
+                <div className={dropdown === 'report'  ? submenu === 2 ? menuactivecolor: menucolor: 'hidden'} > 
                     <p className='text-sm font-Poppins-Regular mr-2' >Refund Requests</p> 
                 </div>
-                <div className={dropdown.includes('report') ? menucolor: 'hidden'}  > 
+                <div className={dropdown === 'report'  ? submenu === 3 ? menuactivecolor: menucolor: 'hidden'}  > 
                     <p className='text-sm font-Poppins-Regular mr-2' >Prescription Reports</p> 
                 </div>
             </div>
@@ -207,7 +210,7 @@ export default function Menu() {
                 <div className={dropdown.includes('coupons') ? menucolor: 'hidden'} > 
                     <p className='text-sm font-Poppins-Regular mr-2' >Coupon Manager</p>
                     <svg width="12" height="8" viewBox="0 0 12 8" xmlns="http://www.w3.org/2000/svg">
-                        <path className='fill-current' d="M0.273014 1.57264L0.202354 1.64335L0.273039 1.71403L5.92971 7.3707L6.00042 7.44141L6.07113 7.3707L11.7278 1.71403L11.7985 1.64335L11.7278 1.57264L10.7852 0.629302L10.7144 0.558537L10.6437 0.629282L6.00042 5.27322L1.35713 0.629282L1.2864 0.558537L1.21568 0.629302L0.273014 1.57264Z" fill="#B4E4E1" stroke="#B4E4E1" stroke-width="0.2"/>
+                        <path className='fill-current' d="M0.273014 1.57264L0.202354 1.64335L0.273039 1.71403L5.92971 7.3707L6.00042 7.44141L6.07113 7.3707L11.7278 1.71403L11.7985 1.64335L11.7278 1.57264L10.7852 0.629302L10.7144 0.558537L10.6437 0.629282L6.00042 5.27322L1.35713 0.629282L1.2864 0.558537L1.21568 0.629302L0.273014 1.57264Z" fill="#B4E4E1" stroke="#B4E4E1" />
                     </svg>
                 </div>
             </div>
