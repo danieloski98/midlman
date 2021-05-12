@@ -56,6 +56,10 @@ export default function RefundReequest() {
         },
     ] 
 
+    const ClickHandler = () =>{
+
+    }
+
     return (
         <div className='w-full h-full flex flex-col px-10 py-8 ' >  
             <p className='font-Poppins-Semibold text-lg' >Refund Requests</p>
@@ -111,7 +115,7 @@ export default function RefundReequest() {
                                     <td>{item.information}</td>
                                     <td>
                                         <div className='w-28 flex ' >
-                                            <Select style={item.status === 'Pending' ? {color:'#F2994A'} : item.status === 'Decline' ? {color: '#EB5757'} : {color: '#00A69C'}}  className='w-full' value={item.status} fontSize='xs'>
+                                            <Select style={item.status === 'Pending' ? {color:'#F2994A'} : item.status === 'Decline' ? {color: '#EB5757'} : {color: '#00A69C'}}  className='w-full' value={item.status} onChange={ClickHandler} fontSize='xs'>
                                                 <option style={{color: '#F2994A'}} value='Pending' >Pending</option> 
                                                 <option style={{color: '#EB5757'}} value='Decline' >Decline</option>
                                                 <option style={{color: '#00A69C'}} value='Accepted' >Accepted</option>

@@ -16,25 +16,37 @@ import Contents from '../Features/Dashboard/Pages/Contents'
 import LowStockProducts from '../Features/Dashboard/Pages/LowStockProducts'
 import ProductReview from '../Features/Dashboard/Pages/ProductReview'
 import RefundReequest from '../Features/Dashboard/Pages/RefundRequest'
+import Coupon from '../Features/Dashboard/Pages/Coupon'
+import ShippingMethods from '../Features/Dashboard/Pages/ShippingMethods'
+import FlatRate from '../Features/Dashboard/Pages/FlatRate'
+import PrescriptionReports from '../Features/Dashboard/Pages/PrescriptionReports'
+import ManualTopUp from '../Features/Dashboard/Pages/ManualTopUp'
+import LandingPage from '../Features/Dashboard/Pages/LandingPage'
 
 export default function DashboardRoutes() {
     return (  
         <Switch>
             <Route path='/dashboard' component={Contents} exact />
-            <Route path="/dashboard/product" component={Product} exact /> 
             <Route path="/dashboard/admin" component={Admin} exact /> 
-            <Route path="/dashboard/delivery" component={Delivery} exact /> 
-            <Route path="/dashboard/completedorder" component={CompletedOrder} exact /> 
-            <Route path="/dashboard/expressaccount" component={ExpressAccount} exact /> 
-            <Route path="/dashboard/portalaccount" component={PortalAccount} exact /> 
-            <Route path="/dashboard/catergories" component={Catergories} exact /> 
             <Route path="/dashboard/brand" component={Brand} exact /> 
-            <Route path="/dashboard/productrating" component={ProductRating} exact /> 
-            <Route path="/dashboard/productreview" component={ProductReview} exact /> 
-            <Route path="/dashboard/refundrequest" component={RefundReequest} exact /> 
+            <Route path="/dashboard/catergories" component={Catergories} exact /> 
+            <Route path="/dashboard/completedorder" component={CompletedOrder} exact />  
+            <Route path="/dashboard/coupon" component={Coupon} exact /> 
+            <Route path="/dashboard/delivery" component={Delivery} exact /> 
+            <Route path="/dashboard/expressaccount" component={ExpressAccount} exact />  
+            <Route path="/dashboard/flatrate" component={FlatRate} exact /> 
+            <Route path="/dashboard/landingpage" component={LandingPage} exact /> 
             <Route path="/dashboard/lowstockproduct" component={LowStockProducts} exact /> 
             <Route path="/dashboard/managerole" component={ManageRole} exact /> 
+            <Route path="/dashboard/manualtopup" component={ManualTopUp} exact /> 
             <Route path="/dashboard/orderlist" component={OrderList} exact /> 
+            <Route path="/dashboard/portalaccount" component={PortalAccount} exact /> 
+            <Route path="/dashboard/prescriptionreports" component={PrescriptionReports} exact /> 
+            <Route path="/dashboard/product" component={Product} exact /> 
+            <Route path="/dashboard/productrating" component={ProductRating} exact /> 
+            <Route path="/dashboard/productreview" component={ProductReview} exact /> 
+            <Route path="/dashboard/refundrequest" component={RefundReequest} exact />
+            <Route path="/dashboard/shippingmethods" component={ShippingMethods} exact /> 
             <Route path="/dashboard/uploadproduct" component={UploadProduct} exact/> 
         </Switch>  
     )
