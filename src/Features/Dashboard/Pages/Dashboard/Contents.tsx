@@ -1,12 +1,12 @@
 import React from 'react'
 import { useHistory } from 'react-router'
 
-import AreaGraph from '../Component/AreaGraph'
-import BarGraph from '../Component/BarGraph'
-import Navbar from '../Component/Navbar'
-import Notification from '../Component/Notification'
-import PieGraph from '../Component/PieGraph'
-import RecentOrder from '../Component/RecentOrder'
+import AreaGraph from '../../Component/AreaGraph'
+import BarGraph from '../../Component/BarGraph'
+import Navbar from '../../Component/Navbar'
+import Notification from '../../Component/Notification'
+import PieGraph from '../../Component/PieGraph'
+import RecentOrder from '../../Component/RecentOrder'
 
 export default function Contents() {
 

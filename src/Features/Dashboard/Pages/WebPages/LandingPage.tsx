@@ -2,21 +2,22 @@ import { Input } from '@chakra-ui/input'
 import { Select } from '@chakra-ui/select'
 import { Textarea } from '@chakra-ui/textarea'
 import React from 'react'
-import photo from '../../../assets/images/View.png'
+import photo from '../../../../assets/images/View.png'
 
 export default function LandingPage() {
     return (
-        <div className='w-full h-full flex flex-col px-32' >
-            <div className='w-auto pt-8 pb-12' >
+        <div className='w-full h-full flex flex-col items-center' >
+            <div style={{width:'650px'}} className='pt-8 pb-12' >
                 <p className='font-Poppins-Semibold text-lg ' >Landing Page</p>
-                <div className='flex flex-row items-center border-b-2 border-entries py-8' >
+                <div className=' w-full flex flex-row items-center border-b-2 border-entries py-8' >
                     <p className='font-Poppins-Medium text-sm '>Hero Image:</p>
                     <div className=' w-56 h-10 ml-4 relative' >
                         <p className='font-Poppins-Medium absolute w-full h-full justify-center items-center flex text-white cursor-pointer text-xs '>View</p>
                         <img src={photo} alt='' className='w-full h-full' />
                     </div>
                     <button className='bg-login_buttton h-10 px-4 ml-2 text-xs font-Poppins-Medium rounded-md ' >Browse</button>
-                    <div className='flex flex-row ml-12' >
+                    <div className='w-full flex flex-1' />
+                    <div className='flex flex-row' >
                         <button className='h-10 px-4 ml-2 text-xs font-Poppins-Medium bg-midlman_color text-white rounded-md' >SAVE</button>
                         <button className='bg-login_buttton h-10 px-4 ml-2 text-xs font-Poppins-Medium rounded-md text-menu_gray' >RESET</button>
                     </div>
@@ -249,7 +250,7 @@ export default function LandingPage() {
                 </div>
                 <div className='w-full flex flex-col border-b-2 border-entries py-8' >
                     <div className='flex flex-row ' >
-                        <p className='flex font-Poppins-Medium text-sm '>Testtimonials:</p>
+                        <p className='flex font-Poppins-Medium text-sm '>Testimonials:</p>
                         <div className=' flex flex-col ' > 
                             <div className='flex flex-col border-b-2 border-entries py-8' >
                                 <div className='w-full my-2' > 

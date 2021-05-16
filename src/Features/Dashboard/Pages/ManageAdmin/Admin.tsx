@@ -51,7 +51,7 @@ export default function Admin() {
                 <button onClick={()=> history.push('/dashboard/uploadproduct')}  className='bg-midlman_color flex flex-row items-center font-Poppins-Bold text-white text-xs py-3 px-6 rounded-md mx-1' >
                     <svg className='mr-2' width="12" height="12" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M8 8V14H6V8H0V6H6V0H8V6H14V8H8Z" fill="white"/>
-                    </svg> Add New Product
+                    </svg> Add New Admin
                 </button>
             </div>
             <div className='w-auto my-14' >
