@@ -35,6 +35,8 @@ import Logos from '../Features/Dashboard/Pages/MediaContent/Logos'
 import Banners from '../Features/Dashboard/Pages/MediaContent/Banners'
 import SliderImages from '../Features/Dashboard/Pages/MediaContent/SliderImages'
 import FeaturedBrands from '../Features/Dashboard/Pages/MediaContent/FeaturedBrands'
+import SocialIcons from '../Features/Dashboard/Pages/MediaContent/SocialIcons'
+import Setting from '../Features/Dashboard/Pages/Settings/Setting'
 
 export default function DashboardRoutes() {
     return (  
@@ -70,6 +72,8 @@ export default function DashboardRoutes() {
             <Route path="/dashboard/productreview" component={ProductReview} exact /> 
             <Route path="/dashboard/refundpolicy" component={RefundPolicy} exact />
             <Route path="/dashboard/refundrequest" component={RefundReequest} exact />
+            <Route path="/dashboard/settings" component={Setting} exact /> 
+            <Route path="/dashboard/socialicons" component={SocialIcons} exact /> 
             <Route path="/dashboard/sliderimages" component={SliderImages} exact /> 
             <Route path="/dashboard/shippingmethods" component={ShippingMethods} exact /> 
             <Route path="/dashboard/termsandconditions" component={TeermsAndConditions} exact /> 

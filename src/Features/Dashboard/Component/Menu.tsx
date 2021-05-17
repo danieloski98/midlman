@@ -341,16 +341,16 @@ export default function Menu() {
                 </div>
                 <div onClick={()=> ClickHandler('/dashboard/sliderimages', 3)} className={dropdown === 'media'  ? submenu === 3 ? menuactivecolor: menucolor: 'hidden'} > 
                     <p className='text-sm font-Poppins-Regular mr-2' >Slider Images</p> 
-                </div> 
+                </div>
                 <div onClick={()=> ClickHandler('/dashboard/featuredbrands', 4)} className={dropdown === 'media'  ? submenu === 4 ? menuactivecolor: menucolor: 'hidden'} > 
                     <p className='text-sm font-Poppins-Regular mr-2' >Featured Brands</p> 
                 </div>
-                <div className={dropdown.includes('media') ? menucolor: 'hidden'} > 
+                <div onClick={()=> ClickHandler('/dashboard/socialicons', 5)} className={dropdown === 'media'  ? submenu === 5 ? menuactivecolor: menucolor: 'hidden'} > 
                     <p className='text-sm font-Poppins-Regular mr-2' >Social Icons</p> 
                 </div>
             </div>
             <div className='w-full mt-4' >
-                <div className={active === 11  ? activeindicator : 'w-full cursor-pointer'} >
+                <div onClick={()=> ClickHandler('/dashboard/settings', 0)} className={active === 11  ? activeindicator : 'w-full cursor-pointer'} >
                     <div onClick={()=> DropDown('setting', 11)} className={active === 11 ? menuactivecolor: menucolor}>
                         <img src={settings} alt='' className='12' />
                         <p className='text-base font-Poppins-Semibold ml-3 mr-2' >Settings</p> 
