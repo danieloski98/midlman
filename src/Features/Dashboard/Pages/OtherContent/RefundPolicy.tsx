@@ -22,8 +22,8 @@ export default function RefundPolicy() {
                         <p className='ml-1 font-Poppins-Medium text-xs text-midlman_color'>Add New Reason</p>
                     </div>
                     <div className='w-full flex flex-row justify-center items-center py-10' >
-                         <button className='py-3 bg-midlman_color font-Poppins-Semibold text-sm px-12 text-white rounded-md mx-4' >SUBMIT</button> 
-                         <button className='py-3 bg-entries font-Poppins-Semibold text-sm px-12 text-menu_gray rounded-md mx-4'>CANCEL</button>
+                         <button className='py-3 bg-midlman_color font-Poppins-Semibold text-xs px-12 text-white rounded-md mx-4' >SUBMIT</button> 
+                         <button className='py-3 bg-entries font-Poppins-Semibold text-xs px-12 text-menu_gray rounded-md mx-4'>CANCEL</button>
                     </div>
                 </div>
             </div>

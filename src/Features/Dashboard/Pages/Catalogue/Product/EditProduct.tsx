@@ -1,16 +1,16 @@
-import { Input } from '@chakra-ui/input' 
-import { Select } from '@chakra-ui/select'
-import { Textarea } from '@chakra-ui/textarea'
+import { Select, Input, Textarea } from '@chakra-ui/react';
 import React from 'react'
-import { useHistory } from 'react-router'
+import { useHistory } from 'react-router-dom';
+import AddPromo from './AddPromo';
 
-export default function UploadProduct() {
+export default function EditProduct() {
 
     const history = useHistory();
+    const [showModal, setShowModal] = React.useState(false);
 
     return (
         <div className='w-full h-full flex flex-col items-center py-8 ' >  
-            <p className=' w-100 font-Poppins-Semibold text-lg -ml-48' >Upload a Product</p> 
+            <p className=' w-100 font-Poppins-Semibold text-lg -ml-48' >Edit a Product</p> 
             <div className='w-full flex flex-col items-center pt-14 pb-8' >
                 <div onClick={()=> history.push('/dashboard/product')}  className='w-100 flex flex-row cursor-pointer ' >
                     <svg width="10" height="15" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -111,7 +111,7 @@ export default function UploadProduct() {
                         </div>
                     </div>
                     <div className='w-full flex flex-row items-center py-6' > 
-                        <div className='border-2 border-entries cursor-pointer rounded-lg h-12 flex justify-center ml-4 items-center px-3' >
+                        <div onClick={()=> setShowModal(true)} className='border-2 border-entries cursor-pointer rounded-lg h-12 flex justify-center ml-4 items-center px-3' >
                             <p className='text-menu_gray text-base' >+</p>
                         </div>
                         <p className='text-sm font-Poppins-Semibold ml-2' >Add Promo </p>
@@ -121,7 +121,15 @@ export default function UploadProduct() {
                         <button className='bg-entries font-Poppins-Semibold text-menu_gray text-sm py-3 w-full rounded-md ml-1' >CANCEL</button>
                     </div>
                 </div>
-            </div>
+            </div>  
+            {showModal ? (
+                <> 
+                    <div className="justify-center items-center flex overflow-x-hidden my-2 overflow-y-auto inset-0 z-50 fixed outline-none focus:outline-none"> 
+                        <AddPromo close={setShowModal} />
+                    </div>
+                    <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+                </>
+            ) : null} 
         </div>
     )
 }

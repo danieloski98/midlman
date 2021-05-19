@@ -1,9 +1,15 @@
 import { Select, Input } from '@chakra-ui/react';
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router';
+import Invoice from '../../ManageAdmin/DeliveryMan/Invoice';
+// import { useHistory } from 'react-router-dom';  
 
 export default function OrderList() {
-    const history = useHistory()
+ 
+    const history = useHistory();
+    const [showModal, setShowModal] = React.useState(false);
+    const [statusModal, setStatusModal] = React.useState(false);
+    const [assigndeliveryModal, setAssignDeliveryModal] = React.useState(false);
 
     const data = [
         { 
@@ -63,7 +69,7 @@ export default function OrderList() {
             )
         } else if(source === 'Pending'){
             return(
-                <p style={{color: '#F2994A'}} >{source}</p>
+                <p onClick={()=> setStatusModal(true)} className='cursor-pointer' style={{color: '#F2994A'}} >{source}</p>
             )
         } else {
             return(
@@ -76,11 +82,15 @@ export default function OrderList() {
         <div className='w-full h-full flex flex-col px-10 py-8 ' >  
             <p className='font-Poppins-Semibold text-lg' >Order List</p>
             <div className='w-full flex relative flex-row items-center py-8' > 
-                <div className='w-24 flex items-center mr-4' >  
-                    <Select fontSize='xs' color='#828282' placeholder='Sort By' />
+                <div className='w-auto flex items-center mr-4' >  
+                    <Select fontSize='xs' color='#828282' placeholder='Sort By'>
+                        <option>Order By</option>
+                        <option>Order ID</option>
+                        <option>Date</option>
+                    </Select>
                 </div>
                 <div className='w-48 flex items-center' > 
-                    <div className='fixed z-10 ml-4' >
+                    <div className=' absolute z-10 ml-4' >
                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M2 8C2 4.691 4.691 2 8 2C11.309 2 14 4.691 14 8C14 11.309 11.309 14 8 14C4.691 14 2 11.309 2 8ZM17.707 16.293L14.312 12.897C15.365 11.543 16 9.846 16 8C16 3.589 12.411 0 8 0C3.589 0 0 3.589 0 8C0 12.411 3.589 16 8 16C9.846 16 11.543 15.365 12.897 14.312L16.293 17.707C16.488 17.902 16.744 18 17 18C17.256 18 17.512 17.902 17.707 17.707C18.098 17.316 18.098 16.684 17.707 16.293Z" fill="#BDBDBD"/>
                         </svg>
@@ -88,8 +98,8 @@ export default function OrderList() {
                     <Input fontSize='xs' paddingLeft='10'  placeholder='Search ...' />
                 </div>
                 <div className='w-full flex flex-1' />
-                <button onClick={()=> history.push('/dashboard/uploadproduct')}  className='bg-midlman_color flex flex-row items-center font-Poppins-Bold text-white text-xs py-3 px-6 rounded-md mx-1' > Print </button>
-                <button onClick={()=> history.push('/dashboard/uploadproduct')}  className='bg-midlman_color flex flex-row items-center font-Poppins-Bold text-white text-xs py-3 px-6 rounded-md mx-1' > Save As </button>
+                <button className='bg-midlman_color flex flex-row items-center font-Poppins-Bold text-white text-xs py-3 px-6 rounded-md mx-1' > Print </button>
+                <button className='bg-midlman_color flex flex-row items-center font-Poppins-Bold text-white text-xs py-3 px-6 rounded-md mx-1' > Save As </button>
             </div>
             <div className='w-auto my-14 px-2' >
                 <table className='text-xs '>
@@ -116,7 +126,7 @@ export default function OrderList() {
                                     <td>
                                         <div className='flex flex-row items-center' >
                                             {item.id}
-                                            <p className='text-xs text-midlman_color ml-3 cursor-pointer'>View</p>
+                                            <p onClick={()=> setShowModal(true)} className='text-xs text-midlman_color ml-3 cursor-pointer'>View</p>
                                         </div></td>
                                     <td>{item.orderby}</td>
                                     <td>{item.accounttype}</td>
@@ -128,11 +138,13 @@ export default function OrderList() {
                                     <td>{Status(item.paymentstatus)}</td> 
                                     <td> 
                                         <div className=' w-full h-full flex flex-row items-center' >
-                                            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M13.7071 0.707107L16.5355 3.53553C16.9261 3.92606 16.9261 4.55922 16.5355 4.94975L15.1213 6.36396L10.8787 2.12132L12.2929 0.707107C12.6834 0.316583 13.3166 0.316583 13.7071 0.707107ZM9.46447 3.53553L1.27208 11.7279L0.979185 16.2635L5.51472 15.9706L13.7071 7.77817L9.46447 3.53553Z" fill="#1B75BB"/>
-                                            </svg>
-                                            <p className='ml-1' style={{color:'#1B75BB'}} >Edit</p>
-                                            <p className='ml-2 text-midlman_color cursor-pointer text-xs font-Poppins-Semibold w-24 text-center flex flex-col' >Assign <p>Delivery Man</p></p>
+                                            <div onClick={()=> history.push('/dashboard/editorder')} className='cursor-pointer flex flex-row' >
+                                                <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M13.7071 0.707107L16.5355 3.53553C16.9261 3.92606 16.9261 4.55922 16.5355 4.94975L15.1213 6.36396L10.8787 2.12132L12.2929 0.707107C12.6834 0.316583 13.3166 0.316583 13.7071 0.707107ZM9.46447 3.53553L1.27208 11.7279L0.979185 16.2635L5.51472 15.9706L13.7071 7.77817L9.46447 3.53553Z" fill="#1B75BB"/>
+                                                </svg>
+                                                <p className='ml-1' style={{color:'#1B75BB'}} >Edit</p>
+                                            </div>
+                                            <p onClick={()=> setAssignDeliveryModal(true)} className='ml-2 text-midlman_color cursor-pointer text-xs font-Poppins-Semibold w-24 text-center flex flex-col' >Assign <p>Delivery Man</p></p>
                                         </div>
                                     </td>
                                 </tr>
@@ -148,6 +160,49 @@ export default function OrderList() {
                 <div className='w-8 h-8 flex justify-center items-center font-Poppins-Semibold text-xs mr-1 border-2 border-login_buttton rounded-md cursor-pointer' >2</div>
                 <div className='w-8 h-8 flex justify-center items-center font-Poppins-Semibold text-xs mr-1 border-2 border-login_buttton rounded-md cursor-pointer' >3</div>
             </div>
+            {showModal ? (
+                    <>
+                        <div className="justify-center flex overflow-x-hidden my-2 overflow-y-auto inset-0 z-50 fixed outline-none focus:outline-none"> 
+                            <Invoice close={setShowModal} order='' type='Order List' /> 
+                        </div>
+                        <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+                    </>
+                ) : null} 
+            {statusModal ? (
+                    <>
+                        <div className="justify-center items-center flex overflow-x-hidden my-2 overflow-y-auto inset-0 z-50 fixed outline-none focus:outline-none"> 
+                             <div className='w-100 bg-white rounded-lg py-4 px-8' >
+                                <p className='font-Poppins-Semibold text-sm text-center ' >Please input the amount that was recieved from the order</p>
+                                <div className='py-4' >
+                                    <Input fontSize='xs' />
+                                </div>
+                                <div className='w-full flex justify-center' >
+                                    <button onClick={()=> setStatusModal(false)} className='py-3 my-2 text-xs font-Poppins-Semibold text-white bg-midlman_color rounded-md w-32' >Submit</button>
+                                </div>
+                             </div>
+                        </div>
+                        <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+                    </>
+                ) : null} 
+            {assigndeliveryModal ? (
+                    <>
+                        <div className="justify-center items-center flex overflow-x-hidden my-2 overflow-y-auto inset-0 z-50 fixed outline-none focus:outline-none"> 
+                                <div className='w-100 bg-white rounded-lg py-4 px-8' >
+                                <p className='font-Poppins-Semibold text-sm text-center pb-4 ' >Assign Delivery Man</p>
+                                <div className='py-4' >
+                                    <Select fontSize='xs' placeholder='Select Delivery Man'>
+                                        <option>Give me more options</option>
+                                    </Select>
+                                </div>
+                                <div className='w-full flex justify-center mt-10 pb-4' >
+                                    <button onClick={()=> setAssignDeliveryModal(false)} className='py-3 text-xs font-Poppins-Semibold text-white bg-midlman_color rounded-md w-32 mx-4' >Submit</button>
+                                    <button onClick={()=> setAssignDeliveryModal(false)} className='py-3 text-xs font-Poppins-Semibold text-menu_gray bg-entries rounded-md w-32 mx-4' >Cancel</button>
+                                </div>
+                                </div>
+                        </div>
+                        <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+                    </>
+                ) : null} 
         </div>
     )
 }
