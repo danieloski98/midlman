@@ -1,8 +1,10 @@
-import { Select, Input } from '@chakra-ui/react';
+import { Select, Input, Textarea } from '@chakra-ui/react';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
 export default function RefundReequest() {
+    const [showModal, setShowModal] = React.useState(false);
+    const [pendingData, setPendingData] = React.useState(['']);
     const history = useHistory()
 
     const data = [
@@ -56,8 +58,46 @@ export default function RefundReequest() {
         },
     ] 
 
-    const ClickHandler = () =>{
+    const HandleChange =(event: any, index: any)=> {
+        if(event.target.value === 'decline'){
+            setShowModal(true);
+            const newarr = [...pendingData]
+            newarr[index]= 'decline'
+            setPendingData(newarr)
+        } else if(event.target.value === 'accept'){  
+            const newarr = [...pendingData]
+            newarr[index]= 'accept'
+            setPendingData(newarr)
+        } else {
+            const newarr = [...pendingData]
+            newarr[index]= ''
+            setPendingData(newarr)
+        }
+    }
 
+    const Status = (item: any, index: any) =>{ 
+        if(item === 'Pending'){
+            return( 
+                <div className='w-28 flex ' >
+                    <Select style={pendingData[index] === 'accept' ? {color: '#00A69C'} : pendingData[index] === 'decline' ? {color: '#EB5757'} : {color:'#F2994A'}}  className='w-full' onChange={(e)=> HandleChange(e, index)} placeholder='Pending' fontSize='xs'>
+                        <option value='accept' style={{color:'#000000'}} >Accept</option>
+                        <option value='decline' style={{color:'#000000'}} >Decline</option>
+                    </Select>
+                </div>
+            )
+        } else if(item === 'Accepted'){
+            return( 
+                <div className='w-full flex justify-center items-center ' > 
+                    <p className='font-Poppins-Regular text-midlman_color' >Accepted</p>
+                </div>
+            )
+        } else{
+            return( 
+                <div className='w-full flex justify-center items-center ' > 
+                    <p style={{color: '#EB5757'}} className='font-Poppins-Regular text-midlman_color' >Decline</p>
+                </div>
+            )
+        }
     }
 
     return (
@@ -114,13 +154,7 @@ export default function RefundReequest() {
                                     <td>{item.possiblereason}</td>
                                     <td>{item.information}</td>
                                     <td>
-                                        <div className='w-28 flex ' >
-                                            <Select style={item.status === 'Pending' ? {color:'#F2994A'} : item.status === 'Decline' ? {color: '#EB5757'} : {color: '#00A69C'}}  className='w-full' value={item.status} onChange={ClickHandler} fontSize='xs'>
-                                                <option style={{color: '#F2994A'}} value='Pending' >Pending</option> 
-                                                <option style={{color: '#EB5757'}} value='Decline' >Decline</option>
-                                                <option style={{color: '#00A69C'}} value='Accepted' >Accepted</option>
-                                            </Select>
-                                        </div>
+                                        {Status(item.status, index)} 
                                     </td> 
                                 </tr>
                             )
@@ -135,6 +169,23 @@ export default function RefundReequest() {
                 <div className='w-8 h-8 flex justify-center items-center font-Poppins-Semibold text-xs mr-1 border-2 border-login_buttton rounded-md cursor-pointer' >2</div>
                 <div className='w-8 h-8 flex justify-center items-center font-Poppins-Semibold text-xs mr-1 border-2 border-login_buttton rounded-md cursor-pointer' >3</div>
             </div>
+            {showModal ? (
+                    <>
+                        <div className="justify-center items-center overflow-x-hidden flex overflow-y-auto inset-0 z-50 fixed outline-none focus:outline-none"> 
+                            <div style={{width:'500px'}}  className='rounded-lg bg-white p-8' >
+                                <p className='font-Poppins-Semibold text-lg mt-8'>Reason for Declining Request</p>
+                                <div className='w-full py-8' > 
+                                    <Textarea height='120' fontSize='xs' placeholder='Write here...' />
+                                </div>
+                                <div className='w-full flex flex-row justify-center' >
+                                    <button onClick={()=> setShowModal(false)} className='py-3 rounded-md mb-4 text-xs px-8 mx-4 bg-midlman_color text-white font-Poppins-Semibold' >DECLINE REQUEST</button>
+                                    <button onClick={()=> setShowModal(false)} className='py-3 rounded-md mb-4 text-xs px-8 mx-4 bg-entries text-menu_gray font-Poppins-Semibold' >CANCEL</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+                    </>
+                ) : null} 
         </div>
     )
 }

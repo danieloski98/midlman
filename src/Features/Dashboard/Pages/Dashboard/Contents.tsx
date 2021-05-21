@@ -3,29 +3,19 @@ import { useHistory } from 'react-router'
 
 import AreaGraph from '../../Component/AreaGraph'
 import BarGraph from '../../Component/BarGraph'
-import Navbar from '../../Component/Navbar'
-import Notification from '../../Component/Notification'
+import Navbar from '../../Component/Navbar' 
 import PieGraph from '../../Component/PieGraph'
 import RecentOrder from '../../Component/RecentOrder'
 
 export default function Contents() {
-
-    const [showModal, setShowModal] = React.useState(false)   
+ 
     const history = useHistory()
 
     return ( 
         <div className='w-full h-full flex flex-col flex-1 py-8 px-8 bg-white' >
             <div className='w-full' >
-                <Navbar open={setShowModal} />
+                <Navbar icon={true} />
             </div>
-            {showModal ? (
-                <>
-                    <div className=" justify-end items-start w-auto flex flex-wrap overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"> 
-                        <Notification close={setShowModal} /> 
-                    </div>
-                    <div className=" opacity-75 cursor-pointer fixed inset-0 z-40 bg-black"></div>
-                </>
-            ) : null} 
             <div className='w-full h-full pt-14' >
                 <div className='w-full flex' >
                     <div className='w-full flex flex-1' />

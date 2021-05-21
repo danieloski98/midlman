@@ -18,7 +18,7 @@ import ProductReview from '../Features/Dashboard/Pages/Reports/Productviews'
 import RefundReequest from '../Features/Dashboard/Pages/Reports/RefundRequest'
 import Coupon from '../Features/Dashboard/Pages/Coupons/Coupon'
 import ShippingMethods from '../Features/Dashboard/Pages/Shipping/ShippingMethods'
-import FlatRate from '../Features/Dashboard/Pages/Shipping/FlatRate'
+import FlatRate from '../Features/Dashboard/Pages/Shipping/FlatRate/FlatRate'
 import PrescriptionReports from '../Features/Dashboard/Pages/Reports/PrescriptionReports'
 import ManualTopUp from '../Features/Dashboard/Pages/Payment/ManualTopUp'
 import LandingPage from '../Features/Dashboard/Pages/WebPages/LandingPage' 
@@ -54,6 +54,10 @@ import NewCategory from '../Features/Dashboard/Pages/Catalogue/Catargory/NewCate
 import NewBrand from '../Features/Dashboard/Pages/Catalogue/Brand/NewBrand'
 import EditBrand from '../Features/Dashboard/Pages/Catalogue/Brand/EditBrand'
 import EditProduct from '../Features/Dashboard/Pages/Catalogue/Product/EditProduct'
+import AddNewCoupon from '../Features/Dashboard/Pages/Coupons/AddNewCoupon'
+import EditCoupon from '../Features/Dashboard/Pages/Coupons/EditCoupon'
+import EditFlatRate from '../Features/Dashboard/Pages/Shipping/FlatRate/EditFlatRate'
+import index from '../Features/Dashboard/Pages/AdminChat'
 
 export default function DashboardRoutes() {
     return (  
@@ -62,7 +66,9 @@ export default function DashboardRoutes() {
             <Route path="/dashboard/aboutus" component={AboutUs} exact /> 
             <Route path="/dashboard/addadmin" component={AddAdmin} exact /> 
             <Route path="/dashboard/adddeliveryman" component={AddDeliveryMan} exact /> 
+            <Route path="/dashboard/addnewcoupon" component={AddNewCoupon} exact /> 
             <Route path="/dashboard/admin" component={Admin} exact /> 
+            <Route path="/dashboard/adminchat" component={index} exact /> 
             <Route path="/dashboard/banners" component={Banners} exact /> 
             <Route path="/dashboard/blog" component={Blog} exact /> 
             <Route path="/dashboard/brand" component={Brand} exact /> 
@@ -75,8 +81,10 @@ export default function DashboardRoutes() {
             <Route path="/dashboard/editadmin" component={EditAdmin} exact />  
             <Route path="/dashboard/editbrand" component={EditBrand} exact /> 
             <Route path="/dashboard/editcategory" component={EditCategory} exact /> 
+            <Route path="/dashboard/editcoupon" component={EditCoupon} exact /> 
             <Route path="/dashboard/editdeliveryman" component={EditDeliveryMan} exact /> 
-            <Route path="/dashboard/editexpressaccount" component={EditExpressAccount} exact /> 
+            <Route path="/dashboard/editexpressaccount" component={EditExpressAccount} exact />
+            <Route path="/dashboard/editflatrate" component={EditFlatRate} exact /> 
             <Route path="/dashboard/editportalaccount" component={EditPortalAccount} exact /> 
             <Route path="/dashboard/editproduct" component={EditProduct} exact /> 
             <Route path="/dashboard/editorder" component={EditOrder} exact /> 
