@@ -5,8 +5,7 @@ export default function EditFAQ() {
 
     const history = useHistory();
 
-    return (
-        
+    return ( 
         <div className='w-full h-full flex flex-col items-center' >
             <div style={{width:'650px'}} className='pt-8 pb-12' >  
                 <p className='font-Poppins-Semibold text-lg ' >Edit Frequently Asked Questions</p> 

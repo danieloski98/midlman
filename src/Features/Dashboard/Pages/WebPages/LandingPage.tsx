@@ -1,8 +1,8 @@
 import { Input } from '@chakra-ui/input'
-import { Select } from '@chakra-ui/select'
-import { Textarea } from '@chakra-ui/textarea'
+import { Select } from '@chakra-ui/select' 
 import React from 'react'
 import photo from '../../../../assets/images/View.png'
+import Editor from './Component/Editor'
 
 export default function LandingPage() {
     return (
@@ -162,7 +162,7 @@ export default function LandingPage() {
                                     </div>
                                 </div>
                                 <div className='w-auto mx-1 mt-4 ' >
-                                    <Textarea height='130' fontSize='xs' placeholder='Write here...' />
+                                    <Editor />
                                 </div>
                             </div> 
                         </div> 
@@ -256,7 +256,7 @@ export default function LandingPage() {
                                 <div className='w-full my-2' > 
                                     <p className='font-Poppins-Medium text-xs text-menu_gray '>Testimonial 1</p>
                                     <div className='w-full mt-2' >
-                                        <Textarea height='130' fontSize='xs' placeholder='Testimony' />
+                                        <Editor />
                                     </div>
                                 </div>
                                 <div className='w-full my-4'>
@@ -284,7 +284,7 @@ export default function LandingPage() {
                                 <div className='w-full my-2' > 
                                     <p className='font-Poppins-Medium text-xs text-menu_gray '>Testimonial 2</p>
                                     <div className='w-full mt-2' >
-                                        <Textarea height='130' fontSize='xs' placeholder='Testimony' />
+                                        <Editor />
                                     </div>
                                 </div>
                                 <div className='w-full my-4'>
@@ -312,7 +312,7 @@ export default function LandingPage() {
                                 <div className='w-full my-2' > 
                                     <p className='font-Poppins-Medium text-xs text-menu_gray '>Testimonial 3</p>
                                     <div className='w-full mt-2' >
-                                        <Textarea height='130' fontSize='xs' placeholder='Testimony' />
+                                        <Editor />
                                     </div>
                                 </div>
                                 <div className='w-full my-4'>
@@ -340,7 +340,7 @@ export default function LandingPage() {
                                 <div className='w-full my-2' > 
                                     <p className='font-Poppins-Medium text-xs text-menu_gray '>Testimonial 4</p>
                                     <div className='w-full mt-2' >
-                                        <Textarea height='130' fontSize='xs' placeholder='Testimony' />
+                                        <Editor />
                                     </div>
                                 </div>
                                 <div className='w-full my-4'>
@@ -368,7 +368,7 @@ export default function LandingPage() {
                                 <div className='w-full my-2' > 
                                     <p className='font-Poppins-Medium text-xs text-menu_gray '>Testimonial 5</p>
                                     <div className='w-full mt-2' >
-                                        <Textarea height='130' fontSize='xs' placeholder='Testimony' />
+                                        <Editor />
                                     </div>
                                 </div>
                                 <div className='w-full my-4'>

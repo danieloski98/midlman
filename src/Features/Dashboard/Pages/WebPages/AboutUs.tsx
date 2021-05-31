@@ -1,6 +1,7 @@
-import { Input, Textarea } from '@chakra-ui/react'
+import { Input } from '@chakra-ui/react'
 import React from 'react'
 import photo from '../../../../assets/images/View.png'
+import Editor from './Component/Editor'
 
 export default function AboutUs() {
     return (
@@ -32,7 +33,8 @@ export default function AboutUs() {
                     </div> 
                     <p className='font-Poppins-Medium text-menu_gray text-sm mt-4'>Altrenate Text:</p>
                     <div className='w-100 my-2 ' >
-                        <Textarea height='130' fontSize='xs' placeholder='Write here...' />
+                        <Editor />
+                        {/* <Textarea height='130' fontSize='xs' placeholder='Write here...' /> */}
                     </div>
                     <p className='font-Poppins-Medium text-sm '>Our Vision:</p>
                     <p className='font-Poppins-Medium text-menu_gray text-sm mt-4'>Alternate Image:</p>
@@ -45,7 +47,7 @@ export default function AboutUs() {
                     </div> 
                     <p className='font-Poppins-Medium text-menu_gray text-sm mt-4'>Altrenate Text:</p>
                     <div className='w-100 mt-2 ' >
-                        <Textarea height='130' fontSize='xs' placeholder='Write here...' />
+                        <Editor />
                     </div>
                     <div className='w-full flex flex-row mt-8' >
                         <div className='w-full flex flex-1' />
@@ -71,7 +73,7 @@ export default function AboutUs() {
                                 <Input fontSize='xs' placeholder='Name' marginRight='2' />
                                 <Input fontSize='xs' placeholder='Subtitle' marginLeft='2' />
                             </div>
-                            <Textarea height='130' fontSize='xs' placeholder='Bio' />
+                            <Editor />
                         </div> 
                         <div className=' w-100 flex flex-row items-center py-8 justify-end' >
                             <svg className='mr-2' width="12" height="12" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">

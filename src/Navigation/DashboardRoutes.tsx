@@ -24,7 +24,7 @@ import ManualTopUp from '../Features/Dashboard/Pages/Payment/ManualTopUp'
 import LandingPage from '../Features/Dashboard/Pages/WebPages/LandingPage' 
 import Newsletter from '../Features/Dashboard/Pages/WebPages/Newsletter'
 import ContactForm from '../Features/Dashboard/Pages/WebPages/ContactForm'
-import Blog from '../Features/Dashboard/Pages/WebPages/Blog'
+import Blog from '../Features/Dashboard/Pages/WebPages/Blog/Blog'
 import AboutUs from '../Features/Dashboard/Pages/WebPages/AboutUs'
 import FAQ from '../Features/Dashboard/Pages/WebPages/FAQ/FAQ'
 import EditFAQ from '../Features/Dashboard/Pages/WebPages/FAQ/EditFAQ'
@@ -58,13 +58,16 @@ import AddNewCoupon from '../Features/Dashboard/Pages/Coupons/AddNewCoupon'
 import EditCoupon from '../Features/Dashboard/Pages/Coupons/EditCoupon'
 import EditFlatRate from '../Features/Dashboard/Pages/Shipping/FlatRate/EditFlatRate'
 import index from '../Features/Dashboard/Pages/AdminChat'
+import AddBlogPost from '../Features/Dashboard/Pages/WebPages/Blog/AddBlogPost'
+import EditBlogPost from '../Features/Dashboard/Pages/WebPages/Blog/EditBlogPost'
 
 export default function DashboardRoutes() {
     return (  
         <Switch>
             <Route path='/dashboard' component={Contents} exact />
             <Route path="/dashboard/aboutus" component={AboutUs} exact /> 
-            <Route path="/dashboard/addadmin" component={AddAdmin} exact /> 
+            <Route path="/dashboard/addadmin" component={AddAdmin} exact /> Articles
+            <Route path="/dashboard/addarticle" component={AddBlogPost} exact />
             <Route path="/dashboard/adddeliveryman" component={AddDeliveryMan} exact /> 
             <Route path="/dashboard/addnewcoupon" component={AddNewCoupon} exact /> 
             <Route path="/dashboard/admin" component={Admin} exact /> 
@@ -79,6 +82,7 @@ export default function DashboardRoutes() {
             <Route path="/dashboard/delivery" component={Delivery} exact /> 
             <Route path="/dashboard/deliveredorder" component={DeliveredOrder} exact /> 
             <Route path="/dashboard/editadmin" component={EditAdmin} exact />  
+            <Route path="/dashboard/editarticle" component={EditBlogPost} exact />
             <Route path="/dashboard/editbrand" component={EditBrand} exact /> 
             <Route path="/dashboard/editcategory" component={EditCategory} exact /> 
             <Route path="/dashboard/editcoupon" component={EditCoupon} exact /> 

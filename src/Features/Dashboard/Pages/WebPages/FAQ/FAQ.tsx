@@ -1,6 +1,6 @@
-import { Textarea } from '@chakra-ui/react'
-import React from 'react'
+import React from 'react' 
 import { useHistory } from 'react-router'
+import Editor from '../Component/Editor'
 
 export default function FAQ() {
 
@@ -16,12 +16,12 @@ export default function FAQ() {
                 </div> 
                 <div className='w-full pl-20' >
                     <p className='font-Poppins-Medium text-sm mt-4'>QUESTION</p>
-                    <div className='w-100 my-2 ' >
-                        <Textarea height='130' fontSize='xs' placeholder='Write here...' />
+                    <div className='w-100 my-2 ' >  
+                        <Editor/> 
                     </div>
                     <p className='font-Poppins-Medium text-sm mt-4'>ANSWER</p>
                     <div className='w-100 my-2 ' >
-                        <Textarea height='130' fontSize='xs' placeholder='Write here...' />
+                        <Editor/> 
                     </div> 
                     <div className=' w-100 flex flex-row items-center py-8 justify-end' >
                         <svg className='mr-2' width="12" height="12" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -34,7 +34,7 @@ export default function FAQ() {
                         <button className='bg-login_buttton h-10 px-10 ml-2 text-xs font-Poppins-Medium rounded-md text-menu_gray mx-4' >CANCEL</button>
                     </div>
                 </div>
-            </div>
+            </div> 
         </div>
     )
 }

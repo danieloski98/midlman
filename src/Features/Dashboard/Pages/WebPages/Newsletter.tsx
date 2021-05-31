@@ -1,6 +1,6 @@
-import { Checkbox } from '@chakra-ui/react'
-import { Textarea } from '@chakra-ui/textarea'
+import { Checkbox } from '@chakra-ui/react' 
 import React from 'react'
+import Editor from './Component/Editor'
 
 export default function Newsletter() {
 
@@ -23,7 +23,7 @@ export default function Newsletter() {
                 <div className=' w-full flex flex-col pl-24 pt-10'>
                     <p className='font-Poppins-Medium text-sm '>COMPOSE MAIL</p>
                     <div className='w-full mt-2 ' > 
-                        <Textarea bg='white' height='130' fontSize='xs' placeholder='Write here...' />
+                        <Editor />
                     </div>
                     <div className='w-full flex flex-row mt-4' >
                         <div className='w-full flex flex-1' />
