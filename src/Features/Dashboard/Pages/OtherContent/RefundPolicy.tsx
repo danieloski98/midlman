@@ -1,5 +1,6 @@
-import { Input, Textarea } from '@chakra-ui/react'
+import { Input } from '@chakra-ui/react'
 import React from 'react'
+import Editor from '../WebPages/Component/Editor'
 
 export default function RefundPolicy() {
     return (
@@ -8,8 +9,9 @@ export default function RefundPolicy() {
                 <p className='font-Poppins-Semibold text-lg ' >Refund Policy</p>
                 <div className='w-full py-12 px-20' >
                     <p className='font-Poppins-Medium text-sm mt-4'>Refund Policy</p>
-                    <div className='w-full my-2 ' >
-                        <Textarea height='150' fontSize='xs' placeholder='Write here...' />
+                    <div className='w-full my-2 ' > 
+                        <Editor />
+                        {/* <Textarea height='150' fontSize='xs' placeholder='Write here...' /> */}
                     </div>
                     <p className='font-Poppins-Medium text-sm mt-4'>Reason for Refund</p>
                     <div className='w-full my-2 ' >

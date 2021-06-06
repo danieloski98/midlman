@@ -3,13 +3,15 @@ import React from 'react'
 import { Input } from '@chakra-ui/input'
 import { Checkbox } from '@chakra-ui/react' 
 import { useHistory } from 'react-router'
+import logo from '../../../assets/images/logo.png'
 export default function Login() {
  
     const history = useHistory();
 
     return (
-        <div className='w-full h-screen flex flex-1 justify-center text-white items-center flex-col bg-midlman_color'>
-            <p className='font-Poppins-Semibold text-xl ' >Admin</p>
+        <div className='w-full h-screen flex flex-1 text-white items-center flex-col bg-midlman_color'>
+            <img src={logo} alt='logo' className='w-28 mt-24' />   
+            <p className='font-Poppins-Semibold text-xl mt-14 ' >Admin</p>
             <div style={{width:'563px'}} >
                 <div className='relative w-full pt-4' >
                     <svg className=' absolute z-10 ml-4' style={{marginTop:'14px'}}  width="24" height="20" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg">

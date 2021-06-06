@@ -1,6 +1,7 @@
-import { Select, Input, Textarea } from '@chakra-ui/react';
+import { Select, Input } from '@chakra-ui/react';
 import React from 'react'
 import { useHistory } from 'react-router-dom';
+import Editor from '../../WebPages/Component/Editor';
 import AddPromo from './AddPromo';
 
 export default function EditProduct() {
@@ -61,8 +62,9 @@ export default function EditProduct() {
                         </div>
                     </div>
                     <div className='w-full py-4' >
-                        <p className='font-Poppins-Semibold text-xs mb-1'>Product Description</p>
-                        <Textarea height='200px' fontSize='xs' placeholder='generic name of the product (e.g Paracetamol)' />
+                        <p className='font-Poppins-Semibold text-xs mb-1'>Product Description</p> 
+                        <Editor />
+                        {/* <Textarea height='200px' fontSize='xs' placeholder='generic name of the product (e.g Paracetamol)' /> */}
                     </div>
                 </div>
                 <div className=' w-100 flex flex-row pb-8 ' >

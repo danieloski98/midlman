@@ -1,8 +1,9 @@
 import { Input } from '@chakra-ui/input' 
 import { Select } from '@chakra-ui/select'
-import { Textarea } from '@chakra-ui/textarea'
+// import { Textarea } from '@chakra-ui/textarea'
 import React from 'react'
 import { useHistory } from 'react-router'
+import Editor from '../../WebPages/Component/Editor'
 import AddPromo from './AddPromo'
 
 export default function UploadProduct() {
@@ -63,8 +64,9 @@ export default function UploadProduct() {
                         </div>
                     </div>
                     <div className='w-full py-4' >
-                        <p className='font-Poppins-Semibold text-xs mb-1'>Product Description</p>
-                        <Textarea height='200px' fontSize='xs' placeholder='generic name of the product (e.g Paracetamol)' />
+                        <p className='font-Poppins-Semibold text-xs mb-1'>Product Description</p> 
+                        <Editor />
+                        {/* <Textarea height='200px' fontSize='xs' placeholder='generic name of the product (e.g Paracetamol)' /> */}
                     </div>
                 </div>
                 <div className=' w-100 flex flex-row pb-8 ' >
