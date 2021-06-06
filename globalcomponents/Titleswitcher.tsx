@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Titleswitcher() {
   return (
-    <div className="w-full flex flex-col px-12">
+    <div className="w-full flex flex-col xl:px-20 lg:px-20 md:px-12 sm:px-12">
         <div>
           <h1 className="text-3xl font-Poppins-Bold text-gray-600 sm:text-center md:text-center lg:text-left xl:text-left">Blog Title & Article</h1>
         </div>

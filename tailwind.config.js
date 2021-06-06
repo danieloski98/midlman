@@ -1,7 +1,7 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-  purge: [],
+  purge: false,
   presets: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
@@ -442,6 +442,7 @@ module.exports = {
       '9/12': '75%',
       '10/12': '83.333333%',
       '11/12': '91.666667%',
+      '400px': '400px',
       full: '100%',
       screen: '100vw',
       min: 'min-content',

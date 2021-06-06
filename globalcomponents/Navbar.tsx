@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export default function Navbar() {
   return (
-    <div className="w-full h-24 fixed bg-white px-12 flex justify-between items-center z-10 shadow-xl">
+    <div className="w-full h-24 fixed bg-white px-20 flex justify-between items-center z-10 shadow-xl">
         <div>
           <Image src="/images/midlmanlogo.png" alt="midlman logo" width={200} height={50} />
         </div>
