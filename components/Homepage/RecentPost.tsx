@@ -28,7 +28,7 @@ export default function RecentPost() {
 
             <div className="w-full flex justify-between sm:mt-8 md:mt-8 xl:pb-0 lg:pb-0 md:pb-12 sm:pb-12">
               <p className="font-Poppins-Medium text-gray-600 text-sm">21st June, 2021</p>
-              <p className="font-Poppins-Medium text-maingreen text-sm">Read More</p>
+              <p className="font-Poppins-Medium text-maingreen text-sm cursor-pointer">Read More</p>
             </div>
 
           </div>
