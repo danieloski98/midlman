@@ -5,11 +5,11 @@ import {  FiChevronLeft, FiChevronRight} from 'react-icons/fi'
 export default function ArticlesContainer() {
   return (
 
-    <div className="w-full mt-20 xl:px-10 lg:px-10 md:px-4 sm:px-4 xl:mb-12">
+    <div className="w-full mt-32 xl:px-20 lg:px-20 md:px-4 sm:px-4 xl:mb-12">
 
       <h2 className="text-2xl font-Poppins-Bold">All Articles</h2>
 
-      <div className="flex w-full xl:flex-wrap lg:flex-wrap mt-24 xl:justify-between lg:justify-between xl:flex-row lg:flex-row md:flex-col sm:flex-col">
+      <div className="flex w-full xl:flex-wrap lg:flex-wrap mt-10 xl:justify-between lg:justify-between xl:flex-row lg:flex-row md:flex-col sm:flex-col">
         <ArticleCard />
         <ArticleCard />
         <ArticleCard />

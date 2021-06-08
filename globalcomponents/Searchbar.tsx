@@ -8,7 +8,7 @@ export default function Searchbar() {
       <div className="xl:w-1/4 lg:w-1/4 md:w-full sm:w-full">
       <InputGroup>
         <InputLeftElement pointerEvents="none" children={<FiSearch size={20} color="grey" />} />
-        <Input variant="outline" size="md" />
+        <Input variant="outline" size="md" placeholder="search" />
       </InputGroup>
       </div>
     </div>
