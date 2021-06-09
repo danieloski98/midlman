@@ -10,6 +10,7 @@ export default function UploadProduct() {
 
     const history = useHistory();
     const [showModal, setShowModal] = React.useState(false);
+    const [type, setType] = React.useState(false);
 
     return (
         <div className='w-full h-full flex flex-col items-center py-8 ' >  
@@ -70,11 +71,11 @@ export default function UploadProduct() {
                     </div>
                 </div>
                 <div className=' w-100 flex flex-row pb-8 ' >
-                    <div className='w-full flex justify-center border-b-2 py-1 border-midlman_color' >
-                        <p className='text-midlman_color text-xs font-Poppins-Semibold' >Portal</p>
+                    <div onClick={()=> setType(false)} className={!type ? 'w-full flex justify-center border-b-2 cursor-pointer py-1 border-midlman_color': 'w-full flex justify-center border-b-2 cursor-pointer py-1 border-gray_exp'} >
+                        <p className={!type ? 'text-midlman_color text-xs font-Poppins-Semibold':'text-gray_exp text-xs font-Poppins-Semibold'} >Portal</p>
                     </div>
-                    <div className='w-full flex justify-center border-b-2 py-1 border-gray_exp' >
-                        <p className='text-gray_exp text-xs font-Poppins-Semibold' >Express</p>
+                    <div onClick={()=> setType(true)} className={type ? 'w-full flex justify-center border-b-2 cursor-pointer py-1 border-midlman_color': 'w-full flex justify-center border-b-2 cursor-pointer py-1 border-gray_exp'} >
+                        <p className={type ? 'text-midlman_color text-xs font-Poppins-Semibold':'text-gray_exp text-xs font-Poppins-Semibold'}  >Express</p>
                     </div>
                 </div>
                 <div className='w-96 h-full ' >
