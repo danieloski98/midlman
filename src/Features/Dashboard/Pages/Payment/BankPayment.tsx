@@ -112,7 +112,7 @@ export default function BankPayment() {
                                     <td>{item.paymentdate}</td>
                                     <td>{item.depositorsname}</td>
                                     <td>
-                                        <div className='w-full flex justify-center items-center font-Poppins-Semibold text-midlman_color' > 
+                                        <div className='w-full flex justify-center items-center cursor-pointer font-Poppins-Semibold text-midlman_color' > 
                                             {item.paymentreciept}
                                         </div>
                                     </td> 
