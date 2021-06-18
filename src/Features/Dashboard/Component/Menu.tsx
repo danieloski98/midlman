@@ -255,6 +255,9 @@ export default function Menu() {
                 <div onClick={()=> ClickHandler('/dashboard/manualtopup', 1)} className={dropdown === 'payment'  ? submenu === 1 ? menuactivecolor: menucolor: 'hidden'}> 
                     <p className='text-sm font-Poppins-Regular mr-2' >Manual Top up</p> 
                 </div>
+                <div onClick={()=> ClickHandler('/dashboard/bankpayments', 2)} className={dropdown === 'payment'  ? submenu === 2 ? menuactivecolor: menucolor: 'hidden'}> 
+                    <p className='text-sm font-Poppins-Regular mr-2' >Bank Payments</p> 
+                </div>
             </div>
             <div className='w-full mt-4' >
                 <div onClick={()=> ClickHandler('/dashboard/landingpage', 1)} className={active === 8  ? activeindicator : 'w-full cursor-pointer'} >

@@ -60,6 +60,7 @@ import EditFlatRate from '../Features/Dashboard/Pages/Shipping/FlatRate/EditFlat
 import index from '../Features/Dashboard/Pages/AdminChat'
 import AddBlogPost from '../Features/Dashboard/Pages/WebPages/Blog/AddBlogPost'
 import EditBlogPost from '../Features/Dashboard/Pages/WebPages/Blog/EditBlogPost'
+import BankPayment from '../Features/Dashboard/Pages/Payment/BankPayment'
 
 export default function DashboardRoutes() {
     return (  
@@ -73,6 +74,7 @@ export default function DashboardRoutes() {
             <Route path="/dashboard/admin" component={Admin} exact /> 
             <Route path="/dashboard/adminchat" component={index} exact /> 
             <Route path="/dashboard/banners" component={Banners} exact /> 
+            <Route path="/dashboard/bankpayments" component={BankPayment} exact /> 
             <Route path="/dashboard/blog" component={Blog} exact /> 
             <Route path="/dashboard/brand" component={Brand} exact /> 
             <Route path="/dashboard/catergories" component={Catergories} exact />  
