@@ -1,7 +1,7 @@
 import { Select, Input } from '@chakra-ui/react';
 import React from 'react'; 
 
-export default function BankPayment() { 
+export default function BankPayment() {  
     const [pendingData, setPendingData] = React.useState(['']); 
 
     const [data, setData] = React.useState([
