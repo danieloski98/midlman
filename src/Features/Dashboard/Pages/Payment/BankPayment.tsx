@@ -1,8 +1,7 @@
 import { Select, Input } from '@chakra-ui/react';
 import React from 'react'; 
 
-export default function BankPayment() {
-    const [pendingData, setPendingData] = React.useState(['']); 
+export default function BankPayment() { 
 
     const [data, setData] = React.useState([
         { 
@@ -44,27 +43,21 @@ export default function BankPayment() {
     ])
 
     const HandleChange =(event: any, index: any)=> {
-        if(event.target.value === 'Credited'){ 
-            const newarr = [...pendingData]
+        if(event.target.value === 'Credited'){  
             const arr = [...data]
-            arr[index].status = 'Credited'
-            newarr[index]= 'Credited'
-            setPendingData(newarr)
+            arr[index].status = 'Credited' 
             setData(arr)
-        } else {
-            const newarr = [...pendingData]
+        } else { 
             const arr = [...data]
-            arr[index].status = 'Pending'
-            newarr[index]= ''
-            setData(arr)
-            setPendingData(newarr)
+            arr[index].status = 'Pending' 
+            setData(arr) 
         }
     }
 
     const Status = (item: any, index: any) =>{ 
             return( 
                 <div className='w-28 flex ' >
-                    <Select style={pendingData[index] === 'Credited' ? {color: '#00A69C'} : item ==='Credited' ? {color: '#00A69C'} : {color:'#F2994A'}}  className='w-full' onChange={(e)=> HandleChange(e, index)} placeholder={item} fontSize='xs'>
+                    <Select style={ item ==='Credited' ? {color: '#00A69C'} : {color:'#F2994A'}}  className='w-full' onChange={(e)=> HandleChange(e, index)} placeholder={item} fontSize='xs'>
                         <option value='Pending' style={{color:'#000000'}} >Pending</option>
                         <option value='Credited' style={{color:'#000000'}} >Credited</option>
                     </Select>
