@@ -89,9 +89,9 @@ export default function BankPayment() {
                             <th className='bg-white'>Business Name</th>
                             <th className='bg-white'>Amount Paid</th>
                             <th className='bg-white'>Date of Payment</th>
+                            <th className='bg-white'>Time Of Payment</th>
                             <th className='bg-white'>Depositors Name</th> 
                             <th className='bg-white'>Payment Reciept</th> 
-                            <th className='bg-white'>Time</th>
                             <th className='bg-white'>Status</th>   
                         </tr>
                     </thead>
@@ -103,13 +103,13 @@ export default function BankPayment() {
                                     <td>{item.bussinessname}</td>
                                     <td>{item.amountpaid}</td>
                                     <td>{item.paymentdate}</td>
+                                    <td>{item.time}</td>  
                                     <td>{item.depositorsname}</td>
                                     <td>
                                         <div className='w-full flex justify-center items-center cursor-pointer font-Poppins-Semibold text-midlman_color' > 
                                             {item.paymentreciept}
                                         </div>
                                     </td> 
-                                    <td>{item.time}</td>  
                                     <td>
                                         {Status(item.status, index)} 
                                     </td> 
