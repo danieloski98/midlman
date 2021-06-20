@@ -1,7 +1,7 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-  purge: false,
+  purge: [],
   presets: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
@@ -281,7 +281,7 @@ module.exports = {
       'Poppins-Regular': 'Poppins-regular',
       'Poppins-Medium': 'Poppins-medium',
       'Poppins-Bold': 'Poppins-bold',  
-      'Poppins-Semibold': 'Poppins-semibold'
+      'Poppins-Semibold': 'Poppins-semibold',
     },
     fontSize: {
       xs: ['0.75rem', { lineHeight: '1rem' }],
