@@ -10,7 +10,6 @@
     "@emotion/styled": "^11",
     "@material-ui/core": "^4.11.4",
     "@material-ui/pickers": "^3.2.8",
-    "@tailwindcss/postcss7-compat": "^2.2.2",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -18,13 +17,11 @@
     "@types/node": "^14.14.41",
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.3",
-    "autoprefixer": "^9.8.6",
     "date-fns": "^2.8.1",
     "draft-js": "^0.11.7",
     "draftjs-to-html": "^0.9.1",
     "framer-motion": "^4",
     "html-to-draft": "^0.1.6",
-    "postcss": "^7.0.36",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-draft-wysiwyg": "^1.14.7",
@@ -32,8 +29,8 @@
     "react-scripts": "4.0.3",
     "recharts": "^2.0.9",
     "recoil": "^0.2.0",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.2",
     "typescript": "^4.2.4",
+    "v11": "^0.4.1",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
@@ -61,11 +58,15 @@
     ]
   },
   "devDependencies": {
+    "@tailwindcss/postcss7-compat": "^2.2.2",
     "@types/draftjs-to-html": "^0.8.0",
     "@types/html-to-draftjs": "^1.4.0",
     "@types/react-draft-wysiwyg": "^1.13.2",
     "@types/react-query": "^1.1.2",
     "@types/react-router-dom": "^5.1.7",
-    "@types/recoil": "^0.0.1"
+    "@types/recoil": "^0.0.1",
+    "autoprefixer": "^9.8.6",
+    "postcss": "^7.0.36",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.2"
   }
 }
