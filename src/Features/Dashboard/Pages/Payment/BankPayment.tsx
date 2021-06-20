@@ -91,8 +91,8 @@ export default function BankPayment() {
                             <th className='bg-white'>Date of Payment</th>
                             <th className='bg-white'>Depositors Name</th> 
                             <th className='bg-white'>Payment Reciept</th> 
+                            <th className='bg-white'>Time</th>
                             <th className='bg-white'>Status</th>   
-                            <th className='bg-white'>Time</th>   
                         </tr>
                     </thead>
                     <tbody>
@@ -109,10 +109,10 @@ export default function BankPayment() {
                                             {item.paymentreciept}
                                         </div>
                                     </td> 
+                                    <td>{item.time}</td>  
                                     <td>
                                         {Status(item.status, index)} 
                                     </td> 
-                                    <td>{item.time}</td>  
                                 </tr>
                             )
                         })}
