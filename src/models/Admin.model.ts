@@ -1,6 +1,6 @@
 export interface AdminModel {
-  firstname?: string;
-  lastname?: string;
+  firstName?: string;
+  lastName?: string;
   gender?: number;
   active?: boolean;
   roles?: string[];

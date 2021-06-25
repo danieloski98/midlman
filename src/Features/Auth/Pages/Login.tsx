@@ -29,7 +29,7 @@ export default function Login() {
 
     const handleCheckBox = () => {
       setKeepLoggedIn(prev => !prev);
-     
+
     }
 
     const submit = async () => {
@@ -54,27 +54,41 @@ export default function Login() {
         if (request.status === 200) {
           // save details
 
-          setToken(json.token);
           setAdminDetails(json.user);
+          setToken(json.token);
 
-          console.log(adminDetails);
-          console.log(token);
+          // console.log(json);
+          // console.log(token);
           // check if the user wants to remain logged in
 
           if (keepLoggedIn) {
             // store in local storage
-            localStorage.setItem('details', JSON.stringify(adminDetails));
-            localStorage.setItem('token', token);
+            localStorage.setItem('details', JSON.stringify(json.user));
+            localStorage.setItem('token', json.token);
             localStorage.setItem('keeploggedin', '1');
-            history.push('/dashboard');
+            sessionStorage.setItem('details', JSON.stringify(json.user));
+            sessionStorage.setItem('token', json.token);
             setLoading(false);
+
+            const t1 = setTimeout(() => {
+              history.push('/dashboard');
+              clearTimeout(t1);
+            }, 3000);
+
+
           }else {
+            localStorage.removeItem('details');
+            localStorage.removeItem('token');
              // store in session storage
-             sessionStorage.setItem('details', JSON.stringify(adminDetails));
-             sessionStorage.setItem('token', token);
+             sessionStorage.setItem('details', JSON.stringify(json.user));
+             sessionStorage.setItem('token', json.token);
              localStorage.setItem('keeploggedin', '0');
-             history.push('/dashboard');
              setLoading(false);
+
+             const t1 = setTimeout(() => {
+              history.push('/dashboard');
+              clearTimeout(t1);
+            }, 3000);
           }
 
           setLoading(false);
