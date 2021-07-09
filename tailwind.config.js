@@ -2,6 +2,7 @@ const colors = require('tailwindcss/colors')
 
 module.exports = {
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'], 
+  // presets: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
     screens: {
@@ -11,7 +12,7 @@ module.exports = {
       xl: '1280px',
       '2xl': '1536px',
     },
-    colors: {
+    colors: { 
       transparent: 'transparent',
       current: 'currentColor',
       midlman_color: '#00A69C',
@@ -168,6 +169,7 @@ module.exports = {
     borderWidth: {
       DEFAULT: '1px',
       0: '0px',
+      1: '1px',
       2: '2px',
       4: '4px',
       8: '8px',
