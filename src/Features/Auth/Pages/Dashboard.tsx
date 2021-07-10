@@ -5,13 +5,18 @@ import DashboardRoutes from '../../../Navigation/DashboardRoutes';
 import Menu from '../../Dashboard/Component/Menu';
 import { useHistory } from 'react-router-dom'
 import useDetails from '../../../Hooks/useDetails';
+import {Value, MenuContext} from '../../../Context/MenuContext'
 
 export default function Dashboard() {
   const history = useHistory();
+
+  // context object 
+  const menuContext: Value = React.useContext(MenuContext);
+ 
   const { setAdminDetails, setToken } = useDetails();
   React.useEffect(() => {
     // check localstorage
-    const keepLoggedIn = localStorage.getItem('keeploggedin');
+    const keepLoggedIn = localStorage.getItem('keeploggedin'); 
 
     if (keepLoggedIn === '1') {
       // update the details from localStorage
@@ -51,9 +56,12 @@ export default function Dashboard() {
         <div className='w-full h-screen flex flex-col  overflow-hidden' >
             <div className="flex-1 flex overflow-auto">
                 <div className="w-full flex flex-row ">
+                  {menuContext.showModal ? 
                     <div className='overflow-y-auto overflow-x-hidden w-64 m-0 bg-midlman_color '>
                         <Menu />
                     </div>
+                    :null
+                  }
                     <div className='w-full h-screen flex flex-1 overflow-y-auto overflow-x-hidden ' >
                         <DashboardRoutes/>
                     </div>

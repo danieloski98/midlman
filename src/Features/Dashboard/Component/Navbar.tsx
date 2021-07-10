@@ -2,12 +2,14 @@ import React from 'react'
 import { useHistory } from 'react-router';
 
 import pic from '../../../assets/images/profile.png'
+import {Value, MenuContext} from '../../../Context/MenuContext';
 import useDetails from '../../../Hooks/useDetails';
 import Notification from './Notification'
 
 export default function Navbar(props: any) {
 
     const [showModal, setShowModal] = React.useState(false);
+    const menuContext: Value = React.useContext(MenuContext);
     const [icon, setIcon] = React.useState(false);
     const { adminDetails } = useDetails();
     const history= useHistory();
@@ -18,7 +20,7 @@ export default function Navbar(props: any) {
 
     return (
         <div className='w-full h-10 flex flex-row items-center' >
-            <svg className={!icon ? 'hidden': 'flex'}  width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg onClick={()=> menuContext.setShowModal((prev: any) => !prev)} className={!icon ? 'hidden': 'flex cursor-pointer'}  width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M18 12H0V10H18V12ZM18 7H0V5H18V7ZM18 2H0V0H18V2Z" fill="#828282"/>
             </svg>
             <div className='w-full flex flex-1' />
