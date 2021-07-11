@@ -8,7 +8,7 @@ export interface Value {
 export const MenuContext = React.createContext({} as Value);
 
 const MenuContextWrapper = (props: any) => {
-    const [showModal, setShowModal] = React.useState(false); 
+    const [showModal, setShowModal] = React.useState(true); 
     return (
         <MenuContext.Provider value={{showModal, setShowModal}}>
             {
