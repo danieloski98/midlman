@@ -134,16 +134,22 @@ export default function OrderList() {
                                     <td>{item.total}</td>
                                     <td>{item.purchasedate}</td>
                                     <td>{item.deliveredby}</td>
-                                    <td>{Status(item.orderstatus)}</td>
+                                    <td className="w-32">
+                                        <Select placeholder="Pending" size="xs">
+                                            <option value="pending">Pending</option>
+                                            <option value="processing">Processing</option>
+                                            <option value="completed">Completed</option>
+                                        </Select>
+                                    </td>
                                     <td>{Status(item.paymentstatus)}</td> 
                                     <td> 
                                         <div className=' w-full h-full flex flex-row items-center' >
-                                            <div onClick={()=> history.push('/dashboard/editorder')} className='cursor-pointer flex flex-row' >
+                                            {/* <div onClick={()=> history.push('/dashboard/editorder')} className='cursor-pointer flex flex-row' >
                                                 <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M13.7071 0.707107L16.5355 3.53553C16.9261 3.92606 16.9261 4.55922 16.5355 4.94975L15.1213 6.36396L10.8787 2.12132L12.2929 0.707107C12.6834 0.316583 13.3166 0.316583 13.7071 0.707107ZM9.46447 3.53553L1.27208 11.7279L0.979185 16.2635L5.51472 15.9706L13.7071 7.77817L9.46447 3.53553Z" fill="#1B75BB"/>
                                                 </svg>
                                                 <p className='ml-1' style={{color:'#1B75BB'}} >Edit</p>
-                                            </div>
+                                            </div> */}
                                             <p onClick={()=> setAssignDeliveryModal(true)} className='ml-2 text-midlman_color cursor-pointer text-xs font-Poppins-Semibold w-24 text-center flex flex-col' >Assign <p>Delivery Man</p></p>
                                         </div>
                                     </td>
