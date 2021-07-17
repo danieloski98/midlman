@@ -72,7 +72,7 @@ export default function EditProduct() {
                     <div onClick={()=> setType(false)} className={!type ? 'w-full flex justify-center border-b-2 cursor-pointer py-1 border-midlman_color': 'w-full flex justify-center border-b-2 cursor-pointer py-1 border-gray_exp'} >
                         <p className={!type ? 'text-midlman_color text-xs font-Poppins-Semibold':'text-gray_exp text-xs font-Poppins-Semibold'} >Portal</p>
                     </div>
-                    <div onClick={()=> setType(true)} className={type ? 'w-full flex justify-center border-b-2 cursor-pointer py-1 border-midlman_color': 'w-full flex justify-center border-b-2 cursor-pointer py-1 border-gray_exp'} >
+                    <div onClick={()=> setType(true)} className={type ? 'w-full flex justify-center border-b-2 cursor-pointer py-1 border-midlman_color ml-3': 'w-full flex justify-center border-b-2 cursor-pointer py-1 border-gray_exp ml-3'} >
                         <p className={type ? 'text-midlman_color text-xs font-Poppins-Semibold':'text-gray_exp text-xs font-Poppins-Semibold'}  >Express</p>
                     </div>
                 </div>

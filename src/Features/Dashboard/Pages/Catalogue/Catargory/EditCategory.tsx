@@ -61,8 +61,8 @@ export default function EditCategory() {
                         </div>
                     </div> 
                     <div className='w-full flex flex-row pt-12' >
-                        <button className='bg-midlman_color font-Poppins-Semibold text-white text-xs py-3 w-full rounded-md mr-4' >SUBMIT</button>
-                        <button style={{backgroundColor:'#EB5757'}} className='font-Poppins-Semibold text-white text-xs py-3 w-full rounded-md ml-4' >DELETE EXPRESS</button>
+                        <button className='bg-midlman_color font-Poppins-Semibold text-white text-xs py-3 w-full rounded-md mr-4' >Submit</button>
+                        <button style={{backgroundColor:'#EB5757'}} className='font-Poppins-Semibold text-white text-xs py-3 w-full rounded-md ml-4' >Edit Category</button>
                     </div>
                 </div>
             </div>
