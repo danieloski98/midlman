@@ -3,41 +3,34 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { useQuery } from 'react-query'
 import { url } from "../../../../../Utils/URL";
+import * as axios from 'axios'
 
 //get brands functions
 async function getBrands() {
-    const request = await fetch(`${url}/brands`, {
-        method: 'get',
-    })
-
-    const json = await request.json();
-
-    if (!request.ok) {
-        throw new Error('An Error occured')
-    }
-
-    return json as {response: []}
+    const request = await axios.default.get(`${url}/brand`);
+    return request;
 }
 
 export default function Brand() {
   // hooks
   const history = useHistory();
   const { isLoading } = useQuery('getbrands', getBrands, {
-      retryDelay: attemptIndex => Math.min(1000 * 2 ** attemptIndex, 30000),
-      retry: 6,
-      onSuccess: (data) => {
+    //   retryDelay: attemptIndex => Math.min(1000 * 2 ** attemptIndex, 30000),
+    //   retry: 6,
+      onSuccess: (data: any) => {
           setLoading(false);
-          setBrands(prev => [...prev, ...data.response]);
+          setBrands(prev => [...prev, ...data.data.response]);
+        //   alert(JSON.stringify(data));
       },
-      onError: (error) => {
+      onError: (error: any) => {
           setLoading(false);
-          alert(error);
+          alert(JSON.stringify(error.message));
       },
   })
 
   // state
   const [loading, setLoading] = React.useState(true);
-  const [brands, setBrands] = React.useState([89] as any[]);
+  const [brands, setBrands] = React.useState([] as any[]);
 
   // effects
   React.useEffect(() => {
