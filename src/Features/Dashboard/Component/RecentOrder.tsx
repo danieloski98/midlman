@@ -2,7 +2,13 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 import product from '../../../assets/images/product.png'
 
+const ACTIVE = "flex-1 flex items-center bg-white justify-center font-Poppins-Medium text-gray-600 rounded-lg text-center cursor-pointer shadow ";
+const INACTIVE = "flex-1 flex items-center justify-center font-Poppins-Medium text-gray-400 rounded-lg text-center cursor-pointer";
+
 export default function RecentOrder() {
+
+    // state
+    const [toggle, setToggle] = React.useState(1);
 
     const history = useHistory()
     const Orders = (props: any) => {
@@ -48,7 +54,16 @@ export default function RecentOrder() {
             <div className='w-full shadow-lg rounded-t-lg pt-8 px-8' >
                 <div className='w-full flex flex-row items-center border-b-2 border-gray-200 pb-4' >
                     <p className='font-Poppins-Medium text-lg' >Recent Orders</p>
-                    <div className='w-full flex flex-1' />
+                    <div className='w-full flex flex-1 justify-end pr-20' >
+                        <div className="w-64 h-10 rounded-lg  bg-gray-200 p-1 flex">
+                            <div onClick={() => setToggle(1)} className={toggle === 1 ? ACTIVE:INACTIVE}>
+                                <span>Portal</span>
+                            </div>
+                            <div onClick={() => setToggle(2)} className={toggle === 2 ? ACTIVE:INACTIVE}>
+                                <span>Express</span>
+                            </div>
+                        </div>
+                    </div>
                     <div className='rounded-md border-2 border-gray-200 py-2 px-4 cursor-pointer' onClick={()=> ClickHandler('/dashboard/orderlist')} >
                         <p className='font-Poppins-Regular text-sm' >View all orders</p>
                     </div>

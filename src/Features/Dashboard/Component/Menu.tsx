@@ -23,6 +23,7 @@ export default function Menu() {
     const DropDown = (source: string, index: number ) => { 
         if(dropdown === source){
             setDropDown('')   
+            setActive(0);
             // setSubMenu(tab)
         }else {
             setDropDown(source)
