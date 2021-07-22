@@ -6,9 +6,12 @@ import Menu from '../../Dashboard/Component/Menu';
 import { useHistory } from 'react-router-dom'
 import useDetails from '../../../Hooks/useDetails';
 import {Value, MenuContext} from '../../../Context/MenuContext'
+import { motion,  AnimateSharedLayout, AnimatePresence } from 'framer-motion'
 
 export default function Dashboard() {
   const history = useHistory();
+
+  const ani = { hidden: {opacity: 0, x: -100}, visible: {opacity: 1, x: 0}}
 
   // context object 
   const menuContext: Value = React.useContext(MenuContext);
@@ -53,15 +56,21 @@ export default function Dashboard() {
     }
   }, []);
     return (
-        <div className='w-full h-screen flex flex-col  overflow-hidden' >
+          <div className='w-full h-screen flex flex-col  overflow-hidden' >
             <div className="flex-1 flex overflow-auto">
                 <div className="w-full flex flex-row ">
-                  {menuContext.showModal ? 
-                    <div className='overflow-y-auto overflow-x-hidden w-64 m-0 bg-midlman_color '>
+                  <AnimatePresence>
+                  {menuContext.showModal &&
+                      <motion.div
+                      initial={{ opacity: 1 }}
+                      animate={{ opacity: 1, x: -10, transition: { type: 'spring', stiffness: 100, duration: 2} }}
+                      exit={{ opacity: 0, x: -200 }} 
+                      transition={{ type: "spring", stiffness: 100, duration: 2 }}
+                      className='overflow-y-auto overflow-x-hidden w-64 m-0 bg-midlman_color '>
                         <Menu />
-                    </div>
-                    :null
+                      </motion.div>
                   }
+                  </AnimatePresence>
                     <div className='w-full h-screen flex flex-1 overflow-y-auto overflow-x-hidden ' >
                         <DashboardRoutes/>
                     </div>

@@ -66,12 +66,12 @@ export default function Catergories() {
                                     <td className='font-Poppins-Semibold'>{index+1}</td>
                                     <td>{item.Catergory}</td> 
                                     <td >
-                                        <div className='w-full flex justify-center text-midlman_color text-Poppins-Medium'>
+                                        <div className='w-full cursor-pointer flex justify-center text-midlman_color text-Poppins-Medium'>
                                             View Image
                                         </div>
                                     </td>
                                     <td >
-                                        <div className='w-full flex justify-center text-midlman_color text-Poppins-Medium'>
+                                        <div className='w-full cursor-pointer  flex justify-center text-midlman_color text-Poppins-Medium'>
                                             View Icon
                                         </div>
                                     </td>
