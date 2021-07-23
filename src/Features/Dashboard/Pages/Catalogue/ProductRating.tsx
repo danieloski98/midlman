@@ -46,8 +46,9 @@ export default function ProductRating() {
                 <table className='text-sm '>
                     <thead>
                         <tr className='font-Poppins-Semibold' >
-                            <th className='bg-white'>ID</th>
-                            <th className='bg-white'>Reviewed By</th>
+                            <th className='bg-white'>PRODUCT ID</th>
+                            <th className='bg-white'>PRODUCT NAME</th>
+                            <th className='bg-white'>Rated By</th>
                             <th className='bg-white'>Rating</th>
                             <th className='bg-white'>Date</th> 
                             <th className='bg-white'>Action</th> 
@@ -58,6 +59,7 @@ export default function ProductRating() {
                             return(
                                 <tr key={index} className='font-Poppins-Regular' >
                                     <td className='font-Poppins-Semibold'>{index+1}</td>
+                                    <td>{item.reviewedby}</td>
                                     <td>{item.reviewedby}</td>
                                     <td>{item.rating}</td>
                                     <td>{item.data}</td> 

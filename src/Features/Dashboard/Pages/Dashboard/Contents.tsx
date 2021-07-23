@@ -7,6 +7,7 @@ import Navbar from '../../Component/Navbar'
 import PieGraph from '../../Component/PieGraph'
 import RecentOrder from '../../Component/RecentOrder'
 
+
 export default function Contents() {
  
     const history = useHistory()
@@ -17,9 +18,9 @@ export default function Contents() {
 
     return ( 
         <div className='w-full h-full flex flex-col flex-1 py-8 px-8 bg-white' >
-            <div className='w-full' >
+            {/* <div className='w-full' >
                 <Navbar icon={true} />
-            </div>
+            </div> */}
             <div className='w-full h-full pt-14' >
                 <div className='w-full flex' >
                     <div className='w-full flex flex-1' />

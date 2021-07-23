@@ -7,6 +7,8 @@ import { useHistory } from 'react-router-dom'
 import useDetails from '../../../Hooks/useDetails';
 import {Value, MenuContext} from '../../../Context/MenuContext'
 import { motion,  AnimateSharedLayout, AnimatePresence } from 'framer-motion'
+import Navbar from '../../Dashboard/Component/Navbar';
+
 
 export default function Dashboard() {
   const history = useHistory();
@@ -71,8 +73,13 @@ export default function Dashboard() {
                       </motion.div>
                   }
                   </AnimatePresence>
-                    <div className='w-full h-screen flex flex-1 overflow-y-auto overflow-x-hidden ' >
-                        <DashboardRoutes/>
+                    <div className='w-full h-screen flex flex-col flex-1 overflow-y-auto overflow-x-hidden ' >
+                        <div className="w-full px-8 py-8">
+                          <Navbar />
+                        </div>
+                        <div className="flex-1">
+                          <DashboardRoutes/>
+                        </div>
                     </div>
                 </div>
             </div>

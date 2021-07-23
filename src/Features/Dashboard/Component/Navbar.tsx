@@ -20,11 +20,11 @@ export default function Navbar(props: any) {
 
     return (
         <div className='w-full h-10 flex flex-row items-center' >
-            <svg onClick={()=> menuContext.setShowModal((prev: any) => !prev)} className={!icon ? 'hidden': 'flex cursor-pointer'}  width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg onClick={()=> menuContext.setShowModal((prev: any) => !prev)} className='flex cursor-pointer'  width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M18 12H0V10H18V12ZM18 7H0V5H18V7ZM18 2H0V0H18V2Z" fill="#828282"/>
             </svg>
             <div className='w-full flex flex-1' />
-            <svg  onClick={()=> history.push('/dashboard/adminchat')} className={!icon ? 'hidden': 'flex cursor-pointer'} width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg  onClick={()=> history.push('/dashboard/adminchat')} className='flex cursor-pointer' width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M15.4 0C16.615 0 17.6 0.984974 17.6 2.2L2.2 2.2L2.2 14.4941C0.984975 14.4941 0 13.5091 0 12.2941V2.2C0 0.984971 0.984974 0 2.2 0H15.4Z" fill="#828282"/>
                 <path d="M13.2 22L10.2667 18.8941H6.6C5.38497 18.8941 4.4 17.9091 4.4 16.6941V6.6C4.4 5.38497 5.38497 4.4 6.6 4.4H19.8C21.015 4.4 22 5.38497 22 6.6V16.6941C22 17.9091 21.015 18.8941 19.8 18.8941H16.1333L13.2 22ZM15.185 16.6941L19.8 16.6941V6.6L6.6 6.6V16.6941H11.215L13.2 18.7959L15.185 16.6941Z" fill="#828282"/>
             </svg>

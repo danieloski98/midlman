@@ -61,6 +61,7 @@ import index from '../Features/Dashboard/Pages/AdminChat'
 import AddBlogPost from '../Features/Dashboard/Pages/WebPages/Blog/AddBlogPost'
 import EditBlogPost from '../Features/Dashboard/Pages/WebPages/Blog/EditBlogPost'
 import BankPayment from '../Features/Dashboard/Pages/Payment/BankPayment'
+import PrescriptionRequest from '../Features/Dashboard/Pages/Reports/PrescriptionRequest'
 
 export default function DashboardRoutes() {
     return (  
@@ -113,6 +114,7 @@ export default function DashboardRoutes() {
             <Route path="/dashboard/pendingorder" component={PendingOrder} exact /> 
             <Route path="/dashboard/portalaccount" component={PortalAccount} exact /> 
             <Route path="/dashboard/prescriptionreports" component={PrescriptionReports} exact />
+            <Route path="/dashboard/prescriptionrequest" component={PrescriptionRequest} exact />
             <Route path="/dashboard/privacypolicy" component={PrivacyPolicy} exact /> 
             <Route path="/dashboard/product" component={Product} exact /> 
             <Route path="/dashboard/productrating" component={ProductRating} exact /> 
