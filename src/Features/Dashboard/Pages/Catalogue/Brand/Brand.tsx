@@ -1,14 +1,22 @@
-import { Select, Input, Spinner } from "@chakra-ui/react";
+import { Select, Input, Spinner, Modal, ModalOverlay, ModalBody, ModalContent } from "@chakra-ui/react";
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { useQuery } from 'react-query'
+import { useQuery, useMutation } from 'react-query'
 import { url } from "../../../../../Utils/URL";
 import * as axios from 'axios'
+import { IBrand } from "../../../../../Types/Brand";
+import LoadingModal from "../../../../Modals/LoadingModal";
+import { queryclient } from '../../../../../App'
 
 //get brands functions
 async function getBrands() {
     const request = await axios.default.get(`${url}/brand`);
     return request;
+}
+
+async function deleteBrand(id: string) {
+  const request = await axios.default.delete(`${url}/brand/delete/${id}`)
+  return request;
 }
 
 export default function Brand() {
@@ -19,7 +27,7 @@ export default function Brand() {
     //   retry: 6,
       onSuccess: (data: any) => {
           setLoading(false);
-          setBrands(prev => [...prev, ...data.data.response]);
+          setBrands(prev => [...data.data.response]);
         //   alert(JSON.stringify(data));
       },
       onError: (error: any) => {
@@ -28,9 +36,26 @@ export default function Brand() {
       },
   })
 
+  // mutations
+  const mutation = useMutation((id: string) => deleteBrand(id), {
+    onSuccess: (data) => {
+      setOpen(false);
+      setText('');
+      alert(data.data.message);
+      queryclient.invalidateQueries();
+    },
+    onError: (error) => {
+      setOpen(false);
+      setText('');
+      alert(JSON.stringify(error));
+    }
+  })
+
   // state
   const [loading, setLoading] = React.useState(true);
-  const [brands, setBrands] = React.useState([] as any[]);
+  const [brands, setBrands] = React.useState([] as IBrand[]);
+  const [open, setOpen] = React.useState(false);
+  const [text, setText] = React.useState('');
 
   // effects
   React.useEffect(() => {
@@ -41,27 +66,26 @@ export default function Brand() {
     // }
   }, [isLoading])
 
-  const data = [
-    {
-      brand: "Baby & Child care",
-      modified: "08123456789",
-    },
-    {
-      brand: "Ernest",
-      modified: "08123456789",
-    },
-    {
-      brand: "Ernest",
-      modified: "08123456789",
-    },
-    {
-      brand: "Ernest",
-      modified: "08123456789",
-    },
-  ];
+  // functions
+  const close = () => {
+    setOpen(false);
+    setText('');
+  }
+
+  const deleteBrandbyid = (id: string, name: string) => {
+    setText(`Deleting ${name}`);
+    setOpen(true);
+    mutation.mutate(id);
+  }
+
+  const editbrand = (id: string) => {
+    history.push(`/dashboard/editbran/${id}`);
+  }
+
 
   return (
     <div className="w-full h-full flex flex-col px-10 py-8 ">
+      <LoadingModal open={open} onClose={close} text={text} />
       <p className="font-Poppins-Semibold text-lg">Brand</p>
       <div className="w-full flex relative flex-row items-center py-8">
         <div className="w-24 flex items-center mr-4">
@@ -137,23 +161,23 @@ export default function Brand() {
                   </tr>
                 </thead>
                 <tbody>
-                  {data.map((item, index) => {
+                  {brands.map((item, index) => {
                     return (
                       <tr key={index} className="font-Poppins-Regular">
                         <td className="font-Poppins-Semibold">{index + 1}</td>
-                        <td>{item.brand}</td>
+                        <td>{item.name}</td>
                         <td>
-                          <div className="w-full flex justify-center text-midlman_color text-Poppins-Medium">
-                            View Logo
+                          <div className="w-full flex justify-center text-midlman_color text-Poppins-Medium cursor-pointer">
+                            <a href={item.logo} target="_blank" rel="noreferrer" >View Logo</a>
                           </div>
                         </td>
-                        <td>{item.modified}</td>
-                        <td>Active</td>
+                        <td>{`${new Date(item.updatedAt).toUTCString()}`}</td>
+                        <td>{item.status ? 'Active': 'Inactive'}</td>
                         <td>
                           <div className=" w-full h-full flex flex-row items-center">
                             <div
                               onClick={() =>
-                                history.push("/dashboard/editbrand")
+                                history.push(`/dashboard/editbrand/${item._id}/${item.name}`)
                               }
                               className="flex flex-row cursor-pointer"
                             >
@@ -169,7 +193,7 @@ export default function Brand() {
                                   fill="#1B75BB"
                                 />
                               </svg>
-                              <p className="ml-1" style={{ color: "#1B75BB" }}>
+                              <p className="ml-1 cursor-pointer" style={{ color: "#1B75BB" }}>
                                 Edit
                               </p>
                             </div>
@@ -190,7 +214,7 @@ export default function Brand() {
                                 />
                               </svg>
                             </div>
-                            <p className="ml-1" style={{ color: "#EB5757" }}>
+                            <p onClick={() => deleteBrandbyid(item._id, item.name)} className="ml-1 cursor-pointer" style={{ color: "#EB5757" }}>
                               Delete
                             </p>
                           </div>
