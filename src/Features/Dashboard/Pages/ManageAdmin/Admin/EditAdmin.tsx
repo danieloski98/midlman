@@ -83,7 +83,7 @@ export default function EditAdmin() {
                         </div>
                     </div>
                     <div className='w-full flex flex-row' >
-                        <button className='bg-midlman_color font-Poppins-Semibold text-white text-xs py-3 w-full rounded-md mr-4' >Upload Product</button>
+                        <button className='bg-midlman_color font-Poppins-Semibold text-white text-xs py-3 w-full rounded-md mr-4' >Update Admin</button>
                         <button className='bg-entries font-Poppins-Semibold text-menu_gray text-xs py-3 w-full rounded-md ml-4' >CANCEL</button>
                     </div>
                 </div>

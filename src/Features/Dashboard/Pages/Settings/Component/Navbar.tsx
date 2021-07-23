@@ -1,14 +1,19 @@
 import React from 'react'
 import pic from '../../../../../assets/images/profile.png'
+import { MenuContext } from '../../../../../Context/MenuContext';
 import useDetails from '../../../../../Hooks/useDetails'
 
 export default function Navbar() {
+
   const {adminDetails} = useDetails();
+  const menuContext = React.useContext(MenuContext);
     return (
         <div className='w-full h-10 flex flex-row items-center' >
+            <div onClick={() => menuContext.setShowModal((prev: boolean) => !prev)} className="cursor-pointer" >
             <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M18 12H0V10H18V12ZM18 7H0V5H18V7ZM18 2H0V0H18V2Z" fill="#828282"/>
             </svg>
+            </div>
             <div className='w-full flex flex-1' />
             <img src={pic} className='w-10 h-10' alt='profile' />
             <div className='flex flex-col ml-4' >
