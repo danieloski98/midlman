@@ -30,6 +30,7 @@ export default function NewBrand() {
     const [coverImage, setCoverImage] = React.useState(null as any);
     const [icon, setIcon] = React.useState(null as any);
     const [loading, setLoading] = React.useState(false);
+    const [status, setStatus] = React.useState(false);
     
 
 
@@ -95,11 +96,13 @@ export default function NewBrand() {
         const request = await fetch(`${url}/brand/create`, {
             method: 'post',
             headers: {
-                authorization: `Bearer ${token}`
+                authorization: `Bearer ${token}`,
+                'content-type': 'application/json'
             },
             body: JSON.stringify({
                 name: formik.values.name,
                 logo: icon,
+                status,
             })
         });
         const json = await request.json() as any;
@@ -109,6 +112,7 @@ export default function NewBrand() {
             alert(json.message);
         }else {
             alert('Brand created successfully');
+            history.goBack();
         }
     }
 
@@ -157,7 +161,7 @@ export default function NewBrand() {
                         <div className='flex flex-row  mt-1 ml-4 items-center' >
                             <p className='text-xs mr-2 font-Poppins-Semibold'>Active</p>
                             <label className="switch">
-                                <input type="checkbox"/>
+                                <input type="checkbox" onChange={() => setStatus(prev => !prev)}/>
                                 <span className="slider round"></span>
                             </label>
                         </div>
