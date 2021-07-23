@@ -1,6 +1,7 @@
 import { Select, Input } from '@chakra-ui/react'
 import React from 'react'
 import { useHistory } from 'react-router-dom'
+import Navbar from '../../Settings/Component/Navbar'
 
 export default function ExpressAccount() {
     const history = useHistory()
@@ -59,18 +60,30 @@ export default function ExpressAccount() {
                     </svg> Add New Express Account
                 </button> */}
             </div>
-            <div className='w-auto my-14' >
+            <div className='w-auto my-14 overflow-scroll' >
                 <table className='text-sm '>
                     <thead>
                         <tr className='font-Poppins-Semibold' >
-                            <th className='bg-white'>ID</th>
-                            <th className='bg-white'>Display Picture</th>
-                            <th className='bg-white'>First Name</th>
-                            <th className='bg-white'>Last Name</th>
-                            <th className='bg-white'>Email Address</th> 
-                            <th className='bg-white'>Phone Number</th> 
-                            <th className='bg-white'>Address</th> 
-                            <th className='bg-white'>Action</th> 
+                            <th className='bg-white'>
+                                <p className="w-24">ID</p>
+                            </th>
+                            <th className='bg-white'>
+                                <p className="w-32">Display Picture</p>
+                            </th>
+                            <th className='bg-white'>
+                                <p className="w-32">First Name</p>
+                            </th>
+                            <th className='bg-white'>
+                                <p className="w-32">Last Name</p>
+                            </th>
+                            <th className='bg-white'>
+                                <p className="w-56">Email Address</p></th> 
+                            <th className='bg-white'>
+                                <p className="w-40">Phone Number</p></th> 
+                            <th className='bg-white'>
+                                <p className="w-56">Address</p></th> 
+                            <th className='bg-white'>
+                                <p className="w-56">Action</p></th> 
                         </tr>
                     </thead>
                     <tbody>
@@ -89,15 +102,23 @@ export default function ExpressAccount() {
                                     <td>{item.contact}</td>
                                     <td>{item.address}</td>
                                     <td> 
-                                        <div className=' w-full h-full flex flex-row ' >
+                                        <div className=' w-56 h-full flex flex-row ' >
                                             {/* <div onClick={()=> history.push('/dashboard/editexpressaccount')} className='cursor-pointer flex flex-row' >
                                                 <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M13.7071 0.707107L16.5355 3.53553C16.9261 3.92606 16.9261 4.55922 16.5355 4.94975L15.1213 6.36396L10.8787 2.12132L12.2929 0.707107C12.6834 0.316583 13.3166 0.316583 13.7071 0.707107ZM9.46447 3.53553L1.27208 11.7279L0.979185 16.2635L5.51472 15.9706L13.7071 7.77817L9.46447 3.53553Z" fill="#1B75BB"/>
                                                 </svg>
                                                 <p className='ml-1' style={{color:'#1B75BB'}} >Edit</p>
                                             </div> */}
-                                            <div className='cursor-pointer flex flex-row' >
-                                                <div className='rounded-full w-4 h-4 flex justify-center items-center' style={{backgroundColor:'#EB5757'}} >
+                                            <div className='cursor-pointer flex flex-row  justify-evenly items-center'  >
+
+                                            <label className="switch">
+                                                <input type="checkbox"/>
+                                                <span className="slider round"></span>
+                                            </label>
+
+                                            <p className="ml-2">Active</p>
+
+                                                <div className='rounded-full w-4 h-4 flex justify-center items-center ml-6' style={{backgroundColor:'#EB5757'}} >
                                                     <svg width="9" height="9" viewBox="0 0 9 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M0.292893 0.292893C0.683417 -0.0976312 1.31658 -0.097631 1.70711 0.292893L4.03033 2.61612L6.35355 0.292893C6.74407 -0.097631 7.37724 -0.0976312 7.76776 0.292893C8.15829 0.683417 8.15829 1.31658 7.76776 1.70711L5.44454 4.03033L7.36396 5.94975C7.75449 6.34027 7.75449 6.97344 7.36396 7.36396C6.97344 7.75449 6.34027 7.75449 5.94975 7.36396L4.03033 5.44454L2.11091 7.36396C1.72039 7.75449 1.08722 7.75449 0.696697 7.36396C0.306172 6.97344 0.306172 6.34027 0.696697 5.94975L2.61612 4.03033L0.292893 1.70711C-0.0976311 1.31658 -0.0976311 0.683417 0.292893 0.292893Z" fill="white"/>
                                                     </svg>

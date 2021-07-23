@@ -16,7 +16,7 @@ export default function OrderList() {
             id: 'fdskfdsjlfdls',
             orderby: 'Ernest Chris',
             accounttype: 'Portal',
-            item: 'this will have a long scrollable list of all items purchased', 
+            item: 'this will have a long scrollable list of all items purchased long scrollable list of all items purchased long scrollable list of all items purchased long scrollable list of all items purchased long scrollable list of all items purchased this will have a long scrollable list of all items purchased long scrollable list of all items purchased long scrollable list of all items purchased long scrollable list of all items purchased long scrollable list of all items purchased this will have a long scrollable list of all items purchased long scrollable list of all items purchased long scrollable list of all items purchased long scrollable list of all items purchased long scrollable list of all items purchased this will have a long scrollable list of all items purchased long scrollable list of all items purchased long scrollable list of all items purchased long scrollable list of all items purchased long scrollable list of all items purchased', 
             total: '#40000', 
             purchasedate: '24/24/2024 (3;30pm)', 
             deliveredby: 'Ernest', 
@@ -79,7 +79,7 @@ export default function OrderList() {
     }
 
     return (
-        <div className='w-full h-full flex flex-col px-10 py-8 ' >  
+        <div className='w-full h-full flex flex-col px-10 py-8 overflow-x-hidden overflow-y-auto ' >  
             <p className='font-Poppins-Semibold text-lg' >Order List</p>
             <div className='w-full flex relative flex-row items-center py-8' > 
                 <div className='w-auto flex items-center mr-4' >  
@@ -101,53 +101,72 @@ export default function OrderList() {
                 <button className='bg-midlman_color flex flex-row items-center font-Poppins-Bold text-white text-xs py-3 px-6 rounded-md mx-1' > Print </button>
                 <button className='bg-midlman_color flex flex-row items-center font-Poppins-Bold text-white text-xs py-3 px-6 rounded-md mx-1' > Save As </button>
             </div>
-            <div className='w-auto my-14 px-2 overflow-scroll h-72' >
-                <table className='text-xs overflow-scroll'>
+
+            <div className='w-auto h-100 overflow-x-scroll' >
+                <table className='text-xs'>
                     <thead>
                         <tr className='font-Poppins-Semibold' >
-                            <th className='bg-white' colSpan={2} rowSpan={2}>ID</th>
-                            <th className='bg-white' colSpan={2}>Order ID</th>
-                            <th className='bg-white' colSpan={2}>Order By</th>
-                            <th className='bg-white' colSpan={2}>Account Type</th>
-                            <th className='bg-white' colSpan={2}>Items</th> 
-                            <th className='bg-white' colSpan={2}>Prescription Image</th> 
-                            <th className='bg-white' colSpan={2}>Order Total</th> 
-                            <th className='bg-white' colSpan={2}>Date/Time Purchased</th> 
-                            <th className='bg-white' colSpan={2}>Delivery By</th> 
-                            <th className='bg-white' colSpan={2}>Order Status</th> 
-                            <th className='bg-white' colSpan={2}>Payment Status</th> 
-                            <th className='bg-white' colSpan={2}>Action</th> 
+                            <th className='bg-white' >
+                                <p className="w-24 text-cen">ID</p>
+                            </th>
+                            <th className='bg-white' >
+                                <p className="w-24 text-center">Order ID</p>
+                            </th>
+                            <th className='bg-white ' >
+                                <p className="w-24 text-center">Order By</p>
+                            </th>
+                            <th className='bg-white' >
+                                <p className="w-24 text-center">
+                                Account Type
+                                </p>
+                            </th>
+                            <th className='bg-white'>
+                                <p className="w-24 text-center">Items</p></th> 
+                            <th className='bg-white' >
+                                <p className="w-40 text-center">Prescription Image</p></th> 
+                            <th className='bg-white' >
+                                <p className="w-24 text-center">Order Total</p></th> 
+                            <th className='bg-white' >
+                                <p className="w-56 text-center">Date/Time Purchased</p></th> 
+                            <th className='bg-white' >
+                                <p className="w-24 text-center">Delivery By</p></th> 
+                            <th className='bg-white' >
+                                <p className="w-32 text-center">Order Status</p></th> 
+                            <th className='bg-white' >
+                                <p className="w-32 text-center">Payment Status</p></th> 
+                            <th className='bg-white' >
+                                <p className="w-56 text-center">Action</p></th> 
                         </tr>
                     </thead>
                     <tbody>
                         {data.map((item, index) => {
                             return(
                                 <tr key={index} className='font-Poppins-Regular' >
-                                    <td className='font-Poppins-Semibold' colSpan={3}>{index+1}</td>
-                                    <td colSpan={3}>
+                                    <td className='font-Poppins-Semibold'>{index+1}</td>
+                                    <td>
                                         <div className='flex flex-row items-center' >
                                             {item.id}
                                             <p onClick={()=> setShowModal(true)} className='text-xs text-midlman_color ml-3 cursor-pointer'>View</p>
                                         </div></td>
-                                    <td colSpan={2}>{item.orderby}</td>
-                                    <td colSpan={2}>{item.accounttype}</td>
-                                    <td colSpan={2}><p className='text-xs text-menu_gray' >{item.item}</p></td>
-                                    <td colSpan={2}>
+                                    <td>{item.orderby}</td>
+                                    <td>{item.accounttype}</td>
+                                    <td className="overflow-y-scroll"><p className='text-xs text-menu_gray w-56 h-24 overflow-scroll' >{item.item}</p></td>
+                                    <td>
                                         <p className="text-midlman_color cursor-pointer">View Image</p>
                                     </td>
-                                    <td colSpan={2}>{item.total}</td>
-                                    <td colSpan={2}>{item.purchasedate}</td>
+                                    <td>{item.total}</td>
+                                    <td>{item.purchasedate}</td>
                                     
-                                    <td colSpan={2}>{item.deliveredby}</td>
-                                    <td className="w-32" colSpan={3}>
-                                        <Select placeholder="Pending" size="xs">
+                                    <td >{item.deliveredby}</td>
+                                    <td className="text-yellow-600">
+                                        <Select size="xs">
                                             <option value="pending">Pending</option>
                                             <option value="processing">Processing</option>
                                             <option value="completed">Completed</option>
                                         </Select>
                                     </td>
-                                    <td colSpan={2}>{Status(item.paymentstatus)}</td> 
-                                    <td colSpan={2}> 
+                                    <td>{Status(item.paymentstatus)}</td> 
+                                    <td> 
                                         <div className=' w-full h-full flex flex-row items-center' >
                                             {/* <div onClick={()=> history.push('/dashboard/editorder')} className='cursor-pointer flex flex-row' >
                                                 <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -155,7 +174,7 @@ export default function OrderList() {
                                                 </svg>
                                                 <p className='ml-1' style={{color:'#1B75BB'}} >Edit</p>
                                             </div> */}
-                                            <p onClick={()=> setAssignDeliveryModal(true)} className='ml-2 text-midlman_color cursor-pointer text-xs font-Poppins-Semibold w-24 text-center flex flex-col' >Assign <p>Delivery Man</p></p>
+                                            <p onClick={()=> setAssignDeliveryModal(true)} className='ml-2 text-midlman_color cursor-pointer text-xs font-Poppins-Semibold w-56 text-center' >Assign Delivery Man</p>
                                         </div>
                                     </td>
                                 </tr>
@@ -164,7 +183,8 @@ export default function OrderList() {
                     </tbody>
                 </table>
             </div>
-            <div className='w-full flex flex-row items-center pb-12'>
+
+            <div className='w-full flex flex-row items-center pb-12 mt-10'>
                 <p className='font-Poppins-Regular text-xs' >Showing 1-10 of 30 items</p>
                 <div className='w-full flex flex-1' />
                 <div className='w-8 h-8 flex justify-center items-center font-Poppins-Semibold text-xs mr-1 bg-completed_bg cursor-pointer ' >1</div>

@@ -1,7 +1,11 @@
-import { Select, Input } from '@chakra-ui/react';
 import React from 'react'; 
+import { Select, Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
+import { FiSearch } from 'react-icons/fi'
+import { useHistory } from 'react-router-dom'
 
 export default function PrescriptionReports() { 
+
+    const history = useHistory();
 
     const data = [
         { 
@@ -9,7 +13,7 @@ export default function PrescriptionReports() {
             email: 'ernest@mail.com',
             contact: '08123456789',
             admintype: 'Bottle',
-            information: 'this will have a long scrollable list of message text', 
+            information: 'this will have a long scrollable list of message text this will have a long scrollable list of message text this will have a long scrollable list of message text this will have a long scrollable list of message text this will have a long scrollable list of message text this will have a long scrollable list of message text this will have a long scrollable list of message text this will have a long scrollable list of message text this will have a long scrollable list of message text this will have a long scrollable list of message text this will have a long scrollable list of message text this will have a long scrollable list of message text', 
         },
         { 
             name: 'Ernest Chris',
@@ -42,26 +46,43 @@ export default function PrescriptionReports() {
                     <Select fontSize='xs' color='#828282' placeholder='Sort By' />
                 </div>
                 <div className='w-48 flex items-center' > 
-                    <div className='fixed z-10 ml-4' >
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M2 8C2 4.691 4.691 2 8 2C11.309 2 14 4.691 14 8C14 11.309 11.309 14 8 14C4.691 14 2 11.309 2 8ZM17.707 16.293L14.312 12.897C15.365 11.543 16 9.846 16 8C16 3.589 12.411 0 8 0C3.589 0 0 3.589 0 8C0 12.411 3.589 16 8 16C9.846 16 11.543 15.365 12.897 14.312L16.293 17.707C16.488 17.902 16.744 18 17 18C17.256 18 17.512 17.902 17.707 17.707C18.098 17.316 18.098 16.684 17.707 16.293Z" fill="#BDBDBD"/>
-                        </svg>
-                    </div>
-                    <Input fontSize='xs' paddingLeft='10'  placeholder='Search ...' />
+                    <InputGroup>
+                        <InputLeftElement children={<FiSearch size={20} color="grey" />} />
+                        <Input fontSize='xs' paddingLeft='10'  placeholder='Search ...' />
+                    </InputGroup>
                 </div> 
             </div>
-            <div className='w-auto my-14' >
+            <div className='w-auto my-14 overflow-x-auto' style={{ height: 'auto'}} >
                 <table className='text-sm '>
                     <thead>
                         <tr className='font-Poppins-Semibold' >
-                            <th className='bg-white'>ID</th>
-                            <th className='bg-white'>Name</th>
-                            <th className='bg-white'>Email Address</th>
-                            <th className='bg-white'>Phone Number</th>
-                            <th className='bg-white'>Admin Type</th>
-                            <th className='bg-white'>Prescription Image</th> 
-                            <th className='bg-white'>Additional Info</th> 
-                            <th className='bg-white'>Action</th> 
+                            <th className='bg-white'>
+                                <p className="w-24">ID</p>
+                            </th>
+                            <th className='bg-white'>
+                                <p className="w-32">Name</p>
+                            </th>
+                            <th className='bg-white'>
+                                <p className="w-32">Email Address</p>
+                            </th>
+                            <th className='bg-white'>
+                                <p className="w-32">Phone Number</p>
+                            </th>
+                            <th className='bg-white'>
+                                <p className="w-32">Admin Type</p>
+                            </th>
+                            <th className='bg-white'>
+                                <p className="w-56">Prescription Image</p>
+                            </th> 
+                            <th className='bg-white'>
+                                <p className="w-64">Additional Info</p>
+                            </th> 
+                            <th className='bg-white'>
+                                <p className="w-32">Status</p>
+                            </th> 
+                            <th className='bg-white'>
+                                <p className="w-32">Action</p>
+                            </th> 
                         </tr>
                     </thead>
                     <tbody>
@@ -74,20 +95,23 @@ export default function PrescriptionReports() {
                                     <td>{item.contact}</td>
                                     <td>{item.admintype}</td>
                                     <td>
-                                        <div className='w-full flex justify-center items-center font-Poppins-Medium text-midlman_color' >
+                                        <div className='w-full flex justify-center items-center font-Poppins-Medium text-midlman_color cursor-pointer' >
                                             <p>View Image</p>
                                         </div>
                                     </td>
-                                    <td>{item.information}</td>
+                                    <td>
+                                        <p className="w-full h-32 overflow-y-auto">{item.information}</p>
+                                    </td>
+                                    <td>
+                                        <Select size="xs">
+                                            <option>Pending</option>
+                                            <option>Accept</option>
+                                            <option>Decline</option>
+                                            <option>Delete</option>
+                                        </Select>
+                                    </td>
                                     <td> 
-                                        <div className=' w-full h-full flex flex-row pl-8 items-center' > 
-                                            <div className='rounded-full w-4 ml-8 h-4 flex justify-center items-center' style={{backgroundColor:'#EB5757'}} >
-                                                <svg width="9" height="9" viewBox="0 0 9 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M0.292893 0.292893C0.683417 -0.0976312 1.31658 -0.097631 1.70711 0.292893L4.03033 2.61612L6.35355 0.292893C6.74407 -0.097631 7.37724 -0.0976312 7.76776 0.292893C8.15829 0.683417 8.15829 1.31658 7.76776 1.70711L5.44454 4.03033L7.36396 5.94975C7.75449 6.34027 7.75449 6.97344 7.36396 7.36396C6.97344 7.75449 6.34027 7.75449 5.94975 7.36396L4.03033 5.44454L2.11091 7.36396C1.72039 7.75449 1.08722 7.75449 0.696697 7.36396C0.306172 6.97344 0.306172 6.34027 0.696697 5.94975L2.61612 4.03033L0.292893 1.70711C-0.0976311 1.31658 -0.0976311 0.683417 0.292893 0.292893Z" fill="white"/>
-                                                </svg>
-                                            </div>
-                                            <p className='ml-1' style={{color:'#EB5757'}} >Delete</p>
-                                        </div>
+                                        <p onClick={() => history.push('/dashboard/prescriptionrequest')} className="text-center text-midlman_color cursor-pointer">Send Request</p>
                                     </td>
                                 </tr>
                             )

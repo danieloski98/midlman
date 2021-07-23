@@ -5,6 +5,7 @@ import React from 'react'
 import { useHistory } from 'react-router'
 import Editor from '../../WebPages/Component/Editor'
 import AddPromo from './AddPromo'
+import { motion, AnimatePresence } from 'framer-motion'
 
 export default function UploadProduct() {
 
@@ -35,6 +36,16 @@ export default function UploadProduct() {
                     <div className='w-full py-4' >
                         <Select fontSize='xs' placeholder='Select Brand'>
                             <option>Give me more option</option>
+                        </Select>
+                    </div>
+                    <div className='w-full py-4' >
+                        <p className='font-Poppins-Semibold text-sm mb-1'>Medical Tags (Optional)</p>
+                        <Input fontSize='xs' />
+                    </div>
+                    <div className='w-full py-4' >
+                        <Select fontSize='xs' placeholder='Choose Campaign'>
+                            <option>Product of the Weeks</option>
+                            <option>Product of the Weeks</option>
                         </Select>
                     </div>
                     <div className='w-full py-4' >
@@ -114,6 +125,21 @@ export default function UploadProduct() {
                                 <span className="slider round"></span>
                             </label>
                         </div>
+                       <AnimatePresence>
+                       {
+                            type && (
+                                <motion.div 
+                                animate={{ }}
+                                className='flex flex-row  mt-1 ml-4 items-center' >
+                                    <p className='text-xs mr-2 font-Poppins-Semibold'>Controlled Drug</p>
+                                    <label className="switch">
+                                        <input type="checkbox"/>
+                                        <span className="slider round"></span>
+                                    </label>
+                                </motion.div>
+                            )
+                        }
+                       </AnimatePresence>
                     </div>
                     <div className='w-full flex flex-row items-center py-6' > 
                         <div onClick={()=> setShowModal(true)} className='border-2 border-entries cursor-pointer rounded-lg h-12 flex justify-center ml-4 items-center px-3' >
