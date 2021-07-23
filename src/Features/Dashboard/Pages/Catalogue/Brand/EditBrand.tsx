@@ -23,7 +23,8 @@ async function getBrand(id: string) {
 const editBrand = async (id: string, body: Partial<IBrand>, token: any) => {
     const request = await axios.default.put(`${url}/brand/update/${id}`, body, {
         headers: {
-            authorization: `Bearer ${token}`
+            Authorization: `Bearer ${token}`,
+            'content-type': 'application/json'
         }
     });
     return request;
@@ -115,7 +116,7 @@ export default function EditBrand(props: any) {
         //     return;
         // }
         alert(formik.values.name);
-        
+
         setText(`Editing Brand with name ${props.match.params.name}`);
         setOpen(true);
         mutation.mutate({id: props.match.params.id, body: {name: formik.values.name, logo: icon, status }, token });
@@ -168,7 +169,9 @@ export default function EditBrand(props: any) {
                         </div>
                     </div> 
                     <div className='w-full flex flex-row pt-12' >
-                        <button onClick={submit} className='bg-midlman_color font-Poppins-Semibold text-white text-xs py-3 w-full rounded-md mr-4' >Save</button>
+                        <button onClick={submit} className='bg-midlman_color font-Poppins-Semibold text-white text-xs py-3 w-full rounded-md mr-4' >
+                            Update
+                        </button>
                         <button onClick={()=> history.goBack()} style={{backgroundColor:'#EB5757'}} className='font-Poppins-Semibold text-white text-xs py-3 w-full rounded-md ml-4' >
                             Cancel
                         </button>
