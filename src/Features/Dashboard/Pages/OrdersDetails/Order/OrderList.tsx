@@ -101,48 +101,53 @@ export default function OrderList() {
                 <button className='bg-midlman_color flex flex-row items-center font-Poppins-Bold text-white text-xs py-3 px-6 rounded-md mx-1' > Print </button>
                 <button className='bg-midlman_color flex flex-row items-center font-Poppins-Bold text-white text-xs py-3 px-6 rounded-md mx-1' > Save As </button>
             </div>
-            <div className='w-auto my-14 px-2' >
-                <table className='text-xs '>
+            <div className='w-auto my-14 px-2 overflow-scroll h-72' >
+                <table className='text-xs overflow-scroll'>
                     <thead>
                         <tr className='font-Poppins-Semibold' >
-                            <th className='bg-white'>ID</th>
-                            <th className='bg-white'>Order ID</th>
-                            <th className='bg-white'>Order By</th>
-                            <th className='bg-white'>Account Type</th>
-                            <th className='bg-white'>Items</th> 
-                            <th className='bg-white'>Order Total</th> 
-                            <th className='bg-white'>Date/Time Purchased</th> 
-                            <th className='bg-white'>Delivery By</th> 
-                            <th className='bg-white'>Order Status</th> 
-                            <th className='bg-white'>Payment Status</th> 
-                            <th className='bg-white'>Action</th> 
+                            <th className='bg-white' colSpan={2} rowSpan={2}>ID</th>
+                            <th className='bg-white' colSpan={2}>Order ID</th>
+                            <th className='bg-white' colSpan={2}>Order By</th>
+                            <th className='bg-white' colSpan={2}>Account Type</th>
+                            <th className='bg-white' colSpan={2}>Items</th> 
+                            <th className='bg-white' colSpan={2}>Prescription Image</th> 
+                            <th className='bg-white' colSpan={2}>Order Total</th> 
+                            <th className='bg-white' colSpan={2}>Date/Time Purchased</th> 
+                            <th className='bg-white' colSpan={2}>Delivery By</th> 
+                            <th className='bg-white' colSpan={2}>Order Status</th> 
+                            <th className='bg-white' colSpan={2}>Payment Status</th> 
+                            <th className='bg-white' colSpan={2}>Action</th> 
                         </tr>
                     </thead>
                     <tbody>
                         {data.map((item, index) => {
                             return(
                                 <tr key={index} className='font-Poppins-Regular' >
-                                    <td className='font-Poppins-Semibold'>{index+1}</td>
-                                    <td>
+                                    <td className='font-Poppins-Semibold' colSpan={3}>{index+1}</td>
+                                    <td colSpan={3}>
                                         <div className='flex flex-row items-center' >
                                             {item.id}
                                             <p onClick={()=> setShowModal(true)} className='text-xs text-midlman_color ml-3 cursor-pointer'>View</p>
                                         </div></td>
-                                    <td>{item.orderby}</td>
-                                    <td>{item.accounttype}</td>
-                                    <td><p className='text-xs text-menu_gray' >{item.item}</p></td>
-                                    <td>{item.total}</td>
-                                    <td>{item.purchasedate}</td>
-                                    <td>{item.deliveredby}</td>
-                                    <td className="w-32">
+                                    <td colSpan={2}>{item.orderby}</td>
+                                    <td colSpan={2}>{item.accounttype}</td>
+                                    <td colSpan={2}><p className='text-xs text-menu_gray' >{item.item}</p></td>
+                                    <td colSpan={2}>
+                                        <p className="text-midlman_color cursor-pointer">View Image</p>
+                                    </td>
+                                    <td colSpan={2}>{item.total}</td>
+                                    <td colSpan={2}>{item.purchasedate}</td>
+                                    
+                                    <td colSpan={2}>{item.deliveredby}</td>
+                                    <td className="w-32" colSpan={3}>
                                         <Select placeholder="Pending" size="xs">
                                             <option value="pending">Pending</option>
                                             <option value="processing">Processing</option>
                                             <option value="completed">Completed</option>
                                         </Select>
                                     </td>
-                                    <td>{Status(item.paymentstatus)}</td> 
-                                    <td> 
+                                    <td colSpan={2}>{Status(item.paymentstatus)}</td> 
+                                    <td colSpan={2}> 
                                         <div className=' w-full h-full flex flex-row items-center' >
                                             {/* <div onClick={()=> history.push('/dashboard/editorder')} className='cursor-pointer flex flex-row' >
                                                 <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">

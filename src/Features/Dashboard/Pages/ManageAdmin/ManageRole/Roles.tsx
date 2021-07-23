@@ -33,7 +33,21 @@ export default function Roles(props: any) {
                             </label>
                         </div>
                         <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>Edit Order</p>
+                            <p className='text-xs mr-2 font-Poppins-Semibold'>Assign Delivery Man</p>
+                            <label className="switch">
+                                <input type="checkbox"/>
+                                <span className="slider round"></span>
+                            </label>
+                        </div>
+                        <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
+                            <p className='text-xs mr-2 font-Poppins-Semibold'>Payment Status</p>
+                            <label className="switch">
+                                <input type="checkbox"/>
+                                <span className="slider round"></span>
+                            </label>
+                        </div>
+                        <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
+                            <p className='text-xs mr-2 font-Poppins-Semibold'>View Completed Orders</p>
                             <label className="switch">
                                 <input type="checkbox"/>
                                 <span className="slider round"></span>
@@ -41,7 +55,7 @@ export default function Roles(props: any) {
                         </div>
                     </div>
                     <div className='w-full py-4' >
-                        <p className='text-sm font-Poppins-Semibold pb-2' >3. Manage Categories</p>
+                        <p className='text-sm font-Poppins-Semibold pb-2' >3. Manage Catelogue</p>
                         <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
                             <p className='text-xs mr-2 font-Poppins-Semibold'>View Categories</p>
                             <label className="switch">
@@ -70,6 +84,31 @@ export default function Roles(props: any) {
                                 <span className="slider round"></span>
                             </label>
                         </div>
+
+                        <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
+                            <p className='text-xs mr-2 font-Poppins-Semibold'>View Brands</p>
+                            <label className="switch">
+                                <input type="checkbox"/>
+                                <span className="slider round"></span>
+                            </label>
+                        </div>
+
+                        <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
+                            <p className='text-xs mr-2 font-Poppins-Semibold'>View Products</p>
+                            <label className="switch">
+                                <input type="checkbox"/>
+                                <span className="slider round"></span>
+                            </label>
+                        </div>
+
+                        <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
+                            <p className='text-xs mr-2 font-Poppins-Semibold'>View Ratings</p>
+                            <label className="switch">
+                                <input type="checkbox"/>
+                                <span className="slider round"></span>
+                            </label>
+                        </div>
+
                     </div>
                     <div className='w-full py-4' >
                         <p className='text-sm font-Poppins-Semibold pb-2' >4. Manage Blog</p>
@@ -129,7 +168,14 @@ export default function Roles(props: any) {
                     <div className='w-full py-4' >
                         <p className='text-sm font-Poppins-Semibold pb-2' >6. Manage Payment</p>
                         <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>Manual Top</p>
+                            <p className='text-xs mr-2 font-Poppins-Semibold'>View Manual Top</p>
+                            <label className="switch">
+                                <input type="checkbox"/>
+                                <span className="slider round"></span>
+                            </label>
+                        </div>
+                        <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
+                            <p className='text-xs mr-2 font-Poppins-Semibold'>View Bank Payments</p>
                             <label className="switch">
                                 <input type="checkbox"/>
                                 <span className="slider round"></span>
@@ -146,61 +192,22 @@ export default function Roles(props: any) {
                             </label>
                         </div>
                         <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>Add Shipping Methods</p>
+                            <p className='text-xs mr-2 font-Poppins-Semibold'>View Flat-Rate</p>
                             <label className="switch">
                                 <input type="checkbox"/>
                                 <span className="slider round"></span>
                             </label>
                         </div>
                         <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>Edit Shipping Methods</p>
-                            <label className="switch">
-                                <input type="checkbox"/>
-                                <span className="slider round"></span>
-                            </label>
-                        </div>
-                        <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>Delete Shipping Methods</p>
+                            <p className='text-xs mr-2 font-Poppins-Semibold'>View GeoLocation</p>
                             <label className="switch">
                                 <input type="checkbox"/>
                                 <span className="slider round"></span>
                             </label>
                         </div>
                     </div>
-                    <div className='w-full py-4' >
-                        <p className='text-sm font-Poppins-Semibold pb-2' >8. Manage Flat rate</p>
-                        <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>Add Location</p>
-                            <label className="switch">
-                                <input type="checkbox"/>
-                                <span className="slider round"></span>
-                            </label>
-                        </div>
-                        <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>Add Prices</p>
-                            <label className="switch">
-                                <input type="checkbox"/>
-                                <span className="slider round"></span>
-                            </label>
-                        </div>
-                    </div>
-                    <div className='w-full py-4' >
-                        <p className='text-sm font-Poppins-Semibold pb-2' >9. Manage Geolocation</p>
-                        <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>Add Location</p>
-                            <label className="switch">
-                                <input type="checkbox"/>
-                                <span className="slider round"></span>
-                            </label>
-                        </div>
-                        <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>Add Prices</p>
-                            <label className="switch">
-                                <input type="checkbox"/>
-                                <span className="slider round"></span>
-                            </label>
-                        </div>
-                    </div>
+                    
+                   
                     <div className='w-full py-4' >
                         <p className='text-sm font-Poppins-Semibold pb-2' >10. Manage Admins</p>
                         <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
@@ -210,87 +217,7 @@ export default function Roles(props: any) {
                                 <span className="slider round"></span>
                             </label>
                         </div>
-                        <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>Add Admin</p>
-                            <label className="switch">
-                                <input type="checkbox"/>
-                                <span className="slider round"></span>
-                            </label>
-                        </div>
-                        <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>Edit Admin</p>
-                            <label className="switch">
-                                <input type="checkbox"/>
-                                <span className="slider round"></span>
-                            </label>
-                        </div>
-                        <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>Admin Role</p>
-                            <label className="switch">
-                                <input type="checkbox"/>
-                                <span className="slider round"></span>
-                            </label>
-                        </div>
-                        <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>Admin Type</p>
-                            <label className="switch">
-                                <input type="checkbox"/>
-                                <span className="slider round"></span>
-                            </label>
-                        </div>
-                        <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>Delete Admin</p>
-                            <label className="switch">
-                                <input type="checkbox"/>
-                                <span className="slider round"></span>
-                            </label>
-                        </div>
-                    </div>
-                    <div className='w-full py-4' >
-                        <p className='text-sm font-Poppins-Semibold pb-2' >11. Manage Chat</p>
-                        <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>Respond Chat</p>
-                            <label className="switch">
-                                <input type="checkbox"/>
-                                <span className="slider round"></span>
-                            </label>
-                        </div> 
-                    </div>
-                </div>
-                <div className='w-72 px-4 flex flex-col' >
-                    <div className='w-full py-4' >
-                        <p className='text-sm font-Poppins-Semibold pb-2' >12. Manage Brands</p>
-                        <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>View Brands</p>
-                            <label className="switch">
-                                <input type="checkbox"/>
-                                <span className="slider round"></span>
-                            </label>
-                        </div>
-                        <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>Add Brands</p>
-                            <label className="switch">
-                                <input type="checkbox"/>
-                                <span className="slider round"></span>
-                            </label>
-                        </div>
-                        <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>Edit Brands</p>
-                            <label className="switch">
-                                <input type="checkbox"/>
-                                <span className="slider round"></span>
-                            </label>
-                        </div>
-                        <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>Delete Brands</p>
-                            <label className="switch">
-                                <input type="checkbox"/>
-                                <span className="slider round"></span>
-                            </label>
-                        </div>
-                    </div>
-                    <div className='w-full py-4' >
-                        <p className='text-sm font-Poppins-Semibold pb-2' >13. Manage Delivery Man</p>
+                        
                         <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
                             <p className='text-xs mr-2 font-Poppins-Semibold'>View Delivery Man</p>
                             <label className="switch">
@@ -299,20 +226,28 @@ export default function Roles(props: any) {
                             </label>
                         </div>
                         <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>Edit Delivery Man</p>
+                            <p className='text-xs mr-2 font-Poppins-Semibold'>View Manage Roles</p>
                             <label className="switch">
                                 <input type="checkbox"/>
                                 <span className="slider round"></span>
                             </label>
                         </div>
+                       
+                    </div>
+                    <div className='w-full py-4' >
+                        <p className='text-sm font-Poppins-Semibold pb-2' >11. Manage Chat</p>
                         <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>Delete Delivery Man</p>
+                            <p className='text-xs mr-2 font-Poppins-Semibold'>View Chat System</p>
                             <label className="switch">
                                 <input type="checkbox"/>
                                 <span className="slider round"></span>
                             </label>
                         </div> 
                     </div>
+                </div>
+                <div className='w-72 px-4 flex flex-col' >
+                   
+                  
                     <div className='w-full py-4' >
                         <p className='text-sm font-Poppins-Semibold pb-2' >14. Manage Express Account</p>
                         <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
@@ -322,20 +257,7 @@ export default function Roles(props: any) {
                                 <span className="slider round"></span>
                             </label>
                         </div>
-                        <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>Add Express Account</p>
-                            <label className="switch">
-                                <input type="checkbox"/>
-                                <span className="slider round"></span>
-                            </label>
-                        </div>
-                        <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>Edit Express Account</p>
-                            <label className="switch">
-                                <input type="checkbox"/>
-                                <span className="slider round"></span>
-                            </label>
-                        </div>
+                     
                         <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
                             <p className='text-xs mr-2 font-Poppins-Semibold'>Delete Express Account</p>
                             <label className="switch">
@@ -343,6 +265,15 @@ export default function Roles(props: any) {
                                 <span className="slider round"></span>
                             </label>
                         </div>
+
+                        <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
+                            <p className='text-xs mr-2 font-Poppins-Semibold'>Activate or Deactivate Express Account</p>
+                            <label className="switch">
+                                <input type="checkbox"/>
+                                <span className="slider round"></span>
+                            </label>
+                        </div>
+
                     </div>
                     <div className='w-full py-4' >
                         <p className='text-sm font-Poppins-Semibold pb-2' >15. Manage Portal Account</p>
@@ -353,20 +284,7 @@ export default function Roles(props: any) {
                                 <span className="slider round"></span>
                             </label>
                         </div>
-                        <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>Add Portal Account</p>
-                            <label className="switch">
-                                <input type="checkbox"/>
-                                <span className="slider round"></span>
-                            </label>
-                        </div>
-                        <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>Edit Portal Account</p>
-                            <label className="switch">
-                                <input type="checkbox"/>
-                                <span className="slider round"></span>
-                            </label>
-                        </div>
+                    
                         <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
                             <p className='text-xs mr-2 font-Poppins-Semibold'>Delete Portal Account</p>
                             <label className="switch">
@@ -374,47 +292,26 @@ export default function Roles(props: any) {
                                 <span className="slider round"></span>
                             </label>
                         </div>
-                    </div>
-                    <div className='w-full py-4' >
-                        <p className='text-sm font-Poppins-Semibold pb-2' >16. Manage Products</p>
+
                         <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>View Products</p>
+                            <p className='text-xs mr-2 font-Poppins-Semibold'>Activate or Deactivate Portal Account</p>
                             <label className="switch">
                                 <input type="checkbox"/>
                                 <span className="slider round"></span>
                             </label>
                         </div>
+
                         <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>Create Products</p>
-                            <label className="switch">
-                                <input type="checkbox"/>
-                                <span className="slider round"></span>
-                            </label>
-                        </div>
-                        <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>Edit Products</p>
-                            <label className="switch">
-                                <input type="checkbox"/>
-                                <span className="slider round"></span>
-                            </label>
-                        </div>
-                        <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>Delete Products</p>
-                            <label className="switch">
-                                <input type="checkbox"/>
-                                <span className="slider round"></span>
-                            </label>
-                        </div>
-                        <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>View Product Rating</p>
+                            <p className='text-xs mr-2 font-Poppins-Semibold'>Accept or Decline portal Account</p>
                             <label className="switch">
                                 <input type="checkbox"/>
                                 <span className="slider round"></span>
                             </label>
                         </div>
                     </div>
+               
                     <div className='w-full py-4' >
-                        <p className='text-sm font-Poppins-Semibold pb-2' >17. Manage Sales Report</p>
+                        <p className='text-sm font-Poppins-Semibold pb-2' >17. Manage Report</p>
                         <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
                             <p className='text-xs mr-2 font-Poppins-Semibold'>View Sales Report</p>
                             <label className="switch">
@@ -423,16 +320,6 @@ export default function Roles(props: any) {
                             </label>
                         </div>
                         <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>Print Sales Report</p>
-                            <label className="switch">
-                                <input type="checkbox"/>
-                                <span className="slider round"></span>
-                            </label>
-                        </div> 
-                    </div>
-                    <div className='w-full py-4' >
-                        <p className='text-sm font-Poppins-Semibold pb-2' >18. Manage Low Stock Products</p>
-                        <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
                             <p className='text-xs mr-2 font-Poppins-Semibold'>View Low Stock Products</p>
                             <label className="switch">
                                 <input type="checkbox"/>
@@ -440,17 +327,20 @@ export default function Roles(props: any) {
                             </label>
                         </div>
                         <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>Add Low Stock Products</p>
+                            <p className='text-xs mr-2 font-Poppins-Semibold'>View Product Views</p>
                             <label className="switch">
                                 <input type="checkbox"/>
                                 <span className="slider round"></span>
                             </label>
-                        </div> 
+                        </div>
+                       
                     </div>
+                    
+
                     <div className='w-full py-4' >
                         <p className='text-sm font-Poppins-Semibold pb-2' >19. Manage Refund Requests</p>
                         <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>View Refund  Requests</p>
+                            <p className='text-xs mr-2 font-Poppins-Semibold'>View Refund Requests</p>
                             <label className="switch">
                                 <input type="checkbox"/>
                                 <span className="slider round"></span>
@@ -464,6 +354,7 @@ export default function Roles(props: any) {
                             </label>
                         </div> 
                     </div>
+
                     <div className='w-full py-4' >
                         <p className='text-sm font-Poppins-Semibold pb-2' >19. Manage Prescription Reports</p>
                         <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
@@ -474,37 +365,61 @@ export default function Roles(props: any) {
                             </label>
                         </div>
                         <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>Delete Prescription Report</p>
+                            <p className='text-xs mr-2 font-Poppins-Semibold'>Accept/Decline/Delete Prescription Report</p>
                             <label className="switch">
                                 <input type="checkbox"/>
                                 <span className="slider round"></span>
                             </label>
                         </div> 
+                        <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
+                            <p className='text-xs mr-2 font-Poppins-Semibold'>Send Request</p>
+                            <label className="switch">
+                                <input type="checkbox"/>
+                                <span className="slider round"></span>
+                            </label>
+                        </div>
+                        <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
+                            <p className='text-xs mr-2 font-Poppins-Semibold'>Add New Prescription</p>
+                            <label className="switch">
+                                <input type="checkbox"/>
+                                <span className="slider round"></span>
+                            </label>
+                        </div>
                     </div>
+
                     <div className='w-full py-4' >
                         <p className='text-sm font-Poppins-Semibold pb-2' >20. Manage Content</p>
                         <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>Web Pages</p>
+                            <p className='text-xs mr-2 font-Poppins-Semibold'>View Contents</p>
                             <label className="switch">
                                 <input type="checkbox"/>
                                 <span className="slider round"></span>
                             </label>
                         </div>
-                        <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>Media Content</p>
-                            <label className="switch">
-                                <input type="checkbox"/>
-                                <span className="slider round"></span>
-                            </label>
-                        </div>
-                        <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
-                            <p className='text-xs mr-2 font-Poppins-Semibold'>Other Web Content</p>
-                            <label className="switch">
-                                <input type="checkbox"/>
-                                <span className="slider round"></span>
-                            </label>
-                        </div> 
                     </div>
+
+                    <div className='w-full py-4' >
+                        <p className='text-sm font-Poppins-Semibold pb-2' >20. Manage Web Pages</p>
+                        <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
+                            <p className='text-xs mr-2 font-Poppins-Semibold'>View Web Pages</p>
+                            <label className="switch">
+                                <input type="checkbox"/>
+                                <span className="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div className='w-full py-4' >
+                        <p className='text-sm font-Poppins-Semibold pb-2' >20. Manage Media Content</p>
+                        <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
+                            <p className='text-xs mr-2 font-Poppins-Semibold'>View Media Content</p>
+                            <label className="switch">
+                                <input type="checkbox"/>
+                                <span className="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+
                     <div className='w-full py-4' >
                         <p className='text-sm font-Poppins-Semibold pb-2' >21. Manage Dashboard Notification</p>
                         <div className='flex flex-row pt-2 mt-1 ml-4 items-center' >
@@ -515,6 +430,7 @@ export default function Roles(props: any) {
                             </label>
                         </div>
                     </div>
+
                 </div>
             </div>
             <div className='w-full pt-4 pb-12  flex items-cennter justify-center' >

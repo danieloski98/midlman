@@ -358,7 +358,7 @@ export default function Menu() {
             </div>
             <div className='w-full mt-4' >
                 <div className={active === 11  ? activeindicator : 'w-full cursor-pointer'} >
-                    <div onClick={()=> DropDown('setting', 11)} className={active === 11 ? menuactivecolor: menucolor}>
+                    <div onClick={()=> ClickHandler('/dashboard/settings', 11)} className={active === 11 ? menuactivecolor: menucolor}>
                         <img src={settings} alt='' className='12' />
                         <p className='text-base font-Poppins-Semibold ml-3 mr-2' >Settings</p> 
                     </div>
