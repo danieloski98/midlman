@@ -6,7 +6,7 @@ import Menu from '../../Dashboard/Component/Menu';
 import { useHistory } from 'react-router-dom'
 import useDetails from '../../../Hooks/useDetails';
 import {Value, MenuContext} from '../../../Context/MenuContext'
-import { motion,  AnimateSharedLayout, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import Navbar from '../../Dashboard/Component/Navbar';
 
 
