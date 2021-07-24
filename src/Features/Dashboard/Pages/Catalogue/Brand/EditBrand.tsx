@@ -1,6 +1,6 @@
 import { Input } from '@chakra-ui/react';
 import React from 'react'
-import { useHistory, useLocation, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { IBrand } from '../../../../../Types/Brand';
 import LoadingModal from '../../../../Modals/LoadingModal';
 import * as axios from 'axios'
@@ -20,14 +20,26 @@ async function getBrand(id: string) {
     return request;
 }
 
-const editBrand = async (id: string, body: Partial<IBrand>, token: any) => {
-    const request = await axios.default.put(`${url}/brand/update/${id}`, body, {
-        headers: {
-            Authorization: `Bearer ${token}`,
-            'content-type': 'application/json'
-        }
-    });
-    return request;
+const editBrand = async (id: string, body: any, token: any) => {
+
+    
+
+    body['icon'] = body.logo as string;
+
+    alert(JSON.stringify(body));
+
+    try {
+        const request = await axios.default.put(`${url}/brand/update/${id}`, body, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'content-type': 'application/json'
+            }
+        });
+        return request;
+    }catch (error) {
+
+        return error;
+    }
 }
 
 export default function EditBrand(props: any) {
@@ -50,7 +62,7 @@ export default function EditBrand(props: any) {
         }
     });
 
-    const mutation = useMutation((param: {id: '', body: {}, token: string}) => editBrand(param.id, param.body, token), {
+    const mutation = useMutation((param: {id: string, body: Partial<IBrand>, token: string}) => editBrand(param.id, param.body, token), {
         onSuccess: (data) => {
             setOpen(false);
             setText('');
@@ -111,13 +123,12 @@ export default function EditBrand(props: any) {
     }
 
     const submit = () => {
-        // if (!formik.dirty) {
-        //     alert('You have to make changes to be able to update');
-        //     return;
-        // }
-        alert(formik.values.name);
+        if (!formik.dirty && icon === '') {
+            alert('You have to make changes to be able to update');
+            return;
+        }
 
-        setText(`Editing Brand with name ${props.match.params.name}`);
+        setText(`Updating Brand with name ${formik.values.name}`);
         setOpen(true);
         mutation.mutate({id: props.match.params.id, body: {name: formik.values.name, logo: icon, status }, token });
     }
@@ -148,7 +159,7 @@ export default function EditBrand(props: any) {
                     <div className='w-full pt-8' > 
                         <div className='py-2 mt-4' >
                             <p className='font-Poppins-Semibold text-xs mb-1'>BRAND NAME</p>
-                            <Input fontSize='xs' value={formik.values.name} name="name" onChange={formik.handleChange} onBlur={formik.handleBlur} />
+                            <Input fontSize='xs' name="name" value={formik.values.name} onChange={formik.handleChange} onBlur={formik.handleBlur} onFocus={() => formik.setFieldTouched('name', true, true)} />
                         </div> 
                         <div className=' w-full py-2' > 
                             <p className='font-Poppins-Semibold text-xs mb-1'>LOGO</p>

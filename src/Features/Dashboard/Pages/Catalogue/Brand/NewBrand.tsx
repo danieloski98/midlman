@@ -102,6 +102,7 @@ export default function NewBrand() {
             body: JSON.stringify({
                 name: formik.values.name,
                 logo: icon,
+                icon,
                 status,
             })
         });

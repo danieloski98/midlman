@@ -58,13 +58,13 @@ export default function Brand() {
   const [text, setText] = React.useState('');
 
   // effects
-  React.useEffect(() => {
-    // if (isLoading) {
-    //     setLoading(true);
-    // }else {
-    //     setLoading(false);
-    // }
-  }, [isLoading])
+  // React.useEffect(() => {
+  //   // if (isLoading) {
+  //   //     setLoading(true);
+  //   // }else {
+  //   //     setLoading(false);
+  //   // }
+  // }, [isLoading])
 
   // functions
   const close = () => {
