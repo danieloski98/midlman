@@ -102,7 +102,7 @@ export default function OrderList() {
                 <button className='bg-midlman_color flex flex-row items-center font-Poppins-Bold text-white text-xs py-3 px-6 rounded-md mx-1' > Save As </button>
             </div>
 
-            <div className='w-auto h-100 overflow-x-scroll' >
+            <div className='w-auto h-auto overflow-x-scroll py-4' >
                 <table className='text-xs'>
                     <thead>
                         <tr className='font-Poppins-Semibold' >
@@ -150,7 +150,7 @@ export default function OrderList() {
                                         </div></td>
                                     <td>{item.orderby}</td>
                                     <td>{item.accounttype}</td>
-                                    <td className="overflow-y-scroll"><p className='text-xs text-menu_gray w-56 h-24 overflow-scroll' >{item.item}</p></td>
+                                    <td className="overflow-y-scroll"><p className='text-xs text-menu_gray w-56 h-20 overflow-scroll' >{item.item}</p></td>
                                     <td>
                                         <p className="text-midlman_color cursor-pointer">View Image</p>
                                     </td>
