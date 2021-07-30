@@ -138,7 +138,7 @@ export default function Login() {
                     <Checkbox backgroundColor='white' colorScheme='white' iconColor="#00A69C" borderRadius='sm' onChange={handleCheckBox} />
                     <p className='font-Poppins-Regular text-xs ml-3' >Keep me logged in</p>
                     <div className='w-full flex flex-1' />
-                    <p className='font-Poppins-Regular text-xs' >Forgot Password?</p>
+                    <p className='font-Poppins-Regular text-xs cursor-pointer' onClick={() => history.push('/forgotpassword')} >Forgot Password?</p>
                 </div>
                 <button disabled={loading} onClick={submit} className='font-Poppins-Bold text-md w-full bg-login_buttton py-3 text-midlman_color rounded-lg mt-24' >
                   {
