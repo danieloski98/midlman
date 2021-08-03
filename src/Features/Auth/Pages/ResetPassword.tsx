@@ -1,12 +1,12 @@
 import React from 'react'
 
 // import { Input, Checkbox } from '@chakra-ui/input'
-import { Input, Spinner, InputGroup, InputLeftElement, } from '@chakra-ui/react'
+import { Input, Spinner, InputGroup, InputLeftElement, InputRightElement } from '@chakra-ui/react'
 import { useHistory } from 'react-router'
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import { url } from '../../../Utils/URL';
-import { FiMail } from 'react-icons/fi'
+import { FiMail, FiEye, FiEyeOff, FiLock } from 'react-icons/fi'
 import SuccessModal from '../../Modals/SuccessModal';
 
 
@@ -20,6 +20,8 @@ export default function ResetPassword() {
     const [loading, setLoading] = React.useState(false);
     const [showModal, setShowModal] = React.useState(false);
     const [text, setText]= React.useState('');
+    const [pass1, setPass1] = React.useState(false);
+    const [pass2, setPass2] = React.useState(false);
 
     const history = useHistory();
 
@@ -38,7 +40,7 @@ export default function ResetPassword() {
         return;
       }else {
         setLoading(true);
-        const request = await fetch(`${url}/admin/auth/forgot/password`, {
+        const request = await fetch(`${url}/admin/auth/change/password`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -72,8 +74,9 @@ export default function ResetPassword() {
                 <div className='relative w-full pt-4' >
 
                     <InputGroup size='lg' fontSize='xs' borderRadius='lg'  backgroundColor='#00B8AD' focusBorderColor='#6071EA' borderColor='#00B8AD'>
-                      <InputLeftElement children={<FiMail color="#FFF" />} />
-                      <Input className='font-Poppins-Regular' size='lg' paddingLeft='14' placeholder='New Password' _placeholder={{ color: 'white' }} fontSize="xs"  name="newpassword" value={formik.values.newpassword} onChange={formik.handleChange} onBlur={formik.handleBlur} onFocus={() => formik.setFieldTouched('newpassword', true, true)} />
+                      <InputLeftElement children={<FiLock color="#FFF" />} />
+                      <Input type={pass1 ? 'text':'password'} className='font-Poppins-Regular' size='lg' paddingLeft='14' placeholder='New Password' _placeholder={{ color: 'white' }} fontSize="xs"  name="newpassword" value={formik.values.newpassword} onChange={formik.handleChange} onBlur={formik.handleBlur} onFocus={() => formik.setFieldTouched('newpassword', true, true)} />
+                      <InputRightElement children={pass1 ? <FiEye size={20} color="white" onClick={() => setPass1(prev => !prev)} /> : <FiEyeOff size={20} color="white" onClick={() => setPass1(prev => !prev)} /> }  />
                     </InputGroup>
                     
                     {
@@ -86,8 +89,9 @@ export default function ResetPassword() {
                 <div className='relative w-full pt-4 mt-0' >
 
                     <InputGroup size='lg' fontSize='xs' borderRadius='lg'  backgroundColor='#00B8AD' focusBorderColor='#6071EA' borderColor='#00B8AD'>
-                      <InputLeftElement children={<FiMail color="#FFF" />} />
-                      <Input className='font-Poppins-Regular' size='lg' paddingLeft='14' placeholder='Confirm New Password' _placeholder={{ color: 'white' }} fontSize="xs"  name="confirmpassword" value={formik.values.confirmpassword} onChange={formik.handleChange} onBlur={formik.handleBlur} onFocus={() => formik.setFieldTouched('confirmpassword', true, true)} />
+                      <InputLeftElement children={<FiLock color="#FFF" />} />
+                      <Input type={pass2 ? 'text':'password'} className='font-Poppins-Regular' size='lg' paddingLeft='14' placeholder='Confirm New Password' _placeholder={{ color: 'white' }} fontSize="xs"  name="confirmpassword" value={formik.values.confirmpassword} onChange={formik.handleChange} onBlur={formik.handleBlur} onFocus={() => formik.setFieldTouched('confirmpassword', true, true)} />
+                      <InputRightElement children={pass2 ? <FiEye size={20} color="white" onClick={() => setPass2(prev => !prev)} /> : <FiEyeOff size={20} color="white" onClick={() => setPass2(prev => !prev)} /> }  />
                     </InputGroup>
                     
                     {

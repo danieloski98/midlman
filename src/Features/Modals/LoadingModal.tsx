@@ -24,7 +24,7 @@ export default function LoadingModal(props: IProps) {
                 <ModalBody className="h-64">
                     <div className="flex flex-col items-center">
                         <Spinner size="xl" color="green.500" />
-                        <p className="mt-5">{props.text}</p>
+                        <p className="mt-5 text-center font-Poppins-Medium text-gray-600">{props.text}</p>
                     </div>
                 </ModalBody>
             </ModalContent>
