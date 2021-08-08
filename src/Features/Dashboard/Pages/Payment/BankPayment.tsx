@@ -1,7 +1,9 @@
 import { Select, Input } from '@chakra-ui/react';
 import React from 'react'; 
+import DeclinedModal from '../../../Modals/DeclinedModal';
 
 export default function BankPayment() {
+    const [showModal, setShowModal] = React.useState(false);
 
     const [data, setData] = React.useState([
         { 
@@ -42,16 +44,27 @@ export default function BankPayment() {
         }
     ])
 
+    // functions
+
     const HandleChange =(event: any, index: any)=> {
         if(event.target.value === 'Credited'){  
             const arr = [...data]
             arr[index].status = 'Credited' 
             setData(arr)
-        } else { 
+        } else if (event.target.value === 'Pending') { 
             const arr = [...data]
             arr[index].status = 'Pending' 
             setData(arr) 
+        }else {
+            setShowModal(true);
+            const arr = [...data]
+            arr[index].status = 'Declined' 
+            setData(arr) 
         }
+    }
+
+    const closeDeclineModal = () => {
+        setShowModal(false);
     }
 
     const Status = (item: any, index: any) =>{ 
@@ -60,6 +73,7 @@ export default function BankPayment() {
                     <Select style={ item ==='Credited' ? {color: '#00A69C'} : {color:'#F2994A'}} value={item}  className='w-full' onChange={(e)=> HandleChange(e, index)} fontSize='xs'>
                         <option value='Pending' style={{color:'#000000'}} >Pending</option>
                         <option value='Credited' style={{color:'#000000'}} >Credited</option>
+                        <option value='Declined' style={{color:'#000000'}} >Declined</option>
                     </Select>
                 </div>
             ) 
@@ -67,6 +81,12 @@ export default function BankPayment() {
 
     return (
         <div className='w-full h-full flex flex-col px-10 py-8 ' >  
+             {/* modal */}
+
+             <DeclinedModal isOpen={showModal} onClose={closeDeclineModal} />
+
+            {/* end of modal  */}
+
             <p className='font-Poppins-Semibold text-lg' >Bank Payments</p>
             <div className='w-full flex relative flex-row items-center py-8' > 
                 <div className='w-24 flex items-center mr-4' >  
@@ -87,6 +107,7 @@ export default function BankPayment() {
                         <tr className='font-Poppins-Semibold' >
                             <th className='bg-white'>ID</th>
                             <th className='bg-white'>Business Name</th>
+                            <th className='bg-white'>Bank Name</th>
                             <th className='bg-white'>Amount Paid</th>
                             <th className='bg-white'>Date of Payment</th>
                             <th className='bg-white'>Time Of Payment</th>
@@ -101,6 +122,7 @@ export default function BankPayment() {
                                 <tr key={index} className='font-Poppins-Regular' >
                                     <td className='font-Poppins-Semibold'>{index+1}</td>
                                     <td>{item.bussinessname}</td>
+                                    <td>UBA</td>
                                     <td>{item.amountpaid}</td>
                                     <td>{item.paymentdate}</td>
                                     <td>{item.time}</td>  
