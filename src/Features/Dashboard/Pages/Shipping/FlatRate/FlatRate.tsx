@@ -1,8 +1,41 @@
-import { Select, Input } from '@chakra-ui/react'
+import { Select, Input, Modal, ModalOverlay, ModalContent, ModalBody } from '@chakra-ui/react'
 import React from 'react'
 import { useHistory } from 'react-router-dom'
+import LoadingModal from '../../../../Modals/LoadingModal'
+
+interface IProps {
+    isOpen: boolean;
+    onClose: Function;
+}
+
+const LocationModal: React.FC<IProps> = ({isOpen, onClose}) => {
+    return (
+        <Modal isOpen={isOpen} isCentered={true} onClose={() => onClose()}>
+            <ModalOverlay />
+            <ModalContent>
+                <ModalBody>
+                        <div className=""> 
+                            <div style={{width:'400px'}}  className='rounded-lg bg-white p-8' >
+                                <p className='font-Poppins-Semibold text-lg mt-8'>Add New Location Type</p>
+                                <div className='w-full py-8' > 
+                                    <p className='font-Poppins-Medium text-xs mb-2'>Location Type</p>
+                                    <Input fontSize='xs'/>
+                                </div>
+                                <div className='w-full flex flex-row justify-center' >
+                                    <button onClick={() => onClose()} className='py-3 rounded-md mb-4 text-xs px-12 mx-4 bg-midlman_color text-white font-Poppins-Semibold' >ADD</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                </ModalBody>
+            </ModalContent>
+        </Modal>
+    )
+}
 
 export default function FlatRate() {
+    const [openLocModal, setLocModal] = React.useState(false);
+
     const history = useHistory()
 
     const data = [
@@ -28,21 +61,31 @@ export default function FlatRate() {
         },
     ]
 
+    const close = () => {
+        setLocModal(false);
+    }
+
     return (
         <div className='w-full h-full flex flex-col px-10 py-8 ' >  
+            <LocationModal isOpen={openLocModal} onClose={close} />
             <p className='font-Poppins-Semibold text-lg' >Flat Rate</p>
-            <div className='w-full flex relative flex-row items-center py-8' > 
-                <div className='w-24 flex items-center mr-4' >  
-                    <Select fontSize='xs' color='#828282' placeholder='Sort By' />
-                </div>
-                <div className='w-48 flex items-center' > 
-                    <div className='fixed z-10 ml-4' >
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M2 8C2 4.691 4.691 2 8 2C11.309 2 14 4.691 14 8C14 11.309 11.309 14 8 14C4.691 14 2 11.309 2 8ZM17.707 16.293L14.312 12.897C15.365 11.543 16 9.846 16 8C16 3.589 12.411 0 8 0C3.589 0 0 3.589 0 8C0 12.411 3.589 16 8 16C9.846 16 11.543 15.365 12.897 14.312L16.293 17.707C16.488 17.902 16.744 18 17 18C17.256 18 17.512 17.902 17.707 17.707C18.098 17.316 18.098 16.684 17.707 16.293Z" fill="#BDBDBD"/>
-                        </svg>
+            <div className='w-full flex relative flex-row items-center justify-between py-8' > 
+                <div className="flex">
+                    <div className='w-24 flex items-center mr-4' >  
+                        <Select fontSize='xs' color='#828282' placeholder='Sort By' />
                     </div>
-                    <Input fontSize='xs' paddingLeft='10'  placeholder='Search ...' />
-                </div> 
+                    <div className='w-48 flex items-center' > 
+                        <div className='fixed z-10 ml-4' >
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 8C2 4.691 4.691 2 8 2C11.309 2 14 4.691 14 8C14 11.309 11.309 14 8 14C4.691 14 2 11.309 2 8ZM17.707 16.293L14.312 12.897C15.365 11.543 16 9.846 16 8C16 3.589 12.411 0 8 0C3.589 0 0 3.589 0 8C0 12.411 3.589 16 8 16C9.846 16 11.543 15.365 12.897 14.312L16.293 17.707C16.488 17.902 16.744 18 17 18C17.256 18 17.512 17.902 17.707 17.707C18.098 17.316 18.098 16.684 17.707 16.293Z" fill="#BDBDBD"/>
+                            </svg>
+                        </div>
+                        <Input fontSize='xs' paddingLeft='10'  placeholder='Search ...' />
+                    </div> 
+                </div>
+
+                <button onClick={() => setLocModal(true)} className="w-40 h-10 rounded shadow bg-midlman_color text-white text-xs">Add New Location Type</button>
+
             </div>
             <div className='w-auto my-14' >
                 <table className=' w-auto text-sm '>

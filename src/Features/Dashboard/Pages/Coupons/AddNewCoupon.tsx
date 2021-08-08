@@ -106,10 +106,16 @@ export default function AddNewCoupon() {
         }
 
         // create the object
+        // delete formik.values.discount;
+
         const obj = {
             code,
             status,
-            ...formik.values
+            type: formik.values.type,
+            entries: formik.values.entries,
+            expiryTime: formik.values.expiryTime,
+            discount: formik.values.discount,
+            // ...formik.values
         }
 
         setOpen(true);

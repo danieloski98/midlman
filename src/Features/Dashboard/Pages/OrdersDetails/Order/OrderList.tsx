@@ -1,6 +1,7 @@
 import { Select, Input } from '@chakra-ui/react';
 import React from 'react';
 import { useHistory } from 'react-router';
+import DeclinedModal from '../../../../Modals/DeclinedModal';
 import Invoice from '../../ManageAdmin/DeliveryMan/Invoice';
 // import { useHistory } from 'react-router-dom';  
 
@@ -10,6 +11,7 @@ export default function OrderList() {
     const [showModal, setShowModal] = React.useState(false);
     const [statusModal, setStatusModal] = React.useState(false);
     const [assigndeliveryModal, setAssignDeliveryModal] = React.useState(false);
+    const [showDeclinedModal, setShowDeclinedModal] = React.useState(false);
 
     const data = [
         { 
@@ -78,8 +80,15 @@ export default function OrderList() {
         } 
     }
 
+    const handleChane = (e: any) => {
+        if (e.target.value === 'cancelled') {
+            setShowDeclinedModal(true);
+        }
+    }
+
     return (
         <div className='w-full h-full flex flex-col px-10 py-8 overflow-x-hidden overflow-y-auto ' >  
+            <DeclinedModal isOpen={showDeclinedModal} onClose={() => setShowDeclinedModal(false)} />
             <p className='font-Poppins-Semibold text-lg' >Order List</p>
             <div className='w-full flex relative flex-row items-center py-8' > 
                 <div className='w-auto flex items-center mr-4' >  
@@ -159,10 +168,11 @@ export default function OrderList() {
                                     
                                     <td >{item.deliveredby}</td>
                                     <td className="text-yellow-600">
-                                        <Select size="xs">
+                                        <Select size="xs" onChange={(e) => handleChane(e)}>
                                             <option value="pending">Pending</option>
                                             <option value="processing">Processing</option>
                                             <option value="completed">Completed</option>
+                                            <option value="cancelled">Cancelled</option>
                                         </Select>
                                     </td>
                                     <td>{Status(item.paymentstatus)}</td> 

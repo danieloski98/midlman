@@ -75,26 +75,6 @@ export default function Catergories() {
     const [errorText, seterrorText] = React.useState('');
     const [categories, setCategories] = React.useState([] as Array<ICategories>);
 
-
-    const data = [
-        { 
-            Catergory: 'Baby & Child care',
-            modified: '08123456789', 
-        },
-        { 
-            Catergory: 'Ernest',
-            modified: '08123456789', 
-        },
-        { 
-            Catergory: 'Ernest',
-            modified: '08123456789', 
-        },
-        { 
-            Catergory: 'Ernest',
-            modified: '08123456789', 
-        },
-    ]
-
     // functions
     const retry = async () => {
         setText('Loading Categories...')

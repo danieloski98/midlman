@@ -200,7 +200,7 @@ export default function Roles(props: any) {
                     <div className='w-full py-4' >
 
                         <div className="w-full flex">
-                            <p className='text-sm font-Poppins-Semibold pb-2' >6. Manage Payment</p>
+                            <p className='text-sm font-Poppins-Semibold pb-2' >6. Manage Transactions</p>
                             <label className="switch ml-4 mt-1">
                                 <input type="checkbox"/>
                                 <span className="slider round"></span>

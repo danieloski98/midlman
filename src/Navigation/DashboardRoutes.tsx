@@ -61,7 +61,10 @@ import index from '../Features/Dashboard/Pages/AdminChat'
 import AddBlogPost from '../Features/Dashboard/Pages/WebPages/Blog/AddBlogPost'
 import EditBlogPost from '../Features/Dashboard/Pages/WebPages/Blog/EditBlogPost'
 import BankPayment from '../Features/Dashboard/Pages/Payment/BankPayment'
+import Withdrawal from '../Features/Dashboard/Pages/Payment/Withdrawal'
+import Deposit from '../Features/Dashboard/Pages/Payment/Deposit'
 import PrescriptionRequest from '../Features/Dashboard/Pages/Reports/PrescriptionRequest'
+import NewFlatRate from '../Features/Dashboard/Pages/Shipping/FlatRate/NewFlatRate'
 
 export default function DashboardRoutes() {
     return (  
@@ -72,6 +75,7 @@ export default function DashboardRoutes() {
             <Route path="/dashboard/addarticle" component={AddBlogPost} exact />
             <Route path="/dashboard/adddeliveryman" component={AddDeliveryMan} exact /> 
             <Route path="/dashboard/addnewcoupon" component={AddNewCoupon} exact /> 
+            <Route path="/dashboard/addflatrate" component={NewFlatRate} exact /> 
             <Route path="/dashboard/admin" component={Admin} exact /> 
             <Route path="/dashboard/adminchat" component={index} exact /> 
             <Route path="/dashboard/banners" component={Banners} exact /> 
@@ -128,6 +132,8 @@ export default function DashboardRoutes() {
             <Route path="/dashboard/shippingmethods" component={ShippingMethods} exact /> 
             <Route path="/dashboard/termsandconditions" component={TeermsAndConditions} exact /> 
             <Route path="/dashboard/uploadproduct" component={UploadProduct} exact/> 
+            <Route path="/dashboard/withdrawals" component={Withdrawal} exact/> 
+            <Route path="/dashboard/desposits" component={Deposit} exact/> 
         </Switch>  
     )
 }
