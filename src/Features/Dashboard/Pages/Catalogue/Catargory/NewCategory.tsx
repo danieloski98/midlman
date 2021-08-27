@@ -99,7 +99,7 @@ export default function NewCategory() {
             },
             body: JSON.stringify({
                 name: formik.values.name,
-                logo: icon,
+                cover_image: coverImage,
                 icon,
                 status,
             })

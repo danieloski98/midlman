@@ -1,7 +1,8 @@
 import React from 'react'
 import { useHistory } from 'react-router';
+import Miscellenous from './Component/Miscellenous';
 import Email from './Component/Email';
-import Navbar from './Component/Navbar';
+import EmailNotifications from './Component/EmailNotifications';
 import Password from './Component/Password';
 import Profile from './Component/Profile';
 
@@ -57,9 +58,15 @@ export default function Setting() {
                         <div onClick={()=> HandleTabClick(2)} className={tabIndex === 2 ? tab+'bg-white shadow' : tab+'bg-login_buttton'} >
                             <p className={tabIndex === 2 ? tab_text : tab_text+'menu_gray'} >Change Password</p>
                         </div>
-                        {/* <div onClick={()=> HandleTabClick(3)} className={tabIndex === 3 ? tab+'bg-white' : tab+'bg-login_buttton'} >
+                        <div onClick={()=> HandleTabClick(3)} className={tabIndex === 3 ? tab+'bg-white' : tab+'bg-login_buttton'} >
                             <p className={tabIndex === 3 ? tab_text : tab_text+'menu_gray'} >Change Email</p>
-                        </div> */}
+                        </div>
+                        <div onClick={()=> HandleTabClick(4)} className={tabIndex === 4 ? tab+'bg-white' : tab+'bg-login_buttton'} >
+                            <p className={tabIndex === 4 ? tab_text : tab_text+'menu_gray'} >Miscellenous</p>
+                        </div>
+                        <div onClick={()=> HandleTabClick(5)} className={tabIndex === 5 ? tab+'bg-white' : tab+'bg-login_buttton'} >
+                            <p className={tabIndex === 5 ? tab_text : tab_text+'menu_gray'} >Email Notifications</p>
+                        </div>
                     </div>
                 </div>
                 <div className={tabIndex === 1 ? 'w-full flex flex-col justify-center items-center ' : 'hidden'}>
@@ -70,6 +77,12 @@ export default function Setting() {
                 </div>
                 <div className={tabIndex === 3 ? 'w-full flex flex-col justify-center items-center ' : 'hidden'}>
                     <Email />
+                </div>
+                <div className={tabIndex === 4 ? 'w-full flex flex-col justify-center items-center ' : 'hidden'}>
+                    <Miscellenous />
+                </div>
+                <div className={tabIndex === 5 ? 'w-full flex flex-col justify-center items-center ' : 'hidden'}>
+                    <EmailNotifications />
                 </div>
             </div>
         </div>

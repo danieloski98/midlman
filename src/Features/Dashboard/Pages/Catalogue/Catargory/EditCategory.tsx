@@ -30,7 +30,7 @@ async function getBrand(id: string) {
 const editBrand = async (id: string, body: any, token: string) => {
   body["icon"] = body.logo as string;
 
-  alert(JSON.stringify(body));
+  // alert(JSON.stringify(body));
 
   try {
     const request = await axios.default.put(`${url}/brand/update/${id}`, body, {
@@ -57,10 +57,10 @@ export default function EditCategory(props: any) {
     {
       onSuccess: (data) => {
         console.log(JSON.stringify(data));
-        setBrand(data.response);
+        setCat(data.response);
         setOpen(false);
         setText("");
-        formik.setFieldValue("name", brand.name, true);
+        formik.setFieldValue("name", cat.name, true);
 
         // if (icon === '') {
         //     setStatus(data.data.response.status);
@@ -88,7 +88,7 @@ export default function EditCategory(props: any) {
       onError: (error) => {
         setOpen(false);
         setText("");
-        alert(JSON.stringify(error));
+        alert("An error occured, contact the backend team!");
       },
     }
   );
@@ -96,14 +96,14 @@ export default function EditCategory(props: any) {
   // states
   const [open, setOpen] = React.useState(true);
   const [text, setText] = React.useState("Loading Category");
-  const [brand, setBrand] = React.useState({} as ICategories);
+  const [cat, setCat] = React.useState({} as ICategories);
   const [icon, setIcon] = React.useState("");
   const [status, setStatus] = React.useState(false);
 
   // formik
   const formik = useFormik({
     initialValues: {
-      name: props.match.params.name,
+      name: cat.name,
     },
     onSubmit: () => {},
     validationSchema,
@@ -141,11 +141,11 @@ export default function EditCategory(props: any) {
       return;
     }
 
-    setText(`Updating Brand with name ${formik.values.name}`);
+    setText(`Updating Category with name ${formik.values.name}`);
     setOpen(true);
     mutation.mutate({
       id: props.match.params.id,
-      body: { name: formik.values.name, logo: icon, status },
+      body: { name: formik.values.name, icon: icon, status },
       token,
     });
   };
@@ -237,10 +237,11 @@ export default function EditCategory(props: any) {
             </div>
             <div className=" w-full py-2 flex flex-row ">
               <div className="flex flex-col">
-                <p className="font-Poppins-Semibold text-xs mb-1">
-                  COVER IMAGE
-                </p>
-                <div className="w-40 rounded-md h-16 border-1 border-entries"></div>
+                
+                <div className="w-40 rounded-md h-16 border-1 border-entries">
+                {icon !== null && (<img src={icon} alt="coverimage" className="w-full h-full object-cover" />)}
+                </div>
+
                 <button
                   onClick={pickCoverImage}
                   className="bg-entries font-Poppins-Semibold text-menu_gray text-xs py-3 w-40 rounded-md mt-2"
@@ -269,11 +270,11 @@ export default function EditCategory(props: any) {
             </div>
           </div>
           <div className="w-full flex flex-row pt-12">
-            <button className="bg-midlman_color font-Poppins-Semibold text-white text-xs py-3 w-full rounded-md mr-4">
+            <button onClick={submit} className="bg-midlman_color font-Poppins-Semibold text-white text-xs py-3 w-full rounded-md mr-4">
               Submit
             </button>
-            <button className="font-Poppins-Semibold text-white text-xs py-3 w-full rounded-md ml-4 bg-gray-300">
-              Edit Category
+            <button className="font-Poppins-Semibold text-black text-xs py-3 w-full rounded-md ml-4 bg-gray-300">
+              Cancel
             </button>
           </div>
         </div>

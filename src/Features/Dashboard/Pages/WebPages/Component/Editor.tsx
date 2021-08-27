@@ -1,5 +1,5 @@
 import React from 'react'
-import { EditorState} from 'draft-js';
+import { EditorState, RawDraftContentState} from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'; 
 
@@ -13,6 +13,7 @@ export default class EditorConvertToHTML extends React.Component {
       this.setState({
         editorState,
       });
+      // console.log(this.state.editorState);
     };
   
     render() {
@@ -22,7 +23,7 @@ export default class EditorConvertToHTML extends React.Component {
           <Editor
             editorStyle={{ width: "100%", border: "1px solid #E2E8F0", height: "130px", borderRadius: '5px', paddingLeft: '15px', paddingTop:'1px', paddingRight: '15px', paddingBottom: '10px'}}
             wrapperStyle={{width: "100%"}}
-            
+            onChange={(data: RawDraftContentState) => console.log(data.blocks[0].text)}
             editorState={editorState}  
             onEditorStateChange={this.onEditorStateChange} /> 
         </div>

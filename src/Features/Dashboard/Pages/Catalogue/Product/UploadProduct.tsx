@@ -6,15 +6,99 @@ import { useHistory } from 'react-router'
 import Editor from '../../WebPages/Component/Editor'
 import AddPromo from './AddPromo'
 import { motion, AnimatePresence } from 'framer-motion'
+import { ICategories } from '../../../../../Types/Categories'
+import { IBrand } from '../../../../../Types/Brand'
+import { url } from '../../../../../Utils/URL'
+import * as axios from 'axios'
+import { useQuery, useMutation } from 'react-query'
+
+// get categories
+const getCat = async () => {
+    const request = await fetch(`${url}/category`);
+    const json = await request.json()
+
+    if (!request.ok) {
+        throw new Error("Couldn't get the catergories, please try again")
+    }
+
+    return json;
+}
+
+// get brands
+//get brands functions
+async function getBrands() {
+    const request = await axios.default.get(`${url}/brand`);
+    return request;
+}
 
 export default function UploadProduct() {
+
+    const { isLoading } = useQuery('getbrands', getBrands, {
+        //   retryDelay: attemptIndex => Math.min(1000 * 2 ** attemptIndex, 30000),
+        //   retry: 6,
+          onSuccess: (data: any) => {
+            //   setLoading(false);
+              setBrands(prev => [...data.data.response]);
+            //   alert(JSON.stringify(data));
+          },
+          onError: (error: any) => {
+            //   setLoading(false);
+              alert(JSON.stringify(error.message));
+          },
+      })
+
+      const { refetch } = useQuery('categories', getCat, {
+        onSuccess: (data) => {
+            // setShowModal(false);
+            // setText('');
+            // alert(JSON.stringify(data));
+            setCats(data.response);
+            // queryclient.invalidateQueries();
+        },
+        onError: (error) => {
+            // setShowModal(false);
+            // setText('');
+            // setError(true);
+            alert(JSON.stringify(error));
+        }
+    });
+
+    const fileReader1 = React.useRef(new FileReader()).current;
 
     const history = useHistory();
     const [showModal, setShowModal] = React.useState(false);
     const [type, setType] = React.useState(false);
+    const [cats, setCats] = React.useState([] as ICategories[]);
+    const [brands, setBrands] = React.useState([] as IBrand[]);
+    const [images, setImages] = React.useState([] as string[]);
+
+    // effects
+    React.useEffect(() => {
+        fileReader1.addEventListener('load', () => {
+            const imgs = [...images, fileReader1.result as string];
+            setImages(imgs)
+            //  setImages(prev => [...prev, fileReader1.result as string]);
+         })
+  
+         return () => {
+             fileReader1.removeEventListener('load', () => {});
+         }
+      })
+
+    const pickCoverImage = () => {
+        const picker = document.getElementById('picker1');
+        picker?.click();
+    }
+
+    const onCoverPicked = (file: FileList) => {
+        console.log(file[0])
+        fileReader1.readAsDataURL(file[0]);
+    }
+
 
     return (
         <div className='w-full h-full flex flex-col items-center py-8 ' >  
+            <input type="file" accept="image/*" id="picker1" hidden onChange={(e) => {onCoverPicked(e.target.files as FileList)}} />
             <p className=' w-100 font-Poppins-Semibold text-lg -ml-48' >Upload a Product</p> 
             <div className='w-full flex flex-col items-center pt-14 pb-8' >
                 <div onClick={()=> history.push('/dashboard/product')}  className='w-100 flex flex-row cursor-pointer ' >
@@ -26,7 +110,12 @@ export default function UploadProduct() {
                 <div className='w-100 flex flex-col py-8' >
                     <div className='w-full py-4' >
                         <Select fontSize='xs' placeholder='Select Category'>
-                            <option>Give me more option</option>
+                            {
+                                cats.map((item, index) => (
+                                    <option key={index.toString()} value={item.name}>{item.name}</option>
+                                ))
+                            }
+                            {/* <option>Give me more option</option> */}
                         </Select>
                     </div>
                     <div className='w-full py-4' >
@@ -35,7 +124,12 @@ export default function UploadProduct() {
                     </div>
                     <div className='w-full py-4' >
                         <Select fontSize='xs' placeholder='Select Brand'>
-                            <option>Give me more option</option>
+                            {
+                                brands.map((item, index) => (
+                                    <option key={index.toString()} value={item.name}>{item.name}</option>
+                                ))
+                            }
+                            {/* <option>Give me more option</option> */}
                         </Select>
                     </div>
                     <div className='w-full py-4' >
@@ -64,16 +158,26 @@ export default function UploadProduct() {
                             <option>Other: Please Specify (text box)</option> 
                         </Select>
                     </div>
-                    <div className='w-full py-4' >
+                    <div className='w-100 overflow-x-auto py-4' >
                         <p className='font-Poppins-Semibold text-xs mb-1'>Upload Images</p>
-                        <div className='flex flex-row' >
-                            <div className='border-2 border-entries rounded-lg w-28 h-24 flex justify-center items-center px-4' >
-                                <p className='font-Poppins-Regular text-xs text-entries'>image size should not be above 350px</p>
-                            </div> 
-                            <div className='border-2 border-entries rounded-lg h-24 flex justify-center ml-4 items-center px-4' >
+                        <div className='flex flex-row w-full flex-nowrap' >
+                            {images.length < 1 && (
+                                <div className='border-2 border-entries rounded-lg w-28 h-24 flex justify-center items-center px-4' >
+                                    <p className='font-Poppins-Regular text-xs text-entries'>image size should not be above 350px</p>
+                                </div> 
+                            )}
+                            {
+                                images.length > 0 && images.map((item, index) => (
+                                    <div key={index.toString()} className='border-2 border-entries rounded-lg w-28 h-24 flex justify-center items-center px-0 mr-4 flex-1' >
+                                        <img src={item} alt="" className="w-full h-full object-contain" />
+                                    </div> 
+                                ))
+                            }
+                            <div onClick={pickCoverImage} className='border-2 border-entries rounded-lg h-24 flex justify-center ml-4 items-center px-4 cursor-pointer' >
                                 <p className='text-menu_gray text-base' >+</p>
                             </div> 
                         </div>
+                        
                     </div>
                     <div className='w-full py-4' >
                         <p className='font-Poppins-Semibold text-xs mb-1'>Product Description</p> 
