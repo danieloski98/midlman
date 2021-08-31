@@ -99,7 +99,7 @@ export default function NewCategory() {
             },
             body: JSON.stringify({
                 name: formik.values.name,
-                cover_image: coverImage,
+                coverImage,
                 icon,
                 status,
             })
@@ -110,7 +110,7 @@ export default function NewCategory() {
         if (request.status !== 200) {
             alert(json.message);
         }else {
-            alert('Brand created successfully');
+            alert('Category created successfully');
             history.goBack();
         }
     }

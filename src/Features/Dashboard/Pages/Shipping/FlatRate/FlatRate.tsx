@@ -48,7 +48,8 @@ const mutationFunction = async (token: string, details: IFlatRate) => {
     const res = await fetch(`${url}/flatrate/create`, {
         method: 'POST',
         headers: {
-            authorization: `Bearer ${token}`
+            authorization: `Bearer ${token}`,
+            'content-type': 'application/json'
         },
         body: JSON.stringify(details)
     });
@@ -64,7 +65,8 @@ const editMutation = async (token: string, details: IFlatRate, id: string) => {
     const res = await fetch(`${url}/flatrate/edit/${id}`, {
         method: 'PUT',
         headers: {
-            authorization: `Bearer ${token}`
+            authorization: `Bearer ${token}`,
+            'content-type': 'application/json'
         },
         body: JSON.stringify(details)
     });
