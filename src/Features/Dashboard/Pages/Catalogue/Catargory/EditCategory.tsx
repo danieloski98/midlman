@@ -33,7 +33,7 @@ const editBrand = async (id: string, body: any, token: string) => {
   // alert(JSON.stringify(body));
 
   try {
-    const request = await axios.default.put(`${url}/brand/update/${id}`, body, {
+    const request = await axios.default.put(`${url}/category/${id}`, body, {
       headers: {
         Authorization: `Bearer ${token}`,
         "content-type": "application/json",
@@ -86,6 +86,7 @@ export default function EditCategory(props: any) {
         history.goBack();
       },
       onError: (error) => {
+        console.log(error)
         setOpen(false);
         setText("");
         alert("An error occured, contact the backend team!");
