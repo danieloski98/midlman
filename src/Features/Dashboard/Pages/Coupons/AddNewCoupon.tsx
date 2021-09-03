@@ -123,7 +123,8 @@ export default function AddNewCoupon() {
         const request = await fetch(`${url}/coupon/create`, {
             method: 'post',
             headers: {
-                Authorization: `Bearer ${sessionStorage.getItem('token')}`
+                Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+                'content-type': 'application/json'
             },
             body: JSON.stringify(obj),
         });
