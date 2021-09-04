@@ -88,6 +88,8 @@ export default function Coupon() {
   const [coupons, setCoupons] = React.useState([] as ICoupon[]);
   const [open, setOpen] = React.useState(false);
   const [text, setText] = React.useState("");
+  const [sort, setSort] = React.useState('name');
+  const [search, setSearch] = React.useState('');
 
   // functions
   const close = () => {
@@ -106,18 +108,17 @@ export default function Coupon() {
       <LoadingModal open={open} text={text} onClose={close} />
       <p className="font-Poppins-Semibold text-lg">Coupon</p>
       <div className="w-full flex relative flex-row items-center py-8">
-        <div className="w-40 flex items-center mr-4">
-          <Select fontSize="xs" color="#828282" placeholder="Sort By" >
-            <option>Coupon ID</option>
-            <option>Coupon Type</option>
-            <option>Coupon Code</option>
-          </Select>
+      <div className="w-40 flex items-center mr-4">
+        <Select fontSize='xs' value={sort} onChange={(e) => setSort(e.target.value)} color='#828282' placeholder={`Sort By`} width="lg">
+          <option value="type">Sort By Type</option>
+          <option value="code">Sort By Code</option>
+        </Select>
         </div>
-        <div className="w-48 flex items-center">
-          <InputGroup>
-            <InputLeftElement children={<FiSearch size={20} color="grey" />} />
-            <Input fontSize="xs" paddingLeft="10" placeholder="Search ..." />
-          </InputGroup>
+        <div className='w-auto flex items-center' > 
+            <InputGroup>
+                <InputLeftElement children={<FiSearch size={20} color="grey" />} />
+                <Input fontSize='xs' paddingLeft='10' value={search} onChange={(e) => setSearch(e.target.value)}  placeholder='Search by code or type' width="md" />
+            </InputGroup>
         </div>
         <div className="w-full flex flex-1" />
         <button
@@ -163,7 +164,7 @@ export default function Coupon() {
               <thead>
                 <tr className="font-Poppins-Semibold">
                   <th className="bg-white">
-                      <p className="w-56">ID</p>
+                      <p className="w-6">ID</p>
                   </th>
                   <th className="bg-white">
                       <p className="w-56">Coupon Code</p>
@@ -186,10 +187,33 @@ export default function Coupon() {
                 </tr>
               </thead>
               <tbody>
-                {coupons.map((item, index) => {
+                {coupons
+                 .sort((a, b): number => {
+                  if (sort === 'type') {
+                    let x = a.type.toLowerCase();
+                    let y = b.type.toLowerCase();
+                    if (x < y) { return -1}
+                    if (x > y) { return 1 }
+                  } else if (sort === 'code') {
+                    let x = a.code.toLowerCase();
+                    let y = b.code.toLowerCase();
+                    if (x < y) { return -1}
+                    if (x > y) { return 1 }
+                  }
+
+                  return 0;
+                })
+                .filter((val) => {
+                    if (search === '') {
+                        return val;
+                    } else if (val.code.toLowerCase().includes(search.toLowerCase()) || val.type.toLowerCase().includes(search.toLowerCase())) {
+                        return val;
+                    }
+                })
+                .map((item, index) => {
                   return (
                     <tr key={index} className="font-Poppins-Regular">
-                      <td className="font-Poppins-Semibold">{item._id}</td>
+                      <td className="font-Poppins-Semibold">{index + 1}</td>
                       <td>{item.code}</td>
                       <td>{item.type}</td>
                       <td>{item.discount}</td>
