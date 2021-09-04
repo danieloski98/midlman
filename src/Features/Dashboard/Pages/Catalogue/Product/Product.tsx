@@ -81,6 +81,8 @@ export default function Product() {
     const [error, setError] = React.useState(false);
     const [errorText, seterrorText] = React.useState('');
     const [products, setProducts] = React.useState([] as Array<IProduct>);
+    const [sort, setSort] = React.useState('name');
+    const [search, setSearch] = React.useState('')
 
         // functions
         const retry = async () => {
@@ -96,61 +98,21 @@ export default function Product() {
             mutation.mutate(id);
         }
 
-    const data = [
-        {
-            product_name : 'Piriton (500mg)',
-            category: 'Baby & Child care',
-            formulation: 'Syrup',
-            image: 'View Image',
-            package_type: 'Bottle',
-            price_portal: '#5,900',
-            price_express: '#5,900',
-            status: 'Active'
-        },
-        {
-            product_name : 'Ernest',
-            category: 'Ernest',
-            formulation: 'Syrup',
-            image: 'View Image',
-            package_type: 'Bottle',
-            price_portal: '#5,900',
-            price_express: '#5,900',
-            status: 'Active'
-        },
-        {
-            product_name : 'Ernest',
-            category: 'Ernest',
-            formulation: 'Ernest',
-            image: 'View Image',
-            package_type: 'Bottle',
-            price_portal: '#5,900',
-            price_express: '#5,900',
-            status: 'Active'
-        },
-        {
-            product_name : 'Ernest',
-            category: 'Ernest',
-            formulation: 'Ernest',
-            image: 'View Image',
-            package_type: 'Bottle',
-            price_portal: '#5,900',
-            price_express: '#5,900',
-            status: 'Active'
-        }
-    ]
-
     return (
         <div className='w-full h-full flex flex-col px-10 py-8 ' >  
             <LoadingModal text={text} open={showModal} onClose={() => setShowModal(false)} />
             <p className='font-Poppins-Semibold text-lg' >Product</p>
             <div className='w-full flex relative flex-row items-center py-8' > 
-                <div className='w-24 flex items-center mr-4' >  
-                    <Select fontSize='xs' color='#828282' placeholder='Sort By' />
+                <div className='w-40 flex items-center mr-4' >  
+                <Select fontSize='xs' value={sort} onChange={(e) => setSort(e.target.value)} color='#828282' placeholder={`Sort By`} width="lg">
+                    <option value="name">Sort By Name</option>
+                    <option value="category">Sort By Category</option>
+                </Select>
                 </div>
-                <div className='w-48 flex items-center' > 
+                <div className='w-auto flex items-center' > 
                     <InputGroup>
                         <InputLeftElement children={<FiSearch size={20} color="grey" />} />
-                        <Input fontSize='xs' paddingLeft='10'  placeholder='Search ...' />
+                        <Input fontSize='xs' paddingLeft='10' value={search} onChange={(e) => setSearch(e.target.value)}  placeholder='Search by name or category' width="sm" />
                     </InputGroup>
                 </div>
                 <div className='w-full flex flex-1' />
@@ -162,7 +124,7 @@ export default function Product() {
                     </svg> Upload Product
                 </button>
             </div>
-            <div className='w-auto max-h-72 min-h-72 overflow-x-scroll py-4' >
+            <div className='w-auto h-auto overflow-x-scroll py-4' >
 
             <div className="w-auto mb-6">
                 {
@@ -179,7 +141,7 @@ export default function Product() {
                             :
                             (
                                 
-                                <table className='text-sm '>
+                                <table className='text-sm my-6'>
                                 <thead>
                                     <tr className='font-Poppins-Semibold' >
                                         <th className='bg-white'>
@@ -214,7 +176,29 @@ export default function Product() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {products.map((item, index) => {
+                                    {products
+                                    .sort((a, b): number => {
+                                        if (sort === 'category') {
+                                            let x = a.category.toLowerCase();
+                                            let y = b.category.toLowerCase();
+                                            if (x < y) { return -1}
+                                            if (x > y) { return 1 }
+                                        } else if (sort === 'name') {
+                                            let x = a.name.toLowerCase();
+                                            let y = b.name.toLowerCase();
+                                            if (x < y) { return -1}
+                                            if (x > y) { return 1 }
+                                        }
+                                        return 0;
+                                      })
+                                      .filter((val) => {
+                                          if (search === '') {
+                                              return val;
+                                          } else if (val.name.toLowerCase().includes(search.toLowerCase()) || val.category.toLowerCase().includes(search.toLowerCase())) {
+                                              return val;
+                                          }
+                                      })
+                                    .map((item, index) => {
                                         return(
                                             <tr key={index} className='font-Poppins-Regular' >
                                                 <td className='font-Poppins-Semibold'>{index+1}</td>

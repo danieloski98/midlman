@@ -4,7 +4,7 @@ import React from 'react'
 
 export default function ManualTopUp() {
     return (
-        <div className='w-screen h-screen flex flex-col justify-center items-center' >
+        <div className='w-full h-full flex flex-col justify-center items-center' >
             <div > 
                 <p className='text-lg font-Poppins-Semibold' >Manual Top up</p>
                 <div className='w-96 py-8' >
