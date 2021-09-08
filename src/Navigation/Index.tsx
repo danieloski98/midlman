@@ -14,7 +14,7 @@ export default function Index() {
         <Route path='/forgotpassword' component={ForgotPassword} exact />
         <Route path='/resetpassword' component={ResetPassword} exact />
         <Route path="/dashboard/" component={Dashboard} />
-        <Route path="/deliveryman" component={DelievryMan} exact />
+        <Route path="/deliveryman/" component={DelievryMan} />
       </Switch>
     </Router>
   )
