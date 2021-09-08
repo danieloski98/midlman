@@ -53,7 +53,7 @@ export default function Statistics() {
         </div>
 
         {/* main table */}
-        <div className="w-full overflow-x-auto overflow-y-auto h-80 mt-6">
+        <div className="w-full overflow-x-auto overflow-y-auto h-80 mt-2">
             <table>
                 <thead className="text-sm">
                     <tr>
@@ -151,7 +151,7 @@ export default function Statistics() {
 
         {/* pagination part */}
 
-        <div className="w-full h-auto mt-6 flex justify-between text-md font-Poppins-Regular">
+        <div className="w-full h-auto mt-6 flex justify-between text-md font-Poppins-Regular text-sm">
             <div>
                 <p>Showing 1-10 of 30</p>
             </div>
