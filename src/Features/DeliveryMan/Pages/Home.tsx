@@ -1,8 +1,22 @@
 import React from 'react'
 import { InputGroup, InputLeftElement, Input, Select } from '@chakra-ui/react'
 import { FiSearch } from 'react-icons/fi'
+import { Value, MenuContext } from '../../../Context/MenuContext'
 
 export default function Home() {
+    const menuContaxt: Value = React.useContext(MenuContext);
+
+    const print = () => {
+        if (!menuContaxt.showModal) {
+            window.print();
+            return;
+        } else {
+            menuContaxt.setShowModal(false);
+            setTimeout(() => {
+                window.print();
+            }, 3000);
+        }
+    }
     return (
         <div className="w-full h-full flex flex-col">
 
@@ -39,7 +53,7 @@ export default function Home() {
                 </div>
 
                 <div className="flex">
-                    <button onClick={() => window.print()} className="text-sm bg-midlman_color text-white w-20 rounded">Print</button>
+                    <button onClick={print} className="text-sm bg-midlman_color text-white w-20 rounded">Print</button>
                 </div>
 
             </div>
@@ -143,7 +157,7 @@ export default function Home() {
 
             {/* pagination part */}
 
-            <div className="w-full h-auto mt-6 flex justify-between text-md font-Poppins-Regular">
+            <div className="w-full h-auto mt-6 flex justify-between text-md font-Poppins-Regular text-sm">
                 <div>
                     <p>Showing 1-10 of 30</p>
                 </div>
