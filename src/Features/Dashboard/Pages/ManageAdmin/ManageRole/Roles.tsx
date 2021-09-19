@@ -1,6 +1,47 @@
 import React from 'react' 
+import { useQuery } from 'react-query'
+import useDetails from '../../../../../Hooks/useDetails'
+import { IRole } from '../../../../../Types/Role'
+import { url } from '../../../../../Utils/URL'
+
+// get roles function
+const getRole = async(token: string) => {
+    const request = await fetch(`${url}/role`, {
+        method: 'get',
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+     const json = await request.json();
+
+     if (!request.ok) {
+         throw new Error("An error occured")
+     } else {
+         return json;
+     }
+}
 
 export default function Roles(props: any) {     
+    const { token } = useDetails();
+    const [ roles, setRoles] = React.useState([] as IRole[]);
+    const [loading, setLoading] = React.useState(false);
+    const [text, setText] = React.useState("");
+    const [error, setError] = React.useState(false);
+
+    // getroles query
+    const { refetch } = useQuery(['getRoles', token], () => getRole(token), {
+        onSuccess: (data) => {
+            setRoles(data.response);
+            setLoading(false);
+            setText("");
+            setError(false)
+        },
+        onError: (data) => {
+            setLoading(false);
+            setError(true);
+        }
+    })
+    
     return (
         <div className='w-full h-full flex flex-col items-center py-8 ' >  
             <p className=' w-100 font-Poppins-Semibold text-lg -ml-48' >Roles</p> 
