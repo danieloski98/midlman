@@ -207,13 +207,17 @@ export default function ManageOrder() {
                     </div>
                 )
             }
-            <div className='w-full flex flex-row items-center pb-12'>
-                <p className='font-Poppins-Regular text-xs' >Showing 1-10 of 30 items</p>
-                <div className='w-full flex flex-1' />
-                <div className='w-8 h-8 flex justify-center items-center font-Poppins-Semibold text-xs mr-1 bg-completed_bg cursor-pointer ' >1</div>
-                <div className='w-8 h-8 flex justify-center items-center font-Poppins-Semibold text-xs mr-1 border-2 border-login_buttton rounded-md cursor-pointer' >2</div>
-                <div className='w-8 h-8 flex justify-center items-center font-Poppins-Semibold text-xs mr-1 border-2 border-login_buttton rounded-md cursor-pointer' >3</div>
-            </div> 
+            {
+                !loading && roles.length > 0 && (
+                    <div className='w-full flex flex-row items-center pb-12'>
+                        <p className='font-Poppins-Regular text-xs' >Showing 1-10 of 30 items</p>
+                        <div className='w-full flex flex-1' />
+                        <div className='w-8 h-8 flex justify-center items-center font-Poppins-Semibold text-xs mr-1 bg-completed_bg cursor-pointer ' >1</div>
+                        <div className='w-8 h-8 flex justify-center items-center font-Poppins-Semibold text-xs mr-1 border-2 border-login_buttton rounded-md cursor-pointer' >2</div>
+                        <div className='w-8 h-8 flex justify-center items-center font-Poppins-Semibold text-xs mr-1 border-2 border-login_buttton rounded-md cursor-pointer' >3</div>
+                    </div> 
+                )
+            }
             {showModal ? (
                     <>
                         <div className="justify-center items-center overflow-x-hidden flex overflow-y-auto inset-0 z-50 fixed outline-none focus:outline-none"> 
