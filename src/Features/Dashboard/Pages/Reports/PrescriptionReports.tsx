@@ -2,8 +2,10 @@ import React from 'react';
 import { Select, Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
 import { FiSearch } from 'react-icons/fi'
 import { useHistory } from 'react-router-dom'
+import PrescriptionModal from './Modals/PrescriptionModal';
 
 export default function PrescriptionReports() { 
+    const [openModal, setOpenModal] = React.useState(false);
 
     const history = useHistory();
 
@@ -38,19 +40,29 @@ export default function PrescriptionReports() {
         },
     ]
 
+    const close = () => {
+        setOpenModal(false);
+    }
+
     return (
         <div className='w-full h-full flex flex-col px-10 py-8 ' >  
+
+            {/* modal */}
+            <PrescriptionModal open={openModal} close={close} />
             <p className='font-Poppins-Semibold text-lg' >Prescription Reports</p>
-            <div className='w-full flex relative flex-row items-center py-8' > 
-                <div className='w-24 flex items-center mr-4' >  
-                    <Select fontSize='xs' color='#828282' placeholder='Sort By' />
+            <div className='w-full flex relative flex-row items-center justify-between py-8' > 
+                <div className="w-auto flex flex-1">
+                    <div className='w-24 flex items-center mr-4' >  
+                        <Select fontSize='xs' color='#828282' placeholder='Sort By' />
+                    </div>
+                    <div className='w-48 flex items-center' > 
+                        <InputGroup>
+                            <InputLeftElement children={<FiSearch size={20} color="grey" />} />
+                            <Input fontSize='xs' paddingLeft='10'  placeholder='Search ...' />
+                        </InputGroup>
+                    </div> 
                 </div>
-                <div className='w-48 flex items-center' > 
-                    <InputGroup>
-                        <InputLeftElement children={<FiSearch size={20} color="grey" />} />
-                        <Input fontSize='xs' paddingLeft='10'  placeholder='Search ...' />
-                    </InputGroup>
-                </div> 
+                <button onClick={() => setOpenModal(true)} className="w-32 h-10 rounded bg-midlman_color text-xs text-white">Add Prescription</button>
             </div>
             <div className='w-auto my-14 overflow-x-auto' style={{ height: 'auto'}} >
                 <table className='text-sm '>
