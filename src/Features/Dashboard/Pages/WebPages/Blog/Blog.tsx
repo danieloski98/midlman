@@ -1,36 +1,77 @@
 import { Select, Input } from '@chakra-ui/react'
 import React from 'react'
 import { useHistory } from 'react-router-dom'
+import { useQuery } from 'react-query';
+import useDetails from '../../../../../Hooks/useDetails';
+import { url } from '../../../../../Utils/URL';
+import { IPost } from '../../../../../Types/Post';
+import LoadingModal from '../../../../Modals/LoadingModal';
+
+//get posts
+const getPosts = async(token: string) => {
+    const request = await fetch(`${url}/blog`, {
+        method: 'get',
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+    const json = await request.json();
+
+    if (!request.ok) {
+        throw new Error('An Error Occured');
+    }
+    return json;
+}
 
 
 export default function Blog() {
     const history = useHistory()
+    const [posts, setPosts] = React.useState([] as Array<IPost>);
+    const [loading, setLoading] = React.useState(true);
+    const [error, setError] = React.useState(false);
+    const [text, setText] = React.useState('Loading Contents')
+    const { token } = useDetails();
 
-    const data = [
-        { 
-            header: 'Agbani',
-            article: 'Zone',
-            date: '#300', 
+    // query
+    const { refetch } = useQuery(['getPosts', token], () => getPosts(token), {
+        onSuccess: (data: any) => {
+            setLoading(false);
+            console.log(data);
+            setPosts(data.response);
         },
-        { 
-            header: 'Agbani',
-            article: 'Zone',
-            date: '#300', 
-        },
-        { 
-            header: 'Agbani',
-            article: 'Zone',
-            date: '#300', 
-        },
-        { 
-            header: 'Agbani',
-            article: 'Zone',
-            date: '#300', 
-        },
-    ]
+        onError: (error) => {
+            console.log(error);
+            setLoading(false);
+            setError(true);
+        }
+    })
+
+    const deleteItem = async(id: string) => {
+        setText('Deleting Post');
+        setLoading(true);
+
+        // make request
+        const request = await fetch(`${url}/blog/delete/${id}`, {
+            method: 'delete',
+            headers: {
+                authorization: `Bearer ${token}`,
+            }
+        }); 
+        setLoading(false);
+        setText('')
+
+        const json = await request.json();
+        if (!request.ok) {
+            alert('An error occured')
+        } else {
+            alert('Deleted')
+        }
+    }
+
 
     return (
         <div className='w-full h-full flex flex-col px-10 py-8 ' >  
+            <LoadingModal open={loading} text={text} onClose={() => setLoading(false)} />
             <p className='font-Poppins-Semibold text-lg' >Articles</p>
             <div className='w-full flex relative flex-row items-center py-8' > 
                 <div className='w-24 flex items-center mr-4' >  
@@ -64,16 +105,16 @@ export default function Blog() {
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map((item, index) => {
+                        {posts.map((item, index) => {
                             return(
                                 <tr key={index} className='font-Poppins-Regular' >
                                     <td className='font-Poppins-Semibold'>{index+1}</td>
-                                    <td>{item.header}</td>
-                                    <td>{item.article}</td>
-                                    <td>{item.date}</td> 
+                                    <td>{item.heading}</td>
+                                    <td>{item.content.slice(0, 60)}</td>
+                                    <td>{new Date(item.updatedAt).toDateString()}</td> 
                                     <td> 
                                         <div className=' w-full h-full flex flex-row items-center' >
-                                            <div  onClick={()=> history.push('/dashboard/editarticle')} className='flex flex-row cursor-pointer' > 
+                                            <div  onClick={()=> history.push(`/dashboard/editarticle/${item._id}`)} className='flex flex-row cursor-pointer' > 
                                                 <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M13.7071 0.707107L16.5355 3.53553C16.9261 3.92606 16.9261 4.55922 16.5355 4.94975L15.1213 6.36396L10.8787 2.12132L12.2929 0.707107C12.6834 0.316583 13.3166 0.316583 13.7071 0.707107ZM9.46447 3.53553L1.27208 11.7279L0.979185 16.2635L5.51472 15.9706L13.7071 7.77817L9.46447 3.53553Z" fill="#1B75BB"/>
                                                 </svg>
@@ -84,7 +125,7 @@ export default function Blog() {
                                                     <path d="M0.292893 0.292893C0.683417 -0.0976312 1.31658 -0.097631 1.70711 0.292893L4.03033 2.61612L6.35355 0.292893C6.74407 -0.097631 7.37724 -0.0976312 7.76776 0.292893C8.15829 0.683417 8.15829 1.31658 7.76776 1.70711L5.44454 4.03033L7.36396 5.94975C7.75449 6.34027 7.75449 6.97344 7.36396 7.36396C6.97344 7.75449 6.34027 7.75449 5.94975 7.36396L4.03033 5.44454L2.11091 7.36396C1.72039 7.75449 1.08722 7.75449 0.696697 7.36396C0.306172 6.97344 0.306172 6.34027 0.696697 5.94975L2.61612 4.03033L0.292893 1.70711C-0.0976311 1.31658 -0.0976311 0.683417 0.292893 0.292893Z" fill="white"/>
                                                 </svg>
                                             </div>
-                                            <p className='ml-1' style={{color:'#EB5757'}} >Delete</p>
+                                            <p onClick={() => deleteItem(item._id)} className='ml-1 cursor-pointer' style={{color:'#EB5757'}} >Delete</p>
                                         </div>
                                     </td>
                                 </tr>
