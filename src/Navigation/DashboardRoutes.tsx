@@ -89,7 +89,7 @@ export default function DashboardRoutes() {
             <Route path="/dashboard/delivery" component={Delivery} exact /> 
             <Route path="/dashboard/deliveredorder" component={DeliveredOrder} exact /> 
             <Route path="/dashboard/editadmin" component={EditAdmin} exact />  
-            <Route path="/dashboard/editarticle" component={EditBlogPost} exact />
+            <Route path="/dashboard/editarticle/:id" component={EditBlogPost} exact />
             <Route path="/dashboard/editbrand/:id/:name" component={EditBrand} exact /> 
             <Route path="/dashboard/editcategory/:id" component={EditCategory} exact /> 
             <Route path="/dashboard/editcoupon" component={EditCoupon} exact /> 
