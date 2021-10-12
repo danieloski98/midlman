@@ -4,6 +4,8 @@ import { FiSearch, FiTrash } from 'react-icons/fi'
 import { useQuery } from 'react-query'
 import { url } from '../../../../Utils/URL'
 import LoadingModal from '../../../Modals/LoadingModal'
+import { ILedger } from '../../../../Types/Ledger'
+import useDetails from '../../../../Hooks/useDetails'
 
 interface IDeposits {
     status: string;
@@ -16,8 +18,13 @@ interface IDeposits {
 }
 
 // get deposits
-const getDeposits = async() => {
-    const request = await fetch(`${url}/transfer`);
+const getLedger = async(token: string) => {
+    const request = await fetch(`${url}/wallet/transaction/ledger`, {
+        method: 'get',
+        headers: {
+            authorization: `Bearer ${token}`,
+        }
+    });
     const json = await request.json()
 
     if (!request.ok) {
@@ -27,44 +34,6 @@ const getDeposits = async() => {
     }
 }
 
-const data = [
-    {
-        transaction_id: 'dasdasdsda',
-        portalAccount: 'earnest',
-        amount: 4000,
-        date: new Date().toISOString(),
-        account_number: '23039390202',
-        status: 'pending',
-
-    },
-    {
-        transaction_id: 'dasdasdsda',
-        portalAccount: 'earnest',
-        amount: 4000,
-        date: new Date().toISOString(),
-        account_number: '23039390202',
-        status: 'pending',
-        
-    }
-    , {
-        transaction_id: 'dasdasdsda',
-        portalAccount: 'earnest',
-        amount: 4000,
-        date: new Date().toISOString(),
-        account_number: '23039390202',
-        status: 'pending',
-        
-    }
-    , {
-        transaction_id: 'dasdasdsda',
-        portalAccount: 'earnest',
-        amount: 4000,
-        date: new Date().toISOString(),
-        account_number: '23039390202',
-        status: 'pending',
-        
-    }
-];
 
 const color = (value: string) => {
     switch(value) {
@@ -83,11 +52,12 @@ const color = (value: string) => {
 export default function Deposit() {
     const [status, setStatus] = React.useState('Pending');
     const [loading, setLoading] = React.useState(true);
-    const [deposits, setDeposits] = React.useState([] as IDeposits[])
-    const [text, setText] = React.useState('Loading Deposits...')
+    const [deposits, setDeposits] = React.useState([] as ILedger[])
+    const [text, setText] = React.useState('Loading Transactions...');
+    const { token } = useDetails()
 
     // query
-    const { refetch } = useQuery('getTransfers', getDeposits, {
+    const { refetch } = useQuery(['getTransfers', token], () => getLedger(token), {
         onSuccess: (data) => {
             console.log(data)
             setDeposits(data.response)
@@ -101,33 +71,11 @@ export default function Deposit() {
         }
     });
 
-    const changeStatus = async(index: number, status: string) => {
-        setLoading(true);
-        setText("Updating deposit...");
-        const request = await fetch(`${url}/transfer/edit/${deposits[index]._id}`, {
-            method: 'put',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify({ status, depositor: deposits[index].depositor, amount: deposits[index].amount })
-        })
-        const json = await request.json();
-        setLoading(false);
-        setText("")
-
-        if (!request.ok) {
-            alert(json.message);
-        }else {
-            alert(json.message);
-            await refetch()
-        }
-        
-    }
 
     return (
         <div className="w-full px-8 h-auto flex flex-col">
-            <LoadingModal open={loading} onClose={() => setLoading(false)} text="Loading Deposits..." />
-            <h3 className="text-xl font-Poppins-Medium mt-6">Deposit History</h3>
+            <LoadingModal open={loading} onClose={() => setLoading(false)} text={text} />
+            <h3 className="text-xl font-Poppins-Medium mt-6">Transaction Ledger History</h3>
 
             {/* header */}
 
@@ -159,42 +107,49 @@ export default function Deposit() {
                     <thead>
                         <tr className="font-Poppins-Medium text-xs">
                             <th className="bg-white">
-                                <p className="w-56 text-sm font-Poppins-Medium">Transaction ID</p>
+                                <p className="w-56 text-sm font-Poppins-Medium">Referenece ID</p>
                             </th>
                             <th className="bg-white">
-                                <p className="w-56 text-sm font-Poppins-Medium">user ID</p>
+                                <p className="w-56 text-sm font-Poppins-Medium">User Email</p>
                             </th>
                             <th className="bg-white">
-                                <p className="w-56">Depositor</p>
+                                <p className="w-56">Description</p>
                             </th>
                             <th className="bg-white">
-                                <p className="w-56">Amount</p>
+                                <p className="w-56">Direction</p>
+                            </th>
+                            <th className="bg-white">
+                                <p className="w-56">New Balance</p>
+                            </th>
+                            <th className="bg-white">
+                                <p className="w-56">Old Balance</p>
                             </th>
                             <th className="bg-white"> 
                                 <p className="w-56">Date & Time</p>
                             </th>
+                            
                             {/* <th className="bg-white">
-                                <p className="w-56">Account Number</p>
-                            </th> */}
-                            <th className="bg-white">
                                 <p className="w-56">Status</p>
                             </th>
                             <th className="bg-white">
                                 <p className="w-56">Action</p>
-                            </th>
+                            </th> */}
                         </tr>
                     </thead>
                     <tbody>
                         {
                             deposits.map((item, index) => (
                                 <tr key={index.toString()} className="font-Poppins-Medium text-xs">
-                                    <td>{item._id}</td>
-                                    <td>{item.user}</td>
-                                    <td>{item.depositor}</td>
-                                    <td>{item.amount}</td>
-                                    <td>{item.createdAt}</td>
+                                    <td>{item.reference}</td>
+                                    <td>{item.user.email}</td>
+                                    <td>{item.description}</td>
+                                    <td>{item.direction}</td>
+                                    <td>{item.newBalance}</td>
+                                    <td>{item.oldBalance}</td>
+                                    
+                                    <td>{new Date(item.createdAt).toUTCString()}</td>
                                     {/* <td>{item.account_number}</td> */}
-                                    <td>
+                                    {/* <td>
                                         <Select value={item.status} onChange={(e) => { changeStatus(index, e.target.value)}} color={color(item.status)} size="xs" width="full">
                                             <option value="Pending">Pending</option>
                                             <option value="Successful">Successful</option>
@@ -206,7 +161,7 @@ export default function Deposit() {
                                             <FiTrash size={20} />
                                             <span className="ml-2">Delete</span>
                                         </p>
-                                    </td>
+                                    </td> */}
                                 </tr>
                             ))
                         }
