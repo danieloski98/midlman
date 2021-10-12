@@ -44,10 +44,10 @@ export default function PrescriptionModal({ open, close }: IProps) {
                             <button className="w-40 text-white h-10 rounded bg-midlman_color text-xs">Upload Image</button>
                         </div>
 
-                        <div className="mt-6">
+                        {/* <div className="mt-6">
                             <p className="text-sm mb-3 font-Poppins-Regular">Description</p>
                             <div className="w-full h-24 rounded-md border-1 border-midlman_color mt-6"></div>
-                        </div>
+                        </div> */}
 
                         <button className="w-full text-white h-10 rounded bg-midlman_color text-xs mt-6 mb-10">Upload</button>
                    </div>

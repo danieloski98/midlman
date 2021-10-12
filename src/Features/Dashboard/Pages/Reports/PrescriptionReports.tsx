@@ -3,45 +3,65 @@ import { Select, Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
 import { FiSearch } from 'react-icons/fi'
 import { useHistory } from 'react-router-dom'
 import PrescriptionModal from './Modals/PrescriptionModal';
+import { useQuery } from 'react-query';
+import { url } from '../../../../Utils/URL';
+import { IPrescription } from '../../../../Types/Prescription';
+import LoadingModal from '../../../Modals/LoadingModal';
+import PrescriptionModal2 from './Modals/PrescriptionModal2';
+
+const getPrescription = async () => {
+    try {
+        const request = await fetch(`${url}/order/prescrptions`);
+        const json = await request.json();
+
+        if (!request.ok) {
+            throw new Error("An Error Occured");
+        } else {
+            return json;
+        }
+    } catch (error) {
+        throw new Error("An error Occured");
+    }
+}
 
 export default function PrescriptionReports() { 
     const [openModal, setOpenModal] = React.useState(false);
+    const [loading, setLoading] = React.useState(true);
+    const [error, setError] = React.useState(false);
+    const [prescription, setPrescription] = React.useState({
+        _id: '',
+        products: [],
+        reason: '',
+        status: '',
+        user: ''
+    } as IPrescription);
+    const [modal, setModal] = React.useState(false);
+    const [reports, setReports] = React.useState([] as Array<IPrescription>);
+
+
+    // react query
+    const {} = useQuery('getPrescriptions', getPrescription, {
+        onSuccess: (values: {response: Array<IPrescription>}) => {
+            console.log(values);
+            setReports(values.response);
+            setLoading(false);
+        },
+        onError: (error) => {
+            console.log(error);
+            setError(true);
+            setLoading(false);
+        }
+    });
 
     const history = useHistory();
 
-    const data = [
-        { 
-            name: 'Ernest Chris',
-            email: 'ernest@mail.com',
-            contact: '08123456789',
-            admintype: 'Bottle',
-            information: 'this will have a long scrollable list of message text this will have a long scrollable list of message text this will have a long scrollable list of message text this will have a long scrollable list of message text this will have a long scrollable list of message text this will have a long scrollable list of message text this will have a long scrollable list of message text this will have a long scrollable list of message text this will have a long scrollable list of message text this will have a long scrollable list of message text this will have a long scrollable list of message text this will have a long scrollable list of message text', 
-        },
-        { 
-            name: 'Ernest Chris',
-            email: 'ernest@mail.com',
-            contact: '08123456789',
-            admintype: 'Bottle',
-            information: 'this will have a long scrollable list of message text', 
-        },
-        { 
-            name: 'Ernest Chris',
-            email: 'ernest@mail.com',
-            contact: '08123456789',
-            admintype: 'Bottle',
-            information: 'this will have a long scrollable list of message text', 
-        },
-        { 
-            name: 'Ernest Chris',
-            email: 'ernest@mail.com',
-            contact: '08123456789',
-            admintype: 'Bottle',
-            information: 'this will have a long scrollable list of message text', 
-        },
-    ]
-
     const close = () => {
         setOpenModal(false);
+    }
+
+    const openPres = (item: IPrescription) => {
+        setPrescription(item);
+        setModal(true);
     }
 
     return (
@@ -49,6 +69,8 @@ export default function PrescriptionReports() {
 
             {/* modal */}
             <PrescriptionModal open={openModal} close={close} />
+            <PrescriptionModal2 open={modal} close ={() => setModal(false)} prescription={prescription} />
+            <LoadingModal text="Loading Prescritions" onClose={() => setLoading(false)} open={loading} />
             <p className='font-Poppins-Semibold text-lg' >Prescription Reports</p>
             <div className='w-full flex relative flex-row items-center justify-between py-8' > 
                 <div className="w-auto flex flex-1">
@@ -69,25 +91,16 @@ export default function PrescriptionReports() {
                     <thead>
                         <tr className='font-Poppins-Semibold' >
                             <th className='bg-white'>
-                                <p className="w-24">ID</p>
+                                <p className="w-24">S/N</p>
                             </th>
                             <th className='bg-white'>
-                                <p className="w-32">Name</p>
+                                <p className="w-24">User ID</p>
                             </th>
                             <th className='bg-white'>
-                                <p className="w-32">Email Address</p>
+                                <p className="w-32">Products</p>
                             </th>
                             <th className='bg-white'>
-                                <p className="w-32">Phone Number</p>
-                            </th>
-                            <th className='bg-white'>
-                                <p className="w-32">Admin Type</p>
-                            </th>
-                            <th className='bg-white'>
-                                <p className="w-56">Prescription Image</p>
-                            </th> 
-                            <th className='bg-white'>
-                                <p className="w-64">Additional Info</p>
+                                <p className="w-32">Reason</p>
                             </th> 
                             <th className='bg-white'>
                                 <p className="w-32">Status</p>
@@ -98,15 +111,16 @@ export default function PrescriptionReports() {
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map((item, index) => {
+                        {reports.map((item, index) => {
                             return(
                                 <tr key={index} className='font-Poppins-Regular' >
                                     <td className='font-Poppins-Semibold'>{index+1}</td>
-                                    <td>{item.name}</td>
-                                    <td>{item.email}</td>
-                                    <td>{item.contact}</td>
-                                    <td>{item.admintype}</td>
-                                    <td>
+                                    <td className='font-Poppins-Semibold'>{item.user}</td>
+                                    <td className="h-20 overflow-y-auto">{item.products.map((p, index) => <span key={index.toString()}>{p.productName}</span>)}</td>
+                                    <td>{item.reason}</td>
+                                    <td>{item.status}</td>
+                                    {/* <td>{item.admintype}</td> */}
+                                    {/* <td>
                                         <div className='w-full flex justify-center items-center font-Poppins-Medium text-midlman_color cursor-pointer' >
                                             <p>View Image</p>
                                         </div>
@@ -121,9 +135,9 @@ export default function PrescriptionReports() {
                                             <option>Decline</option>
                                             <option>Delete</option>
                                         </Select>
-                                    </td>
+                                    </td> */}
                                     <td> 
-                                        <p onClick={() => history.push('/dashboard/prescriptionrequest')} className="text-center text-midlman_color cursor-pointer">Send Request</p>
+                                        <p onClick={() => openPres(item)} className="text-center text-midlman_color cursor-pointer">Send Request</p>
                                     </td>
                                 </tr>
                             )

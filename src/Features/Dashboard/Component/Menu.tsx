@@ -154,9 +154,9 @@ export default function Menu() {
                 <div onClick={()=> ClickHandler('/dashboard/product', 3.3)}   className={active === 3 ? submenu === 3.3 ? menuactivecolor: menucolor: 'hidden'}   > 
                     <p className='text-sm font-Poppins-Regular mr-2' >Products</p> 
                 </div>
-                <div onClick={()=> ClickHandler('/dashboard/productrating', 4.3)} className={active === 3  ? submenu === 4.3 ? menuactivecolor: menucolor: 'hidden'}  > 
+                {/* <div onClick={()=> ClickHandler('/dashboard/productrating', 4.3)} className={active === 3  ? submenu === 4.3 ? menuactivecolor: menucolor: 'hidden'}  > 
                     <p className='text-sm font-Poppins-Regular mr-2' >Product Rating</p> 
-                </div> 
+                </div>  */}
             </div>
             <div className='w-full mt-4' >
                 <div className={active === 4 ? activeindicator : 'w-full cursor-pointer'} >
@@ -178,9 +178,9 @@ export default function Menu() {
                 <div onClick={()=> ClickHandler('/dashboard/lowstockproduct', 1.4)} className={active === 4  ? submenu === 1.4 ? menuactivecolor: menucolor: 'hidden'} > 
                     <p className='text-sm font-Poppins-Regular mr-2' >Low Stock Products</p> 
                 </div>
-                <div onClick={()=> ClickHandler('/dashboard/productreview', 2.4)} className={active === 4  ? submenu === 2.4 ? menuactivecolor: menucolor: 'hidden'} > 
+                {/* <div onClick={()=> ClickHandler('/dashboard/productreview', 2.4)} className={active === 4  ? submenu === 2.4 ? menuactivecolor: menucolor: 'hidden'} > 
                     <p className='text-sm font-Poppins-Regular mr-2' >Product Views</p> 
-                </div>
+                </div> */}
                 <div onClick={()=> ClickHandler('/dashboard/refundrequest', 3.4)} className={active === 4  ? submenu === 3.4 ? menuactivecolor: menucolor: 'hidden'} > 
                     <p className='text-sm font-Poppins-Regular mr-2' >Refund Requests</p> 
                 </div>
