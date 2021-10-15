@@ -460,8 +460,8 @@ export default function UploadProduct() {
             <p className="font-Poppins-Semibold text-xs mb-1">
               Product Description
             </p>
-            <Editor editing={setDes} />
-            {/* <Textarea height='200px' fontSize='xs' placeholder='generic name of the product (e.g Paracetamol)' /> */}
+            {/* <Editor editing={setDes} /> */}
+            <textarea className="w-full h-72 border-2 border-gray-400 rounded p-4"  placeholder='generic name of the product (e.g Paracetamol)' value={description} onChange={(e) => setDescription(e.target.value)} />
           </div>
         </div>
         <div className=" w-100 flex flex-row pb-8 ">
@@ -549,15 +549,24 @@ export default function UploadProduct() {
               </motion.div>
             </AnimatePresence>
           </div>
-          <div className="w-full flex flex-row items-center py-6">
-            <div
-              onClick={() => setShowModal(true)}
-              className="border-2 border-entries cursor-pointer rounded-lg h-12 flex justify-center ml-4 items-center px-3"
-            >
-              <p className="text-menu_gray text-base">+</p>
+          {
+            promo.discount === '' && (
+              <div className="w-full flex flex-row items-center py-6">
+              <div
+                onClick={() => setShowModal(true)}
+                className="border-2 border-entries cursor-pointer rounded-lg h-12 flex justify-center ml-4 items-center px-3"
+              >
+                <p className="text-menu_gray text-base">+</p>
+              </div>
+              <p className="text-sm font-Poppins-Semibold ml-2">Add Promo </p>
             </div>
-            <p className="text-sm font-Poppins-Semibold ml-2">Add Promo </p>
-          </div>
+            )
+          }
+          {
+            promo.discount !== '' && (
+              <p className="my-5 ml-6">Promo Added</p>
+            )
+          }
           <div className="w-full flex flex-row">
             <button onClick={submit} className="bg-midlman_color font-Poppins-Semibold text-white text-sm py-3 w-full rounded-md mr-1">
               Upload Product
