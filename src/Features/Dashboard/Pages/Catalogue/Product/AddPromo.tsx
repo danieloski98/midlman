@@ -52,6 +52,7 @@ export default function AddPromo(props: any) {
             alert('please filling the form correctly');
         } else {
             props.selectPromo(formik.values);
+            console.log(formik.values);
             // props.close(false)
         }
     }

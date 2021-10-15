@@ -8,11 +8,29 @@ import { url } from '../../../../../Utils/URL';
 import { IOrder } from '../../../../../Types/Orders';
 import LoadingModal from '../../../../Modals/LoadingModal';
 import { FiSearch } from 'react-icons/fi'
+import { IAdmin } from '../../../../../Types/Admin';
+import { queryclient } from '../../../../../App'
 // import { useHistory } from 'react-router-dom';  
 
 // get orders
 async function getOrders() {
     const request = await fetch(`${url}/order`, {
+        method: 'get',
+    });
+
+    const json = await request.json()
+
+    if (!request.ok) {
+        throw new Error('An Error Occured')
+    } else {
+        return json;
+    }
+    
+}
+
+// get delivery men
+async function getDeliveryMen() {
+    const request = await fetch(`${url}/admin/delivery/list`, {
         method: 'get',
     });
 
@@ -32,6 +50,10 @@ export default function OrderList() {
     const [statusModal, setStatusModal] = React.useState(false);
     const [assigndeliveryModal, setAssignDeliveryModal] = React.useState(false);
     const [showDeclinedModal, setShowDeclinedModal] = React.useState(false);
+    const [deliveryMen, setDeliveryMen] = React.useState([] as Array<IAdmin>);
+    const [dman, setDm] = React.useState('');
+    const [orderid, setOrderid] = React.useState('');
+    const [assignee, setAssigne] = React.useState({ deliveryManId: '', orderId: ''} as { deliveryManId: string, orderId: string })
       // state
       const [loading, setLoading] = React.useState(true);
       const [orders, setOrders] = React.useState([] as IOrder[]);
@@ -40,6 +62,19 @@ export default function OrderList() {
       const [sort, setSort] = React.useState('type');
       const [search, setSearch] = React.useState('')
       const [error, setError] = React.useState(false);
+
+      const {} = useQuery('deliverymen', getDeliveryMen, {
+          onSuccess: (data: { response: Array<IAdmin>}) => {
+              setDeliveryMen(data.response);
+              setLoading(false);
+              setError(false);
+          }, 
+          onError: () => {
+              setLoading(false);
+              setError(true);
+              alert("Error");
+          }
+      })
 
       const { refetch } = useQuery('getorders', getOrders, {
           retryDelay: attemptIndex => Math.min(1000 * 2 ** attemptIndex, 30000),
@@ -92,6 +127,30 @@ export default function OrderList() {
         setShowModal(true);
         const {} = await refetch();
         setShowModal(false);
+    }
+
+    const assignDeliveryMan = async() => {
+        const oobbjj =  { deliveryManId: dman, orderId: orderid }
+        setAssigne(oobbjj);
+        setText('Assigning Deliveryman...');
+        setLoading(true);
+        
+        const request = await fetch(`${url}/admin/delivery/man/selector`, {
+            method: 'put',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(assignee),
+        });
+
+        const json = await request.json();
+        if (!request.ok) {
+            alert(json.message);
+        }else {
+            alert('Delivery man assigned');
+            queryclient.invalidateQueries();
+        }
+        setAssignDeliveryModal(false)
     }
 
     return (
@@ -192,7 +251,9 @@ export default function OrderList() {
                               })
                                .map((item, index) => {
                                    return(
+                                       
                                        <tr key={index} className='font-Poppins-Regular' >
+                                           
                                            <td className='font-Poppins-Semibold'>{index+1}</td>
                                            <td>
                                                <div className='flex flex-row items-center' >
@@ -226,7 +287,7 @@ export default function OrderList() {
                                                        </svg>
                                                        <p className='ml-1' style={{color:'#1B75BB'}} >Edit</p>
                                                    </div> */}
-                                                   <p onClick={()=> setAssignDeliveryModal(true)} className='ml-2 text-midlman_color cursor-pointer text-xs font-Poppins-Semibold w-56 text-center' >Assign Delivery Man</p>
+                                                   <p onClick={()=> { setAssignDeliveryModal(true); setOrderid(item._id) }} className='ml-2 text-midlman_color cursor-pointer text-xs font-Poppins-Semibold w-56 text-center' >Assign Delivery Man</p>
                                                </div>
                                            </td>
                                        </tr>
@@ -276,12 +337,17 @@ export default function OrderList() {
                                 <div className='w-100 bg-white rounded-lg py-4 px-8' >
                                 <p className='font-Poppins-Semibold text-sm text-center pb-4 ' >Assign Delivery Man</p>
                                 <div className='py-4' >
-                                    <Select fontSize='xs' placeholder='Select Delivery Man'>
+                                    <Select fontSize='xs' placeholder='Select Delivery Man' onChange={(e) => setDm(e.target.value)}>
                                         <option>Give me more options</option>
+                                        {
+                                            deliveryMen.map((item, index) => (
+                                                <option key={index.toString()} value={item._id}>{item.firstName} {item.lastName}</option>
+                                            ))
+                                        }
                                     </Select>
                                 </div>
                                 <div className='w-full flex justify-center mt-10 pb-4' >
-                                    <button onClick={()=> setAssignDeliveryModal(false)} className='py-3 text-xs font-Poppins-Semibold text-white bg-midlman_color rounded-md w-32 mx-4' >Submit</button>
+                                    <button onClick={assignDeliveryMan} className='py-3 text-xs font-Poppins-Semibold text-white bg-midlman_color rounded-md w-32 mx-4' >Submit</button>
                                     <button onClick={()=> setAssignDeliveryModal(false)} className='py-3 text-xs font-Poppins-Semibold text-menu_gray bg-entries rounded-md w-32 mx-4' >Cancel</button>
                                 </div>
                                 </div>
