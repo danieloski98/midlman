@@ -1,52 +1,66 @@
-import { Select, Input } from '@chakra-ui/react'
+import { Select, Input, InputGroup, InputLeftElement } from '@chakra-ui/react'
 import React from 'react'
 import { useHistory } from 'react-router-dom'
+import { url } from '../../../../../Utils/URL';
+import * as axios from 'axios';
+import { useQuery } from 'react-query';
+import { IAdmin } from '../../../../../Types/Admin';
+import LoadingModal from '../../../../Modals/LoadingModal';
+import { FiSearch } from 'react-icons/fi'
+
+async function getAdmins() {
+    const request = await axios.default.get(`${url}/admin`);
+    return request;
+}
 
 export default function Admin() {
     const history = useHistory()
+    const [loading, setLoading] = React.useState(true);
+    const [admins, setAdmins] = React.useState([] as Array<IAdmin>);
+    const [error, setError] = React.useState(false);
+    const [text, setText] = React.useState('Loading Amdins');
+    const [sort, setSort] = React.useState('name');
+    const [search, setSearch] = React.useState('')
 
-    const data = [
-        { 
-            fullname: 'Ernest Chris',
-            email: 'yesyesyes@email.com',
-            admintype: 'Store Owner',
-            status: 'Active', 
-        },
-        {
-            fullname: 'Ernest Chris',
-            email: 'Ernest',
-            admintype: 'Merchant',
-            status: 'Active'
-        },
-        {
-            fullname: 'Ernest Chris',
-            email: 'Ernest',
-            admintype: 'Active',
-            status: 'Active'
-        },
-        {
-            fullname: 'Ernest Chris',
-            email: 'Ernest',
-            admintype: 'Active',
-            status: 'Active'
-        }
-    ]
+    const {} = useQuery('getbrands', getAdmins, {
+        //   retryDelay: attemptIndex => Math.min(1000 * 2 ** attemptIndex, 30000),
+        //   retry: 6,
+          onSuccess: (data: any) => {
+              console.log(data);
+              setLoading(false);
+              setAdmins(prev => [...data.data.respnose]);
+            //   alert(JSON.stringify(data));
+          },
+          onError: (error: any) => {
+              setLoading(false);
+              setError(true);
+              alert(JSON.stringify(error.message));
+          },
+      })
+
+    // functions
+  const close = () => {
+    setLoading(false);
+    setText('');
+  }
 
     return (
-        <div className='w-full h-full flex flex-col px-10 py-8 ' >  
+        <div className='w-full h-full flex flex-col px-10 py-8 ' > 
+
+            {/* Modal  */}
+            <LoadingModal open={loading} onClose={close} text={text} />
+
             <p className='font-Poppins-Semibold text-lg' >Admins</p>
             <div className='w-full flex relative flex-row items-center py-8' > 
                 <div className='w-24 flex items-center mr-4' >  
                     <Select fontSize='xs' color='#828282' placeholder='Sort By' />
                 </div>
-                <div className='w-48 flex items-center' > 
-                    <div className='absolute z-10 ml-4' >
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M2 8C2 4.691 4.691 2 8 2C11.309 2 14 4.691 14 8C14 11.309 11.309 14 8 14C4.691 14 2 11.309 2 8ZM17.707 16.293L14.312 12.897C15.365 11.543 16 9.846 16 8C16 3.589 12.411 0 8 0C3.589 0 0 3.589 0 8C0 12.411 3.589 16 8 16C9.846 16 11.543 15.365 12.897 14.312L16.293 17.707C16.488 17.902 16.744 18 17 18C17.256 18 17.512 17.902 17.707 17.707C18.098 17.316 18.098 16.684 17.707 16.293Z" fill="#BDBDBD"/>
-                        </svg>
-                    </div>
-                    <Input fontSize='xs' paddingLeft='10'  placeholder='Search ...' />
-                </div>
+                <InputGroup className='w-48 flex items-center' width="sm" > 
+                    <InputLeftElement>
+                        <FiSearch size={20} color="black" />
+                    </InputLeftElement>
+                    <Input fontSize='xs' paddingLeft='10' value={search} onChange={(e) => setSearch(e.target.value)}  placeholder='Search ...' />
+                </InputGroup>
                 <div className='w-full flex flex-1' />
                 <button onClick={()=> history.push('/dashboard/addadmin')}  className='bg-midlman_color flex flex-row items-center font-Poppins-Bold text-white text-xs py-3 px-6 rounded-md mx-1' >
                     <svg className='mr-2' width="12" height="12" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -54,28 +68,54 @@ export default function Admin() {
                     </svg> Add New Admin
                 </button>
             </div>
-            <div className='w-auto my-14' >
+           
+           {
+               !loading && admins.length < 1 && (
+                    <div className="w-full h-64 flex justify-center items-center flex-col">
+                        <img
+                            src="/images/empty.png"
+                            alt="notfound"
+                            className="w-40 h-40 object-contain"
+                        />
+                        <p className="mt-3 text-midlman_color text-md font-Poppins-Medium">
+                        Sorry There are no brands...
+                        </p>
+                    </div>
+               )
+           }
+
+           {
+               !loading && !error && admins.length > 0 && (
+                <div className='w-auto my-14' >
                 <table className='text-sm '>
                     <thead>
                         <tr className='font-Poppins-Semibold' >
-                            <th className='bg-white'>ID</th>
+                            <th className='bg-white'>S/N</th>
                             <th className='bg-white'>Full Name</th>
                             <th className='bg-white'>Email</th>
                             <th className='bg-white'>Admin Type</th>
-                            <th className='bg-white'>Status</th> 
-                            <th className='bg-white'>Action</th> 
+                            <th className='bg-white'>Active</th> 
+                            {/* <th className='bg-white'>Action</th>  */}
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map((item, index) => {
+                        {admins
+                        .filter((val) => {
+                            if (search === '') {
+                                return val;
+                            } else if (val.firstName.toLowerCase().includes(search.toLowerCase()) || val.email.toLowerCase().includes(search.toLowerCase())) {
+                                return val;
+                            }
+                        })
+                        .map((item, index) => {
                             return(
                                 <tr key={index} className='font-Poppins-Regular' >
                                     <td className='font-Poppins-Semibold'>{index+1}</td>
-                                    <td>{item.fullname}</td>
+                                    <td>{item.firstName} {item.lastName}</td>
                                     <td>{item.email}</td>
-                                    <td>{item.admintype}</td>
-                                    <td>{item.status}</td>
-                                    <td> 
+                                    <td>{item.adminType[0]}</td>
+                                    <td>{item.active ? 'True':'False'}</td>
+                                    {/* <td> 
                                         <div className=' w-full h-full flex flex-row items-center' >
                                             <div onClick={()=> history.push('/dashboard/editadmin')} className='flex flex-row cursor-pointer' >
                                                 <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -90,13 +130,17 @@ export default function Admin() {
                                             </div>
                                             <p className='ml-1' style={{color:'#EB5757'}} >Delete</p>
                                         </div>
-                                    </td>
+                                    </td> */}
                                 </tr>
                             )
                         })}
                     </tbody>
                 </table>
             </div>
+
+               )
+           }
+
             <div className='w-full flex flex-row items-center pb-12'>
                 <p className='font-Poppins-Regular text-xs' >Showing 1-10 of 30 items</p>
                 <div className='w-full flex flex-1' />

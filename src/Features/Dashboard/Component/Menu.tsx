@@ -263,7 +263,7 @@ export default function Menu() {
                     <p className='text-sm font-Poppins-Regular mr-2' >WithDrawal Reports</p> 
                 </div>
                 <div onClick={()=> ClickHandler('/dashboard/desposits', 2.9)} className={active === 7 ? submenu === 2.9 ? menuactivecolor: menucolor: 'hidden'}> 
-                    <p className='text-sm font-Poppins-Regular mr-2' >Deposits</p> 
+                    <p className='text-sm font-Poppins-Regular mr-2' >Transaction History</p> 
                 </div>
             </div>
             <div className='w-full mt-4' >

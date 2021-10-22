@@ -141,7 +141,7 @@ export default function Deposit() {
                             deposits.map((item, index) => (
                                 <tr key={index.toString()} className="font-Poppins-Medium text-xs">
                                     <td>{item.reference}</td>
-                                    <td>{item.user.email}</td>
+                                    <td>item.user.email</td>
                                     <td>{item.description}</td>
                                     <td>{item.direction}</td>
                                     <td>{item.newBalance}</td>
