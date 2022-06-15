@@ -60,6 +60,7 @@ export default function Login() {
 
           setAdminDetails(json.user);
           setToken(json.token);
+          console.log(json.user);
 
           // console.log(json);
           // console.log(token);
@@ -73,7 +74,10 @@ export default function Login() {
             sessionStorage.setItem('details', JSON.stringify(json.user));
             sessionStorage.setItem('token', json.token);
             setLoading(false);
-
+            if (json.user.isDeliveryMan) {
+              history.push('/deliveryman');
+              return;
+            }
             const t1 = setTimeout(() => {
               history.push('/dashboard');
               clearTimeout(t1);
@@ -89,6 +93,10 @@ export default function Login() {
              localStorage.setItem('keeploggedin', '0');
              setLoading(false);
 
+             if (json.user.isDeliveryMan) {
+              history.push('/deliveryman');
+              return;
+            }
              const t1 = setTimeout(() => {
               history.push('/dashboard');
               clearTimeout(t1);

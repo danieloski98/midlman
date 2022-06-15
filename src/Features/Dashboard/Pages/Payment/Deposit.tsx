@@ -1,66 +1,81 @@
 import React from 'react'
 import {Select, InputGroup, InputLeftElement, Input} from '@chakra-ui/react'
 import { FiSearch, FiTrash } from 'react-icons/fi'
+import { useQuery } from 'react-query'
+import { url } from '../../../../Utils/URL'
+import LoadingModal from '../../../Modals/LoadingModal'
+import { ILedger } from '../../../../Types/Ledger'
+import useDetails from '../../../../Hooks/useDetails'
 
-const data = [
-    {
-        transaction_id: 'dasdasdsda',
-        portalAccount: 'earnest',
-        amount: 4000,
-        date: new Date().toISOString(),
-        account_number: '23039390202',
-        status: 'pending',
+interface IDeposits {
+    status: string;
+    _id: string;
+    user: string;
+    depositor: string;
+    amount: number;
+    createdAt: string;
+    updatedAt: string;
+}
 
-    },
-    {
-        transaction_id: 'dasdasdsda',
-        portalAccount: 'earnest',
-        amount: 4000,
-        date: new Date().toISOString(),
-        account_number: '23039390202',
-        status: 'pending',
-        
+// get deposits
+const getLedger = async(token: string) => {
+    const request = await fetch(`${url}/wallet/transaction/ledger`, {
+        method: 'get',
+        headers: {
+            authorization: `Bearer ${token}`,
+        }
+    });
+    const json = await request.json()
+
+    if (!request.ok) {
+        throw new Error("An error Occured")
+    } else {
+        return json;
     }
-    , {
-        transaction_id: 'dasdasdsda',
-        portalAccount: 'earnest',
-        amount: 4000,
-        date: new Date().toISOString(),
-        account_number: '23039390202',
-        status: 'pending',
-        
-    }
-    , {
-        transaction_id: 'dasdasdsda',
-        portalAccount: 'earnest',
-        amount: 4000,
-        date: new Date().toISOString(),
-        account_number: '23039390202',
-        status: 'pending',
-        
-    }
-];
+}
+
 
 const color = (value: string) => {
     switch(value) {
         case 'Pending': {
-            return 'yellow'
+            return '#F2994A'
         }
         case 'Successful': {
-            return 'Green'
+            return '#00A69C'
         }
         case 'Failed': {
-            return 'red'
+            return '#94316D'
         }
     }
 }
 
 export default function Deposit() {
     const [status, setStatus] = React.useState('Pending');
+    const [loading, setLoading] = React.useState(true);
+    const [deposits, setDeposits] = React.useState([] as ILedger[])
+    const [text, setText] = React.useState('Loading Transactions...');
+    const { token } = useDetails()
+
+    // query
+    const { refetch } = useQuery(['getTransfers', token], () => getLedger(token), {
+        onSuccess: (data) => {
+            console.log(data)
+            setDeposits(data.response)
+            setLoading(false);
+            setText("")
+        },
+        onError: (error) => {
+            console.log(error)
+            setLoading(false);
+            setText('')
+        }
+    });
+
 
     return (
         <div className="w-full px-8 h-auto flex flex-col">
-            <h3 className="text-xl font-Poppins-Medium">Deposit History</h3>
+            <LoadingModal open={loading} onClose={() => setLoading(false)} text={text} />
+            <h3 className="text-xl font-Poppins-Medium mt-6">Transaction Ledger History</h3>
 
             {/* header */}
 
@@ -92,50 +107,61 @@ export default function Deposit() {
                     <thead>
                         <tr className="font-Poppins-Medium text-xs">
                             <th className="bg-white">
-                                <p className="w-56 text-sm font-Poppins-Medium">Transaction ID</p>
+                                <p className="w-56 text-sm font-Poppins-Medium">Referenece ID</p>
                             </th>
                             <th className="bg-white">
-                                <p className="w-56">Portal Account</p>
+                                <p className="w-56 text-sm font-Poppins-Medium">User Email</p>
                             </th>
                             <th className="bg-white">
-                                <p className="w-56">Amount</p>
+                                <p className="w-56">Description</p>
+                            </th>
+                            <th className="bg-white">
+                                <p className="w-56">Direction</p>
+                            </th>
+                            <th className="bg-white">
+                                <p className="w-56">New Balance</p>
+                            </th>
+                            <th className="bg-white">
+                                <p className="w-56">Old Balance</p>
                             </th>
                             <th className="bg-white"> 
                                 <p className="w-56">Date & Time</p>
                             </th>
+                            
                             {/* <th className="bg-white">
-                                <p className="w-56">Account Number</p>
-                            </th> */}
-                            <th className="bg-white">
                                 <p className="w-56">Status</p>
                             </th>
                             <th className="bg-white">
                                 <p className="w-56">Action</p>
-                            </th>
+                            </th> */}
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            data.map((item, index) => (
+                            deposits.map((item, index) => (
                                 <tr key={index.toString()} className="font-Poppins-Medium text-xs">
-                                    <td>{item.transaction_id}</td>
-                                    <td>{item.portalAccount}</td>
-                                    <td>{item.amount}</td>
-                                    <td>{item.date}</td>
+                                    <td>{item.reference}</td>
+                                    <td>item.user.email</td>
+                                    <td>{item.description}</td>
+                                    <td>{item.direction}</td>
+                                    <td>{item.newBalance}</td>
+                                    <td>{item.oldBalance}</td>
+                                    
+                                    <td>{new Date(item.createdAt).toUTCString()}</td>
                                     {/* <td>{item.account_number}</td> */}
-                                    <td>
-                                        <Select value={status} onChange={(e) => setStatus(e.target.value)} color={color(status)} size="xs" width="full">
+                                    {/* <td>
+                                        <Select value={item.status} onChange={(e) => { changeStatus(index, e.target.value)}} color={color(item.status)} size="xs" width="full">
                                             <option value="Pending">Pending</option>
-                                            <option value="Approved">Successful</option>
-                                            <option value="Declined">Failed</option>
+                                            <option value="Successful">Successful</option>
+                                            <option value="Failed">Failed</option>
                                         </Select>
                                     </td>
                                     <td>
-                                        <p className="text-red-500 text-xs font-Poppins-Bold flex items-center">
-                                            <FiTrash size={20} color="red" />
+                                        <p className="text-red-300 text-xs font-Poppins-Bold flex items-center">
+                                            <FiTrash size={20} />
                                             <span className="ml-2">Delete</span>
                                         </p>
-                                    </td>
+                                    </td> */}
                                 </tr>
                             ))
                         }

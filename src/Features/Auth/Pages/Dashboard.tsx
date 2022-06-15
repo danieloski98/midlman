@@ -65,7 +65,7 @@ export default function Dashboard() {
                   {menuContext.showModal &&
                       <motion.div
                       initial={{ opacity: 1 }}
-                      animate={{ opacity: 1, x: -10, transition: { type: 'spring', stiffness: 100, duration: 2} }}
+                      animate={{ opacity: 1, x: 0, transition: { type: 'spring', stiffness: 100, duration: 2} }}
                       exit={{ opacity: 0, x: -200 }} 
                       transition={{ type: "spring", stiffness: 100, duration: 2 }}
                       className='overflow-y-auto overflow-x-hidden w-64 m-0 bg-midlman_color '>
@@ -74,7 +74,7 @@ export default function Dashboard() {
                   }
                   </AnimatePresence>
                     <div className='w-full h-screen flex flex-col flex-1 overflow-y-auto overflow-x-hidden ' >
-                        <div className="w-full px-8 py-8">
+                        <div className="w-full h-20 px-8 shadow-md py-8 flex flex-col justify-center">
                           <Navbar />
                         </div>
                         <div className="flex-1">

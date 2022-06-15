@@ -1,57 +1,66 @@
-import { Select, Input, Td } from '@chakra-ui/react'
+import { Select, Input, InputGroup, InputLeftElement, Switch } from '@chakra-ui/react'
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import Navbar from '../../Settings/Component/Navbar'
+import { url } from '../../../../../Utils/URL';
+import * as axios from 'axios';
+import { useQuery } from 'react-query';
+import LoadingModal from '../../../../Modals/LoadingModal';
+import { FiSearch } from 'react-icons/fi'
+import { IPortal } from '../../../../../Types/Portal';
+
+async function getPortal() {
+    const request = await axios.default.get(`${url}/admin/express/accounts`);
+    return request;
+}
 
 export default function PortalAccount() {
     const history = useHistory()
+    const [loading, setLoading] = React.useState(true);
+    const [accounts, setAccounts] = React.useState([] as Array<IPortal>);
+    const [error, setError] = React.useState(false);
+    const [text, setText] = React.useState('Loading Amdins');
+    const [sort, setSort] = React.useState('name');
+    const [search, setSearch] = React.useState('');
 
-    const data = [
-        { 
-            businessname: 'Ernest',
-            email: 'yesyesyes@email.com', 
-            contact: '08123456789',
-            address: '35 Katsina Avenue, Ind', 
-            businesstype: 'Pharmacy'
-        },
-        { 
-            businessname: 'Ernest',
-            email: 'yesyesyes@email.com', 
-            contact: '08123456789',
-            address: '35 Katsina Avenue, Ind', 
-            businesstype: 'Hospital'
-        },
-        { 
-            businessname: 'Ernest',
-            email: 'yesyesyes@email.com', 
-            contact: '08123456789',
-            address: '35 Katsina Avenue, Ind', 
-            businesstype: 'Pharmacy'
-        },
-        { 
-            businessname: 'Ernest',
-            email: 'yesyesyes@email.com', 
-            contact: '08123456789',
-            address: '35 Katsina Avenue, Ind', 
-            businesstype: 'Pharmacy'
-        },
-    ]
+    const {} = useQuery('getbrands', getPortal, {
+        //   retryDelay: attemptIndex => Math.min(1000 * 2 ** attemptIndex, 30000),
+        //   retry: 6,
+          onSuccess: (data: any) => {
+              console.log(data);
+              setLoading(false);
+              setAccounts(prev => [...data.data.response]);
+            //   alert(JSON.stringify(data));
+          },
+          onError: (error: any) => {
+              setLoading(false);
+              setError(true);
+              alert(JSON.stringify(error.message));
+          },
+      })
+
+        // functions
+        const close = () => {
+            setLoading(false);
+            setText('');
+        }
 
     return (
         <div className='w-full h-full flex flex-col px-10 py-8 ' >  
+
+            {/* Modal  */}
+            <LoadingModal open={loading} onClose={close} text={text} />
+
             <p className='font-Poppins-Semibold text-lg' >List of PORTAL Accounts</p>
             <div className='w-full flex relative flex-row items-center py-8' > 
                 <div className='w-24 flex items-center mr-4' >  
                     <Select fontSize='xs' color='#828282' placeholder='Sort By' />
                 </div>
-                <div className='w-48 flex items-center' > 
-                    <div className='fixed z-10 ml-4' >
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M2 8C2 4.691 4.691 2 8 2C11.309 2 14 4.691 14 8C14 11.309 11.309 14 8 14C4.691 14 2 11.309 2 8ZM17.707 16.293L14.312 12.897C15.365 11.543 16 9.846 16 8C16 3.589 12.411 0 8 0C3.589 0 0 3.589 0 8C0 12.411 3.589 16 8 16C9.846 16 11.543 15.365 12.897 14.312L16.293 17.707C16.488 17.902 16.744 18 17 18C17.256 18 17.512 17.902 17.707 17.707C18.098 17.316 18.098 16.684 17.707 16.293Z" fill="#BDBDBD"/>
-                        </svg>
-                    </div>
-                    <Input fontSize='xs' paddingLeft='10'  placeholder='Search ...' />
-                </div>
+                <InputGroup className='w-48 flex items-center' width="sm" > 
+                    <InputLeftElement>
+                        <FiSearch size={20} color="black" />
+                    </InputLeftElement>
+                    <Input fontSize='xs' paddingLeft='10' value={search} onChange={(e) => setSearch(e.target.value)}  placeholder='Search ...' />
+                </InputGroup>
                 <div className='w-full flex flex-1' />
                 <button className='bg-midlman_color flex flex-row items-center font-Poppins-Bold text-white text-xs py-3 px-8 rounded-md mx-1' > Print </button>
     
@@ -96,28 +105,35 @@ export default function PortalAccount() {
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map((item, index) => {
+                        {accounts
+                        .filter((val) => {
+                            if (search === '') {
+                                return val;
+                            } else if (val.email.toLowerCase().includes(search.toLowerCase())) {
+                                return val;
+                            }
+                        }).map((item, index) => {
                             return(
                                 <tr key={index} style={index === 0 ? {backgroundColor: '#EEB259'}:{}} className='font-Poppins-Regular' >
                                     <td className='font-Poppins-Semibold'>{index+1}</td>
                                     <td >
                                         <div className='w-full flex justify-center text-midlman_color text-Poppins-Medium'>
-                                            View Image
+                                           <a href={item.photo}> View Image </a>
                                         </div>
                                     </td>
-                                    <td>{item.businessname}</td>
+                                    <td>{item.businessName}</td>
                                     <td>{item.email}</td>
-                                    <td>{item.contact}</td>
-                                    <td>{item.address}</td>
-                                    <td>{item.businesstype}</td>
+                                    <td>{item.phone}</td>
+                                    <td>{item.address.location}</td>
+                                    <td>{item.businessType}</td>
                                     <td >
                                         <div className='w-full flex justify-center text-midlman_color text-Poppins-Medium'>
-                                            View Document 
+                                            <a href={item.cacDoc}> View Document  </a>
                                         </div>
                                     </td>
                                     <td >
                                         <div className='w-full flex justify-center text-midlman_color text-Poppins-Medium'>
-                                            View Document 
+                                            <a href={item.licenseDoc}> View Document  </a>
                                         </div>
                                     </td>
 

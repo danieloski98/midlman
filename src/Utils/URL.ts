@@ -1,1 +1,1 @@
-export const url = ' https://live-midlman-api.cloudns.ph/api/v1';
+export const url = 'https://live-midlman-api.cloudns.ph/api/v1';

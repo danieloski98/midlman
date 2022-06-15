@@ -1,57 +1,67 @@
-import { Select, Input } from '@chakra-ui/react'
+import { Select, Input, InputGroup, InputLeftElement, Switch } from '@chakra-ui/react'
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import Navbar from '../../Settings/Component/Navbar'
+import { url } from '../../../../../Utils/URL';
+import * as axios from 'axios';
+import { useQuery } from 'react-query';
+import { IExpress } from '../../../../../Types/Express';
+import LoadingModal from '../../../../Modals/LoadingModal';
+import { FiSearch } from 'react-icons/fi'
+
+async function getExpress() {
+    const request = await axios.default.get(`${url}/admin/express/accounts`);
+    return request;
+}
 
 export default function ExpressAccount() {
     const history = useHistory()
+    const [loading, setLoading] = React.useState(true);
+    const [accounts, setAccounts] = React.useState([] as Array<IExpress>);
+    const [error, setError] = React.useState(false);
+    const [text, setText] = React.useState('Loading Amdins');
+    const [sort, setSort] = React.useState('name');
+    const [search, setSearch] = React.useState('')
 
-    const data = [
-        { 
-            firstname: 'Ernest',
-            lastname: 'Chris',
-            email: 'yesyesyes@email.com',
-            contact: '08123456789',
-            address: '35 Katsina Avenue, Ind', 
-        },
-        { 
-            firstname: 'Ernest',
-            lastname: 'Chris',
-            email: 'yesyesyes@email.com',
-            contact: '08123456789',
-            address: '35 Katsina Avenue, Ind', 
-        },
-        { 
-            firstname: 'Ernest',
-            lastname: 'Chris',
-            email: 'yesyesyes@email.com',
-            contact: '08123456789',
-            address: '35 Katsina Avenue, Ind', 
-        },
-        { 
-            firstname: 'Ernest',
-            lastname: 'Chris',
-            email: 'yesyesyes@email.com',
-            contact: '08123456789',
-            address: '35 Katsina Avenue, Ind', 
-        },
-    ]
+    const {} = useQuery('getbrands', getExpress, {
+        //   retryDelay: attemptIndex => Math.min(1000 * 2 ** attemptIndex, 30000),
+        //   retry: 6,
+          onSuccess: (data: any) => {
+              console.log(data);
+              setLoading(false);
+              setAccounts(prev => [...data.data.response]);
+            //   alert(JSON.stringify(data));
+          },
+          onError: (error: any) => {
+              setLoading(false);
+              setError(true);
+              alert(JSON.stringify(error.message));
+          },
+      })
+
+     // functions
+    const close = () => {
+        setLoading(false);
+        setText('');
+    }
 
     return (
         <div className='w-full h-full flex flex-col px-10 py-8 ' >  
+
+            {/* Modal  */}
+            <LoadingModal open={loading} onClose={close} text={text} />
+
             <p className='font-Poppins-Semibold text-lg' >List of EXPRESS Accounts</p>
             <div className='w-full flex relative flex-row items-center py-8' > 
                 <div className='w-24 flex items-center mr-4' >  
                     <Select fontSize='xs' color='#828282' placeholder='Sort By' />
                 </div>
-                <div className='w-48 flex items-center' > 
-                    <div className='fixed z-10 ml-4' >
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M2 8C2 4.691 4.691 2 8 2C11.309 2 14 4.691 14 8C14 11.309 11.309 14 8 14C4.691 14 2 11.309 2 8ZM17.707 16.293L14.312 12.897C15.365 11.543 16 9.846 16 8C16 3.589 12.411 0 8 0C3.589 0 0 3.589 0 8C0 12.411 3.589 16 8 16C9.846 16 11.543 15.365 12.897 14.312L16.293 17.707C16.488 17.902 16.744 18 17 18C17.256 18 17.512 17.902 17.707 17.707C18.098 17.316 18.098 16.684 17.707 16.293Z" fill="#BDBDBD"/>
-                        </svg>
-                    </div>
-                    <Input fontSize='xs' paddingLeft='10'  placeholder='Search ...' />
-                </div>
+                <InputGroup className='w-48 flex items-center' width="sm" > 
+                    <InputLeftElement>
+                        <FiSearch size={20} color="black" />
+                    </InputLeftElement>
+                    <Input fontSize='xs' paddingLeft='10' value={search} onChange={(e) => setSearch(e.target.value)}  placeholder='Search ...' />
+                </InputGroup>
                 <div className='w-full flex flex-1' />
                 <button className='bg-midlman_color flex flex-row items-center font-Poppins-Bold text-white text-xs py-3 px-8 rounded-md mx-1' > Print </button>
                 {/* <button onClick={()=> history.push('/dashboard/newexpressaccount')}  className='bg-midlman_color flex flex-row items-center font-Poppins-Bold text-white text-xs py-3 px-6 rounded-md mx-1' >
@@ -65,16 +75,16 @@ export default function ExpressAccount() {
                     <thead>
                         <tr className='font-Poppins-Semibold' >
                             <th className='bg-white'>
-                                <p className="w-24">ID</p>
-                            </th>
-                            <th className='bg-white'>
-                                <p className="w-32">Display Picture</p>
+                                <p className="w-24">S/N</p>
                             </th>
                             <th className='bg-white'>
                                 <p className="w-32">First Name</p>
                             </th>
                             <th className='bg-white'>
                                 <p className="w-32">Last Name</p>
+                            </th>
+                            <th className='bg-white'>
+                                <p className="w-32">Username</p>
                             </th>
                             <th className='bg-white'>
                                 <p className="w-56">Email Address</p></th> 
@@ -87,20 +97,24 @@ export default function ExpressAccount() {
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map((item, index) => {
+                        {accounts
+                        .filter((val) => {
+                            if (search === '') {
+                                return val;
+                            } else if (val.firstName.toLowerCase().includes(search.toLowerCase()) || val.email.toLowerCase().includes(search.toLowerCase())) {
+                                return val;
+                            }
+                        })
+                        .map((item, index) => {
                             return(
                                 <tr key={index} className='font-Poppins-Regular' >
                                     <td className='font-Poppins-Semibold'>{index+1}</td>
-                                    <td>
-                                        <div className='w-full flex justify-center text-midlman_color text-Poppins-Medium'>
-                                            <p>View Image</p>
-                                        </div>
-                                    </td>
-                                    <td>{item.firstname}</td>
-                                    <td>{item.lastname}</td>
+                                    <td>{item.firstName}</td>
+                                    <td>{item.lastName}</td>
+                                    <td>{item.username}</td>
                                     <td>{item.email}</td>
-                                    <td>{item.contact}</td>
-                                    <td>{item.address}</td>
+                                    <td>{item.phone}</td>
+                                    <td>{item.address.location}</td>
                                     <td> 
                                         <div className=' w-56 h-full flex flex-row ' >
                                             {/* <div onClick={()=> history.push('/dashboard/editexpressaccount')} className='cursor-pointer flex flex-row' >
@@ -111,12 +125,11 @@ export default function ExpressAccount() {
                                             </div> */}
                                             <div className='cursor-pointer flex flex-row  justify-evenly items-center'  >
 
-                                            <label className="switch">
-                                                <input type="checkbox"/>
-                                                <span className="slider round"></span>
-                                            </label>
+                                            {/* <label className="switch">
+                                               <Switch isChecked={item.active} />
+                                            </label> */}
 
-                                            <p className="ml-2">Active</p>
+                                            {/* <p className="ml-2">Active</p> */}
 
                                                 <div className='rounded-full w-4 h-4 flex justify-center items-center ml-6' style={{backgroundColor:'#EB5757'}} >
                                                     <svg width="9" height="9" viewBox="0 0 9 8" fill="none" xmlns="http://www.w3.org/2000/svg">

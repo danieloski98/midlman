@@ -20,7 +20,7 @@ const getCat = async () => {
     return json;
 }
 
-// delete category
+// delete category function
 const deleteCat = async (id: string) => {
     const request = await fetch(`${url}/category/${id}`, {
         method: 'delete'
@@ -36,6 +36,14 @@ const deleteCat = async (id: string) => {
 
 export default function Catergories() {
     const history = useHistory()
+       // states
+       const [showModal, setShowModal] = React.useState(true);
+       const [text, setText] = React.useState('Loading Categories');
+       const [error, setError] = React.useState(false);
+       const [errorText, seterrorText] = React.useState('');
+       const [categories, setCategories] = React.useState([] as Array<ICategories>);
+       const [sort, setSort] = React.useState('name');
+       const [search, setSearch] = React.useState('')
 
     const { refetch } = useQuery('categories', getCat, {
         onSuccess: (data) => {
@@ -68,12 +76,7 @@ export default function Catergories() {
         }
     })
 
-    // states
-    const [showModal, setShowModal] = React.useState(true);
-    const [text, setText] = React.useState('Loading Categories');
-    const [error, setError] = React.useState(false);
-    const [errorText, seterrorText] = React.useState('');
-    const [categories, setCategories] = React.useState([] as Array<ICategories>);
+ 
 
     // functions
     const retry = async () => {
@@ -94,14 +97,15 @@ export default function Catergories() {
             <LoadingModal text={text} open={showModal} onClose={() => setShowModal(false)} />
             <p className='font-Poppins-Semibold text-lg' >Categories</p>
             <div className='w-full flex relative flex-row items-center py-8' > 
-                <div className='w-24 flex items-center mr-4' >  
-                    <Select fontSize='xs' color='#828282' placeholder='Sort By' />
+                <div className='w-40 flex items-center mr-4' >  
+                    <Select fontSize='xs' value={sort} onChange={(e) => setSort(e.target.value)} color='#828282' placeholder={`Sort By`} width="lg">
+                        <option value="name">Sort By Name</option>
+                    </Select>
                 </div>
-                <div className='w-48 flex items-center' > 
-                    
+                <div className='w-auto flex items-center' > 
                     <InputGroup>
                         <InputLeftElement children={<FiSearch size={20} color="grey" />} />
-                        <Input fontSize='xs' paddingLeft='10'  placeholder='Search ...' />
+                        <Input fontSize='xs' paddingLeft='10' value={search} onChange={(e) => setSearch(e.target.value)}  placeholder='Search by name' width="md" />
                     </InputGroup>
                 </div>
                 <div className='w-full flex flex-1' />
@@ -111,7 +115,10 @@ export default function Catergories() {
                     </svg> Add New Category
                 </button>
             </div>
+
+            
             <div className='w-auto mb-6' >
+
               {
                   showModal ? <div></div>:
 
@@ -139,19 +146,33 @@ export default function Catergories() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {categories.map((item, index) => {
+                                {categories
+                                .sort((a, b): number => {
+                                        let x = a.name.toLowerCase();
+                                        let y = b.name.toLowerCase();
+                                        if (x < y) { return -1}
+                                        if (x > y) { return 1 }
+                                        return 0;
+                                })
+                                .filter((val) => {
+                                    if (search === '') {
+                                        return val;
+                                    } else if (val.name.toLowerCase().includes(search.toLowerCase())) {
+                                        return val;
+                                    }
+                                }).map((item, index) => {
                                     return(
                                         <tr key={index} className='font-Poppins-Regular' >
-                                            <td className='font-Poppins-Semibold'>{index+1}</td>
+                                            <td className='font-Poppins-Semibold'>{index + 1}</td>
                                             <td>{item.name}</td> 
                                             <td >
                                                 <div className='w-full cursor-pointer flex justify-center text-midlman_color text-Poppins-Medium'>
-                                                    View Image
+                                                    <a href={item.coverImage} target="_blank" rel="noopener noreferrer">View Cover Image</a>
                                                 </div>
                                             </td>
                                             <td >
                                                 <div className='w-full cursor-pointer  flex justify-center text-midlman_color text-Poppins-Medium'>
-                                                    View Icon
+                                                    <a href={item.icon} target="_blank" rel="noopener noreferrer">View Icon</a>
                                                 </div>
                                             </td>
                                             <td>{new Date(item.updatedAt).toUTCString()}</td>
@@ -183,6 +204,7 @@ export default function Catergories() {
                   </div>
               }
             </div>
+
 
             {
                 showModal === false && error === false && (

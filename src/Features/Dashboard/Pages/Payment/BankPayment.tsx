@@ -1,89 +1,100 @@
 import { Select, Input } from '@chakra-ui/react';
 import React from 'react'; 
 import DeclinedModal from '../../../Modals/DeclinedModal';
+import { FiSearch, FiTrash } from 'react-icons/fi'
+import { useQuery } from 'react-query'
+import { url } from '../../../../Utils/URL'
+import LoadingModal from '../../../Modals/LoadingModal'
+
+
+
+interface IDeposits {
+    status: string;
+    _id: string;
+    user: string;
+    depositor: string;
+    amount: number;
+    createdAt: string;
+    updatedAt: string;
+}
+
+// get deposits
+const getDeposits = async() => {
+    const request = await fetch(`${url}/transfer`);
+    const json = await request.json()
+
+    if (!request.ok) {
+        throw new Error("An error Occured")
+    } else {
+        return json;
+    }
+}
+
+
+const color = (value: string) => {
+    switch(value) {
+        case 'Pending': {
+            return '#F2994A'
+        }
+        case 'Successful': {
+            return '#00A69C'
+        }
+        case 'Failed': {
+            return '#94316D'
+        }
+    }
+}
 
 export default function BankPayment() {
-    const [showModal, setShowModal] = React.useState(false);
+    const [status, setStatus] = React.useState('Pending');
+    const [loading, setLoading] = React.useState(true);
+    const [deposits, setDeposits] = React.useState([] as IDeposits[])
+    const [text, setText] = React.useState('Loading Deposits...')
 
-    const [data, setData] = React.useState([
-        { 
-            bussinessname: 'Ernest Chris',
-            amountpaid: 'Carton',
-            paymentdate: '4',
-            depositorsname: 'Ernest Chris', 
-            paymentreciept: 'View Logo',
-            status: 'Pending', 
-            time: '2:00pm'
+    // query
+    const { refetch } = useQuery('getTransfers', getDeposits, {
+        onSuccess: (data) => {
+            console.log(data)
+            setDeposits(data.response)
+            setLoading(false);
+            setText("")
         },
-        { 
-            bussinessname: 'Ernest Chris',
-            amountpaid: 'Carton',
-            paymentdate: '4',
-            depositorsname: 'Ernest Chris', 
-            paymentreciept: 'View Logo',
-            status: 'Pending', 
-            time: '2:00pm'
-        },
-        { 
-            bussinessname: 'Ernest Chris',
-            amountpaid: 'Carton',
-            paymentdate: '4',
-            depositorsname: 'Ernest Chris', 
-            paymentreciept: 'View Logo',
-            status: 'Credited', 
-            time: '2:00pm'
-        },
-        { 
-            bussinessname: 'Ernest Chris',
-            amountpaid: 'Carton',
-            paymentdate: '4',
-            depositorsname: 'Ernest Chris', 
-            paymentreciept: 'View Logo',
-            status: 'Pending', 
-            time: '2:00pm'
+        onError: (error) => {
+            console.log(error)
+            setLoading(false);
+            setText('')
         }
-    ])
+    });
 
-    // functions
+    const changeStatus = async(index: number, status: string) => {
+        setLoading(true);
+        setText("Updating deposit...");
+        const request = await fetch(`${url}/transfer/edit/${deposits[index]._id}`, {
+            method: 'put',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({ status, depositor: deposits[index].depositor, amount: deposits[index].amount })
+        })
+        const json = await request.json();
+        setLoading(false);
+        setText("")
 
-    const HandleChange =(event: any, index: any)=> {
-        if(event.target.value === 'Credited'){  
-            const arr = [...data]
-            arr[index].status = 'Credited' 
-            setData(arr)
-        } else if (event.target.value === 'Pending') { 
-            const arr = [...data]
-            arr[index].status = 'Pending' 
-            setData(arr) 
+        if (!request.ok) {
+            alert(json.message);
         }else {
-            setShowModal(true);
-            const arr = [...data]
-            arr[index].status = 'Declined' 
-            setData(arr) 
+            alert(json.message);
+            await refetch()
         }
-    }
-
-    const closeDeclineModal = () => {
-        setShowModal(false);
-    }
-
-    const Status = (item: any, index: any) =>{ 
-            return( 
-                <div className='w-28 flex ' >
-                    <Select style={ item ==='Credited' ? {color: '#00A69C'} : {color:'#F2994A'}} value={item}  className='w-full' onChange={(e)=> HandleChange(e, index)} fontSize='xs'>
-                        <option value='Pending' style={{color:'#000000'}} >Pending</option>
-                        <option value='Credited' style={{color:'#000000'}} >Credited</option>
-                        <option value='Declined' style={{color:'#000000'}} >Declined</option>
-                    </Select>
-                </div>
-            ) 
+        
     }
 
     return (
         <div className='w-full h-full flex flex-col px-10 py-8 ' >  
              {/* modal */}
-
-             <DeclinedModal isOpen={showModal} onClose={closeDeclineModal} />
+             <LoadingModal open={loading} onClose={() => setLoading(false)} text="Loading Bank Payment..." />
+{/* 
+             <DeclinedModal isOpen={showModal} onClose={closeDeclineModal} /> */}
 
             {/* end of modal  */}
 
@@ -101,46 +112,74 @@ export default function BankPayment() {
                     <Input fontSize='xs' paddingLeft='10'  placeholder='Search ...' />
                 </div> 
             </div>
-            <div className='w-auto my-14' >
-                <table className='text-xs '>
+
+
+             {/* table */}
+
+             <div className="w-full mt-20 overflow-x-auto" style={{ height: 250 }}>
+                <table>
                     <thead>
-                        <tr className='font-Poppins-Semibold' >
-                            <th className='bg-white'>ID</th>
-                            <th className='bg-white'>Business Name</th>
-                            <th className='bg-white'>Bank Name</th>
-                            <th className='bg-white'>Amount Paid</th>
-                            <th className='bg-white'>Date of Payment</th>
-                            <th className='bg-white'>Time Of Payment</th>
-                            <th className='bg-white'>Depositors Name</th> 
-                            <th className='bg-white'>Payment Reciept</th> 
-                            <th className='bg-white'>Status</th>   
+                        <tr className="font-Poppins-Medium text-xs">
+                            <th className="bg-white">
+                                <p className="w-56 text-sm font-Poppins-Medium">Transaction ID</p>
+                            </th>
+                            <th className="bg-white">
+                                <p className="w-56 text-sm font-Poppins-Medium">user ID</p>
+                            </th>
+                            <th className="bg-white">
+                                <p className="w-56">Depositor</p>
+                            </th>
+                            <th className="bg-white">
+                                <p className="w-56">Amount</p>
+                            </th>
+                            <th className="bg-white"> 
+                                <p className="w-56">Date & Time</p>
+                            </th>
+                            {/* <th className="bg-white">
+                                <p className="w-56">Account Number</p>
+                            </th> */}
+                            <th className="bg-white">
+                                <p className="w-56">Status</p>
+                            </th>
+                            <th className="bg-white">
+                                <p className="w-56">Action</p>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map((item, index) => {
-                            return(
-                                <tr key={index} className='font-Poppins-Regular' >
-                                    <td className='font-Poppins-Semibold'>{index+1}</td>
-                                    <td>{item.bussinessname}</td>
-                                    <td>UBA</td>
-                                    <td>{item.amountpaid}</td>
-                                    <td>{item.paymentdate}</td>
-                                    <td>{item.time}</td>  
-                                    <td>{item.depositorsname}</td>
+                        {
+                            deposits.map((item, index) => (
+                                <tr key={index.toString()} className="font-Poppins-Medium text-xs">
+                                    <td>{item._id}</td>
+                                    <td>{item.user}</td>
+                                    <td>{item.depositor}</td>
+                                    <td>{item.amount}</td>
+                                    <td>{item.createdAt}</td>
+                                    {/* <td>{item.account_number}</td> */}
                                     <td>
-                                        <div className='w-full flex justify-center items-center cursor-pointer font-Poppins-Semibold text-midlman_color' > 
-                                            {item.paymentreciept}
-                                        </div>
-                                    </td> 
+                                        <Select value={item.status} onChange={(e) => { changeStatus(index, e.target.value)}} color={color(item.status)} size="xs" width="full">
+                                            <option value="Pending">Pending</option>
+                                            <option value="Successful">Successful</option>
+                                            <option value="Failed">Failed</option>
+                                        </Select>
+                                    </td>
                                     <td>
-                                        {Status(item.status, index)} 
-                                    </td> 
+                                        <p className="text-red-300 text-xs font-Poppins-Bold flex items-center">
+                                            <FiTrash size={20} />
+                                            <span className="ml-2">Delete</span>
+                                        </p>
+                                    </td>
                                 </tr>
-                            )
-                        })}
+                            ))
+                        }
                     </tbody>
                 </table>
             </div>
+
+            {/* end of tabel */}
+
+
+
             <div className='w-full flex flex-row items-center pb-12'>
                 <p className='font-Poppins-Regular text-xs' >Showing 1-10 of 30 items</p>
                 <div className='w-full flex flex-1' />

@@ -1,4 +1,4 @@
-import { Select, Input, Spinner, Modal, ModalOverlay, ModalBody, ModalContent } from "@chakra-ui/react";
+import { Select, Input, Spinner, Modal, ModalOverlay, ModalBody, ModalContent, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { useQuery, useMutation } from 'react-query'
@@ -7,6 +7,7 @@ import * as axios from 'axios'
 import { IBrand } from "../../../../../Types/Brand";
 import LoadingModal from "../../../../Modals/LoadingModal";
 import { queryclient } from '../../../../../App'
+import { FiSearch } from "react-icons/fi";
 
 //get brands functions
 async function getBrands() {
@@ -22,6 +23,15 @@ async function deleteBrand(id: string) {
 export default function Brand() {
   // hooks
   const history = useHistory();
+    // state
+    const [loading, setLoading] = React.useState(true);
+    const [brands, setBrands] = React.useState([] as IBrand[]);
+    const [open, setOpen] = React.useState(false);
+    const [text, setText] = React.useState('');
+    const [sort, setSort] = React.useState('name');
+    const [search, setSearch] = React.useState('')
+
+
   const { isLoading } = useQuery('getbrands', getBrands, {
     //   retryDelay: attemptIndex => Math.min(1000 * 2 ** attemptIndex, 30000),
     //   retry: 6,
@@ -51,21 +61,6 @@ export default function Brand() {
     }
   })
 
-  // state
-  const [loading, setLoading] = React.useState(true);
-  const [brands, setBrands] = React.useState([] as IBrand[]);
-  const [open, setOpen] = React.useState(false);
-  const [text, setText] = React.useState('');
-
-  // effects
-  // React.useEffect(() => {
-  //   // if (isLoading) {
-  //   //     setLoading(true);
-  //   // }else {
-  //   //     setLoading(false);
-  //   // }
-  // }, [isLoading])
-
   // functions
   const close = () => {
     setOpen(false);
@@ -88,25 +83,16 @@ export default function Brand() {
       <LoadingModal open={open} onClose={close} text={text} />
       <p className="font-Poppins-Semibold text-lg">Brand</p>
       <div className="w-full flex relative flex-row items-center py-8">
-        <div className="w-24 flex items-center mr-4">
-          <Select fontSize="xs" color="#828282" placeholder="Sort By" />
+        <div className="w-40 flex items-center mr-4">
+        <Select fontSize='xs' value={sort} onChange={(e) => setSort(e.target.value)} color='#828282' placeholder={`Sort By`} width="lg">
+          <option value="name">Sort By Name</option>
+        </Select>
         </div>
-        <div className="w-48 flex items-center">
-          <div className="fixed z-10 ml-4">
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 18 18"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M2 8C2 4.691 4.691 2 8 2C11.309 2 14 4.691 14 8C14 11.309 11.309 14 8 14C4.691 14 2 11.309 2 8ZM17.707 16.293L14.312 12.897C15.365 11.543 16 9.846 16 8C16 3.589 12.411 0 8 0C3.589 0 0 3.589 0 8C0 12.411 3.589 16 8 16C9.846 16 11.543 15.365 12.897 14.312L16.293 17.707C16.488 17.902 16.744 18 17 18C17.256 18 17.512 17.902 17.707 17.707C18.098 17.316 18.098 16.684 17.707 16.293Z"
-                fill="#BDBDBD"
-              />
-            </svg>
-          </div>
-          <Input fontSize="xs" paddingLeft="10" placeholder="Search ..." />
+        <div className='w-auto flex items-center' > 
+            <InputGroup>
+                <InputLeftElement children={<FiSearch size={20} color="grey" />} />
+                <Input fontSize='xs' paddingLeft='10' value={search} onChange={(e) => setSearch(e.target.value)}  placeholder='Search by name' width="md" />
+            </InputGroup>
         </div>
         <div className="w-full flex flex-1" />
         <button
@@ -148,7 +134,7 @@ export default function Brand() {
               </p>
             </div>
           ) : (
-            <div className="w-auto my-14">
+            <div className="w-auto my-6">
               <table className="text-sm ">
                 <thead>
                   <tr className="font-Poppins-Semibold">
@@ -161,7 +147,22 @@ export default function Brand() {
                   </tr>
                 </thead>
                 <tbody>
-                  {brands.map((item, index) => {
+                  {brands
+                  .sort((a, b): number => {
+                    let x = a.name.toLowerCase();
+                    let y = b.name.toLowerCase();
+                    if (x < y) { return -1}
+                    if (x > y) { return 1 }
+                    return 0;
+                  })
+                  .filter((val) => {
+                      if (search === '') {
+                          return val;
+                      } else if (val.name.toLowerCase().includes(search.toLowerCase())) {
+                          return val;
+                      }
+                  })
+                  .map((item, index) => {
                     return (
                       <tr key={index} className="font-Poppins-Regular">
                         <td className="font-Poppins-Semibold">{index + 1}</td>
